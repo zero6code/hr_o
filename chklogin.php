@@ -13,6 +13,7 @@ $dataPost=json_decode(filter_input(INPUT_POST,'d'));
 $user = $dataPost->user;
 $pass= $dataPost->pass;
 $typeuser= $dataPost->typeuser;
+echo $user."|".$pass."|".$typeuser;
 
 if($typeuser==='typeuser'){
     $sql="SELECT p.*,concat(fname,' ',lname) as person "

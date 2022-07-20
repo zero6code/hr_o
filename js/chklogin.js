@@ -3,25 +3,23 @@
         var txt = 
             
             '<!-- Page Content -->'+
-            '<div class="container mt-5" '+
+            '<div class="container">'+
                 '<div class="row">'+
-                    '<div class="col-md-6 mx-auto">'+//Content ขวามือ
+                    '<div class="col-md-4">'+//Content ขวามือ
                         '<div class="row">'+
                             "<form class='myboxshadow' style='background-color:white;'>"+
                                 "<div class='row'>"+
-                                    "<div class='' style='text-align:center;'>"+
-                                        "<img src='img/skphlogo.jpg' class='img-responsive'>"+
+                                    "<div class='col-md-6 col-md-offset-3'>"+
+                                        "<img src='img/logo_ssr.png' class='img-responsive' style='width:100%;'>"+
                                     "</div>"+
                                 "</div>"+
-                                "<h2 class='form-signin-heading' style='text-align: center;'>กลุ่มงานทรัพยากรบุคคล</h2>"+
-                                "<div class=' col-sm-12'>"+
+                                "<h2 class='form-signin-heading'>HR@SSRH ระบบสารสนเทศเพื่อการบริหารทรัพยากรบุคคล</h2>"+
                                 "<label  class='sr-only'>Username</label>"+
-                                "<input type='text' class='form-control' placeholder='Username'>"+
+                                "<input type='text' class='form-control' placeholder='Username' style='background-color:#FFFFE0;border-radius:0px;'>"+
                                 "<label  class='sr-only'>Password</label>"+
-                                "<input type='password'  class='form-control' placeholder='Password'>"+
-                                "</div>"+
+                                "<input type='password'  class='form-control' placeholder='Password' style='background-color:#FFFFE0;border-radius:0px;'>"+
                                 '<div class="funkyradio">'+
-                                    '<div class="funkyradio-success" style="padding:0; margin-top: 2vh;">'+
+                                    '<div class="funkyradio-success" style="padding:0; margin:0;">'+
                                         '<input type="radio" name="logintype" id="typeuser" value="typeuser" checked />'+
                                         '<label for="typeuser" style="padding:0; margin:0;">ผู้ใช้งานทั่วไป(user)</label>'+
                                     '</div>'+
@@ -31,10 +29,10 @@
                                     '</div>'+
                                 '</div>'+
                                 '<div class="row">'+
-                                    "<div class='col-xs-12  col-sm-12  col-md-12'>"+
+                                    "<div class='col-xs-4 col-xs-offset-3 col-sm-2 col-sm-offset-1 col-md-2 col-md-offset-5'>"+
                                       "<button class='btn btn-primary' style='"+
-                                        "width: 100%;"+
-                                        "margin-top: 2vh; height: 5vh;"+
+                                        "border-radius:30px;"+
+                                        "box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);"+
                                         "'>เข้าสู่ระบบ</button>"+
                                     '</div>'+
                                 '</div>'+
@@ -52,7 +50,11 @@
             contentRight = content.find('.row > .col-md-4'),
             //contentLeft = content.find('.row > .col-md-8'),
             staffLoginFrm = contentRight.find('div:nth-child(1) >form');
- 
+            
+        // BlogInfo();//upload ข่าวประชาสัมพันธ์    
+        // BlogNewsHeadLine_HTML();//Headline หัวข้อข่าว
+        // BlogDocumentUpload();//upload เอกสาร
+        // BlogLawUpload();//กฏระเบียบข้อบังคับ หลักเกณฑ์ต่างๆ
        
         //Staff Login
         var logintype=$('#typeuser').prop('checked',true).val(); 
