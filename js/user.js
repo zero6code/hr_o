@@ -23,31 +23,31 @@
             '</div>';
             return txt;  
         };
-        var modal = $(txtmodal());
-        modal.on('shown.bs.modal', function(e){
-            window.setTimeout(function () {//ภายใน 2 นาที ถ้าไม่ทำอะไรจะ logout เอง
-                logout();
-                modal.modal("hide");
-            },120000);
-            var btnYes = $(this).find('.modal-footer >button').first();
-            var btnNo = $(this).find('.modal-footer >button').last();
-            btnYes.off('click').on('click',function(){
-                logout();
-            });
-            btnNo.click(function(){
-                window.location.reload(true);
-            });
+        // var modal = $(txtmodal());
+        // modal.on('shown.bs.modal', function(e){
+        //     window.setTimeout(function () {//ภายใน 2 นาที ถ้าไม่ทำอะไรจะ logout เอง
+        //         // logout();
+        //         modal.modal("hide");
+        //     },120000);
+        //     var btnYes = $(this).find('.modal-footer >button').first();
+        //     var btnNo = $(this).find('.modal-footer >button').last();
+        //     btnYes.off('click').on('click',function(){
+        //         logout();
+        //     });
+        //     btnNo.click(function(){
+        //         window.location.reload(true);
+        //     });
             
-            e.stopPropagation();
-        });
-        modal.on('hidden.bs.modal', function(){
-            $(this).data('bs.modal', null);
-        });
-        if(new Date().getTime() - chayanon_on_time >= 300000){//5นาที*60*1000 = 300000
-            modal.modal('show');
-        }else{ 
-            setTimeout(timeout_refresh, 60000);
-        }
+        //     e.stopPropagation();
+        // });
+        // modal.on('hidden.bs.modal', function(){
+        //     $(this).data('bs.modal', null);
+        // });
+        // if(new Date().getTime() - chayanon_on_time >= 300000){//5นาที*60*1000 = 300000
+        //     modal.modal('show');
+        // }else{ 
+        //     setTimeout(timeout_refresh, 60000);
+        // }
     };
     var logout = function(){
         $.ajax({
@@ -63,11 +63,11 @@
     };
     var html_layout = function(){
         var txt = 
-        '<div class="wrapper">'+
+        '<div class="wrapper">'+                    //start nav user paage
             '<header class="main-header">'+ 
                 '<a href="#" class="logo">'+ //mini logo for sidebar mini 50x50 pixels
                     '<span class="logo-mini"><b>A</b>LT</span>'+ 
-                    '<span class="logo-lg"><b>HR</b>@SKPH</span>'+ 
+                    '<span class="logo-lg"><b>HR</b>@SSRH</span>'+ 
                 '</a>'+ 
                 '<nav class="navbar navbar-static-top">'+ //Header Navbar: style can be found in header.less
                     '<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">'+ //Sidebar toggle button
@@ -111,7 +111,7 @@
                         '</ul>'+ 
                     '</div>'+ 
                 '</nav>'+ 
-            '</header>'+   
+            '</header>'+   //end nav user paage
         
             '<aside class="main-sidebar" >'+
                 '<section class="sidebar" id="mn_sidebar">'+//style can be found in sidebar.less
@@ -266,13 +266,6 @@
                 '</section>'+//sidebar
             '</aside>'+
             '<div class="content-wrapper" id="myContent"></div>'+
-            '<footer class="main-footer">'+
-                '<div class="pull-right hidden-xs">'+
-                  '<b>Version</b> 2.0.1'+
-                '</div>'+
-                '<strong>Copyright &copy; 2020-2021 <a href="#">hr@skph</a>.</strong> All rights'+
-                'reserved.'+
-            '</footer>'+
         '</div>';//.wrapper
         return txt;
     };
@@ -4079,14 +4072,6 @@
                     '<div class="row">'+//nth-child(1)
                         '<div class="col-md-10 col-lg-10">'+
                             '<h2>Float Label Pattern Forms</h2>'+
-                            '<p class="lead">'+
-                                '<small class="text-muted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;กลุ่มงานทรัพยากรบุคคล ได้พัฒนาระบบฐานข้อมูลบุคลากร เพื่อใช้เป็นเครื่องมือหนึ่งในการยกระดับสมรรถนะและทักษะของบุคลากร อันจะนำไปสู่การมุ่งผลสัมฤทธิ์ตามวิสัยทัศและพันธกิจของโรงพยาบาลจิตเวชสงขลาราชนครินทร์ต่อไป</small>'+
-                                '<br />'+
-                                    '<div class="span6" style="padding:0;margin:0;text-align:center;">'+
-                                        'แจ้งปรับปรุงแก้ไขระบบ&nbsp;'+
-                                        '<a href="http://nav.cx/gfZioUq"><img src="../img/hr_line.jpg" alt="HR@SKPH" height="26" border="0"></a>'+
-                                    '</div>'+
-                            '</p>'+
                             '<p style="color:#4A0801; LINE-HEIGHT:19px;">'+
                                 '<a href="#" class="btn btn-default btn-lg noradius" data-container="body" '+
                                     'data-toggle="popover" data-html="true" data-content="'+
@@ -4105,14 +4090,14 @@
                     '</div>'+
                     '<div class="row">'+//nth-child(2)
                         '<div class="panel col-md-10 col-lg-10">'+
-                            '<div class="panel-body alert alert-warning" style="border-radius: 0px 60px 0px 80px;-webkit-box-shadow: -8px -4px 6px -2px #000000;box-shadow: -8px -4px 6px -2px #000000; ">'+
+                            '<div class="panel-body alert card showdow" style="">'+
                                 '<div class="row">'+
                                     '<form  action="" method="post" enctype="multipart/form-data" class="col-xs-12 col-sm-6 col-md-4 col-lg-4">'+//รูป profile
-                                        '<label class="control-label btn" style="border:1px solid;">'+
-                                            '<img id="uploaded_image" class="img img-responsive" src="../img/imgProfile/imgProfile.png"  />'+
+                                        '<label class="control-label btn" style="border:1px solid; margin-top: 4rem;">'+
+                                            '<img id="uploaded_image" class="img img-responsive" src="../img/imgProfile/imgProfile.png" width="250"  />'+
                                             '<input type="file" name="upload_image" id="upload_image" accept="image/*" style="display:none;" />'+
                                         '</label>'+  
-                                        '<p style="font-size:1vw;">หากรูปไม่เปลี่ยนให้ <a href="#">logout</a> และเข้ามาใหม่</p>'+
+                                        '<p style="font-size:1vw;"></p>'+
                                         '<div id="uploadimageModal" class="modal" role="dialog">'+
                                             '<div class="modal-dialog">'+
                                                 '<div class="modal-content">'+
@@ -4197,7 +4182,7 @@
                     var frmRow = function(){
                         var x = '<div class="row" style="margin-left:5px;">'+
                                     '<div class="col-md-8 no-gutter">'+ATC_Dep(dep)+'</div>'+
-                                    '<div class="col-md-4 no-gutter"><a href="#" class="btn btn-default btn-sm noradius">Update</a></div>';
+                                    '<div class="col-md-4 no-gutter"><a href="#" class="btn btn-success  noradius" style="text-decoration:none">Update</a></div>';
                                 '</div>';
                         return x;
                     };

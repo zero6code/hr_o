@@ -31,7 +31,7 @@
                                 '<div class="row">'+
                                     "<div class='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>"+
                                       "<button class='btn btn-primary' style='"+
-                                        "width:100%; height: 5vh; margin-top:3vh; margin-bottom:3vh;"+
+                                        "width:100%; height: 3rem; margin-top:3vh; margin-bottom:3vh; font-size: 1.2rem;"+
                                         "'>เข้าสู่ระบบ</button>"+
                                     '</div>'+
                                 '</div>'+
