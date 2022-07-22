@@ -15,8 +15,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta property="og:type"          content="website" />
-	<meta property="og:title"         content="SongKhla Rajanagarindra Psychiatric Hospital:SKPH" />
-	<meta property="og:description"   content="โรงพยาบาลจิตเวชสงขลาราชนครินทร์,จิตเวชสงขลา" />
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
         <link rel="stylesheet" href="../dist/css/AdminLTE.css">
         <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
@@ -24,8 +22,8 @@
         <link rel="stylesheet" type="text/css" href="../fonts/thsarabunnew.css" />
         <link rel="stylesheet" type="text/css" href="../css/select2.min.css" />
         
-        <link rel="stylesheet" type="text/css" href="../css/bootstrap-datepicker3.standalone.css" />
-        <link rel="stylesheet" type="text/css" href="../css/bootstrap-datetimepicker.min.css" />
+        <!-- <link rel="stylesheet" type="text/css" href="../css/bootstrap-datepicker3.standalone.css" />
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap-datetimepicker.min.css" /> -->
         
         <link rel="stylesheet" type="text/css" href="../css/croppie.css" /><!--upload และ crop ภาพ -->
         
@@ -33,6 +31,12 @@
         <link rel="stylesheet" type="text/css" href="../css/buttons.dataTables.min.css" />
         <link rel="stylesheet" type="text/css" href="../css/jquery.range.css" />
         <link rel="stylesheet" type="text/css" href="../css/mycss.css" />
+
+        <style>
+            #training, #health_database, #on_leave, #performance_appraisal, #people, #Dashboard{
+                display: none;
+            }
+        </style>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">   
         <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>

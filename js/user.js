@@ -135,7 +135,7 @@
                     '</form>'+
                     '<ul class="sidebar-menu" data-widget="tree">'+//style can be found in sidebar.less
                         '<li class="header">MAIN NAVIGATION</li>'+
-                        '<li class="treeview active">'+
+                        '<li id="Dashboard" class="treeview active">'+
                           '<a href="#">'+
                             '<i class="fa fa-dashboard"></i>'+
                             '<span>Dashboard</span>'+
@@ -165,7 +165,7 @@
                         '</li>'+
 
 
-                        '<li class="treeview">'+
+                        '<li id="people" class="treeview">'+
                           '<a href="#">'+
                             '<i class="fa fa-users"></i>'+
                             '<span>อัตรากำลัง</span>'+
@@ -180,7 +180,7 @@
                           '</ul>'+
                         '</li>'+
 
-                        '<li class="treeview">'+
+                        '<li id="performance_appraisal" class="treeview">'+
                            '<a href="#">'+
                              '<i class="fa fa-google-wallet"></i>'+
                              '<span>ระบบประเมินผลปฏิบัติราชการ</span>'+
@@ -193,7 +193,7 @@
                            '</ul>'+
                         '</li>'+
 
-                        '<li class="treeview">'+
+                        '<li id="on_leave" class="treeview">'+
                           '<a href="#">'+
                             '<i class="fa fa-globe"></i>'+
                             '<span>ระบบวันลา</span>'+
@@ -221,7 +221,7 @@
                           '</ul>'+
                         '</li>'+
 
-                        '<li class="treeview">'+
+                        '<li id="training" class="treeview">'+
                           '<a href="#">'+
                             '<i class="fa fa-graduation-cap"></i>'+
                             '<span>อบรม-พัฒนา</span>'+
@@ -234,7 +234,7 @@
                           '</ul>'+
                         '</li>'+
 
-                        '<li class="treeview">'+
+                        '<li id="health_database" class="treeview">'+
                           '<a href="#">'+
                             '<i class="fa fa-user-md"></i>'+
                             '<span>ฐานข้อมูลสุขภาพ</span>'+
@@ -4070,7 +4070,7 @@
                 var x = 
                 '<div class="container">'+
                     '<div class="row">'+//nth-child(1)
-                        '<div class="col-md-10 col-lg-10">'+
+                        '<div class="col-md-10 col-lg-10 ">'+
                             '<h2>Float Label Pattern Forms</h2>'+
                             '<p style="color:#4A0801; LINE-HEIGHT:19px;">'+
                                 '<a href="#" class="btn btn-default btn-lg noradius" data-container="body" '+
@@ -4089,8 +4089,8 @@
                         '</div>'+
                     '</div>'+
                     '<div class="row">'+//nth-child(2)
-                        '<div class="panel col-md-10 col-lg-10">'+
-                            '<div class="panel-body alert card showdow" style="">'+
+                        '<div class="panel col-md-10 col-lg-10 " style="  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">'+
+                            '<div class="panel-body alert " style="">'+
                                 '<div class="row">'+
                                     '<form  action="" method="post" enctype="multipart/form-data" class="col-xs-12 col-sm-6 col-md-4 col-lg-4">'+//รูป profile
                                         '<label class="control-label btn" style="border:1px solid; margin-top: 4rem;">'+
