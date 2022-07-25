@@ -1949,7 +1949,7 @@
                         '<label for="name" class="cols-sm-2 control-label">เลขที่หนังสือส่ง(กรอกเฉพาะเลข running)</label>'+
                         '<div class="row">'+        
                             '<div class="col-xs-3 no-gutter">'+
-                                '<input type="text"  maxlength = "12" class="form-control noradius" name="child1_txt1" disabled />'+
+                                '<input type="text"  maxlength = "12" class="form-control noradius" name="child1_txt1" />'+
                             '</div>'+
                             '<div class="col-xs-3 no-gutter">'+
                                 '<input type="text"  maxlength = "3" class="form-control noradius" name="child1_txt2"  placeholder="เฉพาะเลข running" autocomplete="off"/>'+
@@ -2443,7 +2443,7 @@
             modal.modal({keyboard:false,backdrop:'static'}).modal('hide');
             modal.on('hidden.bs.modal', function(){$(this).data('bs.modal', null);});
             //html config
-            nth1.find("input[name='child1_txt1']").val(onlineUser.document_code);//เลขหนังสือตัวหลัก
+            nth1.find("input[name='child1_txt1']").val("สธ.0830");//เลขหนังสือตัวหลัก onlineUser.document_code
             nth1.find("input[name='child1_txt3']").ConfigDatePicker();//ลงวันที่
             nth4.find("input[name='child4_txt1']").ConfigDatePicker();//วันที่ไปราชการ1 (ในโครงการ)
             nth4.find("input[name='child4_txt2']").ConfigDatePicker();//วันที่ไปราชการ2 (ในโครงการ)
