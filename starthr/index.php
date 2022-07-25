@@ -36,6 +36,11 @@
             #training, #health_database, #on_leave, #performance_appraisal, #people, #Dashboard{
                 display: none;
             }
+            <?php if(empty($_SESSION['CHACK_CID'])){ ?>
+                #insert_person{
+                    display: none;
+                }
+            <?php } ?>
         </style>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">   

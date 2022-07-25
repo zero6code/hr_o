@@ -67,7 +67,7 @@
             '<header class="main-header">'+ 
                 '<a href="#" class="logo">'+ //mini logo for sidebar mini 50x50 pixels
                     '<span class="logo-mini"><b>A</b>LT</span>'+ 
-                    '<span class="logo-lg"><b>HR</b>@SSRH</span>'+ 
+                    '<span class="logo-lg"><b>HR</b>@SSRH</span>'+
                 '</a>'+ 
                 '<nav class="navbar navbar-static-top">'+ //Header Navbar: style can be found in header.less
                     '<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">'+ //Sidebar toggle button
@@ -249,7 +249,14 @@
                             '<li><a href="#Health4"><i class="fa fa-circle-o"></i> Biofeedback</a></li>'+
                           '</ul>'+
                         '</li>'+
-                        
+
+                        '<li id="insert_person" class="treeview">'+
+                        '<a href="#insert_person">'+
+                          '<i class="fa fa-user-md"></i>'+
+                          '<span>เพิ่มบุคลากร</span>'+
+                        '</a>'+
+                      '</li>'+
+
                         '<li class="treeview">'+
                           '<a href="#">'+
                             '<i class="fa fa-cogs"></i>'+
@@ -318,6 +325,9 @@
             case '#Logout'://ออกจากระบบ
                 logout();
             break;
+            case '#insert_person'://ออกจากระบบ
+                insert_person();
+            break;
             //SubMenu
             case '#Leave1'://ยื่นใบลา
                 LeaveAbsence_module(hrefID);
@@ -336,6 +346,10 @@
             break;
         }
     };
+
+    var insert_person = () => {
+        window.location.href='../form_insert_person/form_insert.php';
+    }
     //module ต่างๆ
     var hrDashboard_moldule = function(){
         $("#myContent").empty().append(
