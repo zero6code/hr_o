@@ -47,7 +47,7 @@ if($typeSch=='person_id'){//เปลี่ยนจากข้อความ�
         $txtCond = ' = 0 ';
     }
 }
-$rsAll = $objmysqli->query("select * from gogov_new where $typeSch $txtCond and status_use='Y' ORDER BY id DESC; ");
+$rsAll = $objmysqli->query(sprintf("select * from gogov_new where person_id = '%s' and status_use='Y' ORDER BY id DESC",  $_SESSION['person_id']));
 if($rsAll->num_rows > 0){
     while ($colsAll = $rsAll->fetch_assoc()){
         $data[] = $colsAll;//$json_print = $colsAll['json_print'];

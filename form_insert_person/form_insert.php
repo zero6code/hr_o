@@ -88,7 +88,7 @@
         </div>
         <div class="col col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4">
             <div class="card" >
-                <div class="card-header"><h3>ราขชื่อบุคลาการ</h3></div>
+                <div class="card-header"><h3>ราขชื่อบุคลากร</h3></div>
                 <div class="card-body"  style="height: 46.15rem;  overflow-x: hidden;   overflow-y: scroll;">
                 <table class="table" >
                     <thead>

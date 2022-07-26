@@ -1,3 +1,11 @@
+var changeToThaiNumber = (num) => {
+    var arr_change_number = {"1":"๑", "2":"๒", "3":"๓", "4" : "๔", "5" : "๕", "6" : "๖", "7" : "๗", "8" : "๘", "9" : "๙", "0" : "๐"};
+    var str = num.toString();
+    for (var val in arr_change_number){
+        str = str.split(val).join(arr_change_number[val]);
+    } 
+    return str
+}
 (function($){  
     var chayanon_on_time = new Date().getTime();//เวลาที่อยู่ในระบบ
     var timeout_login = function(){//ไม่ขยับเมาส์ใน 20 นาทีให้ logout
@@ -2443,7 +2451,7 @@
             modal.modal({keyboard:false,backdrop:'static'}).modal('hide');
             modal.on('hidden.bs.modal', function(){$(this).data('bs.modal', null);});
             //html config
-            nth1.find("input[name='child1_txt1']").val("สธ.0830");//เลขหนังสือตัวหลัก onlineUser.document_code
+            nth1.find("input[name='child1_txt1']").val("สธ ");//เลขหนังสือตัวหลัก onlineUser.document_code or สธ.0830
             nth1.find("input[name='child1_txt3']").ConfigDatePicker();//ลงวันที่
             nth4.find("input[name='child4_txt1']").ConfigDatePicker();//วันที่ไปราชการ1 (ในโครงการ)
             nth4.find("input[name='child4_txt2']").ConfigDatePicker();//วันที่ไปราชการ2 (ในโครงการ)
@@ -2539,9 +2547,10 @@
                     gogov_forValue=nth2.find("input[name='child22_rdo']:checked").val();
                 }
                 //ชุด object ข้อมูลที่จะส่งไปให้ฝั่ง PHP บันทึกข้อมูล
+
                 var objdata = {
                     'person_id':onlineUser.person_id,
-                    'officialdoc_num':nth1.find("input[name='child1_txt1']").val()+' '+nth1.find("input[name='child1_txt2']").val(),
+                    'officialdoc_num':changeToThaiNumber(nth1.find("input[name='child1_txt1']").val())+' '+changeToThaiNumber(nth1.find("input[name='child1_txt2']").val()),
                     'date_stamp':nth1.find("input[name='child1_txt3']").data('date_true'),
                     'group_gogov':[],//person id ผู้ร่วมเดินทางไปราชการ
                     'gogov_for':gogov_forValue,//เดินทางไปราชการเพื่อ...อบรม ประชุม  สัมมนา

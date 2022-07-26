@@ -36,6 +36,7 @@ if($rs->num_rows >0){
         $id13_online = $cols['cid'];
         $person_online = $cols['person'];
         $_SESSION['ses_user'] = $id13_online;
+        $_SESSION['person_id'] = $cols['id'];
 
         //query chack cid of person table and cid of admin table.
         $chack_admin_equal_person = $objmysqli->query(sprintf("SELECT cid FROM admin WHERE cid = '%s'",$cols['cid'])); 
