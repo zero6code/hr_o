@@ -2541,7 +2541,7 @@
                 //ชุด object ข้อมูลที่จะส่งไปให้ฝั่ง PHP บันทึกข้อมูล
                 var objdata = {
                     'person_id':onlineUser.person_id,
-                    'officialdoc_num':nth1.find("input[name='child1_txt1']").val()+'/'+nth1.find("input[name='child1_txt2']").val(),
+                    'officialdoc_num':nth1.find("input[name='child1_txt1']").val()+' '+nth1.find("input[name='child1_txt2']").val(),
                     'date_stamp':nth1.find("input[name='child1_txt3']").data('date_true'),
                     'group_gogov':[],//person id ผู้ร่วมเดินทางไปราชการ
                     'gogov_for':gogov_forValue,//เดินทางไปราชการเพื่อ...อบรม ประชุม  สัมมนา
