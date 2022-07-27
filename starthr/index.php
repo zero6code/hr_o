@@ -33,7 +33,12 @@
         <link rel="stylesheet" type="text/css" href="../css/mycss.css" />
 
         <style>
-            #training, #health_database, #on_leave, #performance_appraisal, #people, #Dashboard{
+            #training,
+            #health_database, 
+            #on_leave, 
+            #performance_appraisal, 
+            #people, 
+            #Dashboard{
                 display: none;
             }
         </style>
