@@ -28,6 +28,7 @@ if($typeuser==='typeuser'){
 }
 
 $rs = $objmysqli->query($sql);
+
 if($rs->num_rows >0){
     session_regenerate_id();
     $sessid = session_id();
@@ -35,12 +36,21 @@ if($rs->num_rows >0){
         $id13_online = $cols['cid'];
         $person_online = $cols['person'];
         $_SESSION['ses_user'] = $id13_online;
-        
+        $_SESSION['person_id'] = $cols['id'];
+
+        //query chack cid of person table and cid of admin table.
+        $chack_admin_equal_person = $objmysqli->query(sprintf("SELECT cid FROM admin WHERE cid = '%s'",$cols['cid'])); 
+        $chack = $chack_admin_equal_person -> fetch_object();
+
         if($typeuser==='typeuser'){
             $person_id = $cols['id'];
             $po_num = $cols['po_num'];
             $admission_date = $cols['admission_date'];
             $government_emp_type = $cols['government_emp_type'];
+
+      
+            $_SESSION['CHACK_CID'] = $chack->cid;  //เก็บ cid for chack button to show button insert person.
+
         }
         
     }
