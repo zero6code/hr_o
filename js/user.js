@@ -837,7 +837,7 @@ var changeToThaiNumber = (num) => {
         function chkDocNum(){
             var txtRet = '';
             if(OnlineUser.id13_online===OnlineUser.skph_Boss_cid){
-                txtRet = ' สธ. 0834/';
+                txtRet = ' สธ ';
             }else{
                 txtRet = ' '+data.officialdoc_num;
             }
