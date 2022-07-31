@@ -18,7 +18,7 @@
                                 "<input type='text' class='form-control' placeholder='Username' style='height: 5vh;font-size: 20px;'>"+
                                 "<label  class='sr-only'>Password</label>"+
                                 "<input type='password'  class='form-control' placeholder='Password' style='height: 5vh; font-size: 20px;'>"+
-                                '<div class="funkyradio" style="margin-top:3vh;">'+
+                                '<div  class="funkyradio" style="margin-top:3vh;display: none;">'+
                                     '<div class="funkyradio-success" style="padding:0; margin:0;">'+
                                         '<input type="radio" name="logintype" id="typeuser" value="typeuser" checked />'+
                                         '<label for="typeuser" style="padding:0; margin:0;">ผู้ใช้งานทั่วไป(user)</label>'+
@@ -31,7 +31,7 @@
                                 '<div class="row">'+
                                     "<div class='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>"+
                                       "<button class='btn btn-primary' style='"+
-                                        "width:100%; height: 3rem; margin-top:3vh; margin-bottom:3vh; font-size: 1.2rem;"+
+                                        "width:100%; height: 4rem; margin-top:3vh; margin-bottom:3vh; font-size: 1.2rem;"+
                                         "'>เข้าสู่ระบบ</button>"+
                                     '</div>'+
                                 '</div>'+
