@@ -4165,9 +4165,9 @@ var changeToThaiNumber = (num) => {
                                             '<div class="form-group float-label-control">'+
                                                 '<input type="text" class="form-control"/>'+
                                             '</div>'+
-                                            '<div class="form-group float-label-control">'+
+                                            '<!--<div class="form-group float-label-control">'+
                                                 '<input type="text" class="form-control"/>'+
-                                            '</div>'+
+                                            '</div>-->'+
                                         '</form>'+
                                     '</div>'+
                                 '</div>'+//row
