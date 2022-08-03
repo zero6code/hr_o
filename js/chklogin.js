@@ -17,9 +17,9 @@
                                 "<label  class='sr-only'>Username</label>"+
                                 "<input type='text' class='form-control' placeholder='Username' style='height: 3rem;font-size: 20px;'>"+
                                 "<label  class='sr-only'>Password</label>"+
-                                "<input type='password'  class='form-control' placeholder='Password' style='height: 3rem; font-size: 20px;'>"+
+                                "<input id='password' type='password'  class='form-control' placeholder='Password' style='height: 3rem; font-size: 20px;'>"+
                                 "<label for='textpass' style='padding-top:2rem;'>Show Password</label>"+
-                                "<input id=='textpass' type='checkbox' onclick='textpassword()' style='height: 2rem;  margin-top:-2rem; margin-left: -10rem;'>"+
+                                "<input id='textpass' type='checkbox' onclick='textpassword()' style='display:block;height: 2rem;  margin-top:-2rem; margin-left: -10rem;'>"+
                                 '<div  class="funkyradio" style="margin-top:3vh;display: none;">'+
                                     '<div class="funkyradio-success" style="padding:0; margin:0;">'+
                                         '<input type="radio" name="logintype" id="typeuser" value="typeuser" checked />'+
@@ -108,3 +108,11 @@
     });
 })(jQuery);
 
+function textpassword() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
