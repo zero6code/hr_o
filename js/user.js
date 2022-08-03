@@ -2745,7 +2745,7 @@ var changeToThaiNumber = (num) => {
                 
                 //ajax บันทึกลงฐาน
                 if(chk){
-                    //console.log(objdata);
+                    console.log(objdata);
                     $.ajax({
                         url:"GoGovSaveData2.php", 
                         type:"post",
@@ -2754,6 +2754,7 @@ var changeToThaiNumber = (num) => {
                         data:{'objdata':JSON.stringify(objdata)}
                     }).done(function(resp){
                         if(resp==='ok'){
+                            //alert(objdata);
                             modal.find('.modal-body').html(
                                 'บันทึกข้อมูลสำเร็จ'+
                                 '<a href="#print"  type="button" class="btn chayanon-btn3d-blue" style="display:inline-block">'+
