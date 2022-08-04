@@ -16,6 +16,9 @@ $err_arr = array();
 $objdata = (array)json_decode(filter_input(INPUT_POST,'objdata'));
 $objprint = json_decode(filter_input(INPUT_POST,'objprint'));
 
+$x = "";
+
+
 $sql = "INSERT INTO gogov_new(";
 $f = "";
 $n = 0;
