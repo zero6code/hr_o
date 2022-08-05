@@ -2747,14 +2747,16 @@ var changeToThaiNumber = (num) => {
                 if(chk){
                     console.log(objdata);
                     $.ajax({
-                        url:"GoGovSaveData2.php", 
+                        url:"GoGovSaveData3.php", 
                         type:"post",
                         cache:false,
                         dataType:'json',
                         data:{'objdata':JSON.stringify(objdata)}
                     }).done(function(resp){
+                        alert(resp);
                         if(resp==='ok'){
                             //alert(objdata);
+                            
                             modal.find('.modal-body').html(
                                 'บันทึกข้อมูลสำเร็จ'+
                                 '<a href="#print"  type="button" class="btn chayanon-btn3d-blue" style="display:inline-block">'+
