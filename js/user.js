@@ -2607,7 +2607,7 @@ var changeToThaiNumber = (num) => {
                     s1.each(function(i,v){
                         if($(this).find('option:selected').val()){//push array รายชื่อผู้ร่วมเดินทางไปราชการ
                             objdata.group_gogov.push($(this).find('option:selected').val());
-                            objprint.group_gogov.push($(this).find('option:selected').text());
+                            objprint.group_gogov.push($(this).find('option:selected').val());
                             //ทำชื่อผู้ร่วมเดินทางใหม่ ให้มีตำแหน่งเข้าไปด้วย
                             objprint.group_gogov2.push(
                                 $(this).find('option:selected').text()+'_'+
