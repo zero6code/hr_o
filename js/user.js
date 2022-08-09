@@ -1020,7 +1020,7 @@ var changeToThaiNumber = (num) => {
             {text: ' ', fontSize:16,pageBreak: 'after'},//สิ้นสุดหน้า                             
             {
                 text:[
-                    {text:'-2-',fontSize:16,alignment:'center'},
+                    {text:'-๒-',fontSize:16,alignment:'center'},
                     '\n\n',
                     {text:'รายชื่อผู้ร่วมเดินทางไปราชการ',decoration: 'underline',fontSize:18,bold:true,alignment:'center'},
                     '\n\n',
