@@ -27,9 +27,9 @@
 
     if($insert_db === true){
         echo "<div class='alert alert-success' role='alert'>บันทึกสำเร็จสำเร็จ</div>";
-        header("refresh: 5; url=form_insert.php");
+        header("refresh: 3; url=form_insert.php");
     }else{
         echo "<div class='alert alert-danger' role='alert'>บันทึกไม่สำเร็จสำเร็จ</div>";
-        header("refresh: 5; url=form_insert.php");
+        header("refresh: 3; url=form_insert.php");
     }
 ?>

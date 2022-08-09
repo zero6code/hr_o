@@ -853,7 +853,7 @@ var changeToThaiNumber = (num) => {
                 }else if(data.position_name==='ผู้อำนวยการ'){
                     txtRet = data.position_name;
                 }else{
-                    txtRet = data.position_name+data.class_position;
+                    txtRet = data.position_name+" "+data.class_position;
                 }
             }
             return txtRet;
@@ -936,7 +936,7 @@ var changeToThaiNumber = (num) => {
                         {text:chklenStr(chkDocNum(),3.25),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         //{text:chklenStr(replaceThaiMonth(new Date()),2.85),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: 'วันที่  ',fontSize:16,bold:true},
-                        {text:chklenStr(  (data.date_stamp)?data.date_stamp:''    ,2.45),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:chklenStr(  (data.date_stamp)?changeToThaiNumber(data.date_stamp):''    ,2.45),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         '\n',
                         {text: 'เรื่อง',fontSize:18,bold:true},
                         {text:chklenStr(' ขออนุมัติเดินทางไปราชการ',6),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
@@ -948,59 +948,59 @@ var changeToThaiNumber = (num) => {
                         {text: 'ด้วยข้าพเจ้า ',fontSize:16},
                         {text:chklenStr(data.pname),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text:' ตำแหน่ง ',fontSize:16},
-                        {text: chklenStr(chkPositionName(),2.7),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr(changeToThaiNumber(chkPositionName()),2.7),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         '\n',
                         {text:'พร้อมด้วย (ดังรายชื่อแนบท้าย) ',fontSize:16},
                         {text:'ขออนุมัติเดินทางไปราชการเพื่อ ',fontSize:16},
                         {text:chklenStr(data.gogov_for,2.6),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         '\n',
                         {text:'เรื่อง ',fontSize:16},
-                        {text:chklenStr(data.gogov_topic,6),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:chklenStr(changeToThaiNumber(data.gogov_topic),6),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         '\n',
                         {text:'ในวันที่ ',fontSize:16},
-                        {text:chklenStr(data.gogov_real_date1,1),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:chklenStr(changeToThaiNumber(data.gogov_real_date1),1),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text:' ถึงวันที่ ',fontSize:16},
-                        {text:chklenStr(data.gogov_real_date2,1),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:chklenStr(changeToThaiNumber(data.gogov_real_date2),1),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text:' จัดโดย ',fontSize:16},
-                        {text:chklenStr(data.dep_project_owner,2.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:chklenStr(changeToThaiNumber(data.dep_project_owner),2.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         '\n',
                         {text:'สถานที่ ',fontSize:16},
-                        {text:chklenStr(data.gogov_place,6),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:chklenStr(changeToThaiNumber(data.gogov_place),6),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         '\n\n',
                         {text:'.......................',fontSize:16,color:'white'},
                         {text:'ในการนี้ ข้าพเจ้าขออนุมัติ',fontSize:16},
                         '\n',
                         {text:'.......................',fontSize:16,color:'white'},
-                        {text:'1.ขออนุมัติเดินทางไปราชการ โดยไม่ถือเป็นวันลา ตั้งแต่วันที่ ',fontSize:16},
-                        {text:chklenStr(data.gogov_date1,2.1),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:'๑.ขออนุมัติเดินทางไปราชการ โดยไม่ถือเป็นวันลา ตั้งแต่วันที่ ',fontSize:16},
+                        {text:chklenStr(changeToThaiNumber(data.gogov_date1),2.1),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         '\n',
                         {text:' ถึงวันที่ ',fontSize:16},
-                        {text:chklenStr(data.gogov_date2,1),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:chklenStr(changeToThaiNumber(data.gogov_date2),1),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text:' รวมไปราชการครั้งนี้ ',fontSize:16},
-                        {text:chklenStr((parseInt($.fn.DateDiff($.fn.ReverseStrThaiDate1(data.gogov_date1),$.fn.ReverseStrThaiDate1(data.gogov_date2)))+1) +' วัน',0.4),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:chklenStr(changeToThaiNumber((parseInt($.fn.DateDiff($.fn.ReverseStrThaiDate1(data.gogov_date1),$.fn.ReverseStrThaiDate1(data.gogov_date2)))+1)) +' วัน',0.4),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text:'และขอเบิกค่าใช้จ่ายในการเดินทางไปราชการจาก',fontSize:16},
                         '\n',
-                        {text:chklenStr(moneyType(data.money_type),3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:chklenStr(changeToThaiNumber(moneyType(data.money_type)),3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         '\n',
                         {text:'.......................',fontSize:16,color:'white'},
-                        {text:'2.ขออนุมัติเดินทางโดย ',fontSize:16},
+                        {text:'๒.ขออนุมัติเดินทางโดย ',fontSize:16},
                         {text:chklenStr((data.car_type)?carType(data.car_type)+'(ขาไป)':'',1.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text:chklenStr((data.car_type2)?carType(data.car_type2)+'(ขากลับ)':'',1.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        // '\n',
+                        // {text:'.......................',fontSize:16,color:'white'},
+                        // {text:'ประมาณการค่าใช้จ่ายในการเดินทางไปราชการครั้งนี้ เป็นจำนวนเงิน ',fontSize:16},
+                        // {text:chklenStr(costEtm(data.cost_estimate)[1],0.2),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        // {text:'บาท แยกเป็นค่าใช้จ่าย ดังนี้',fontSize:16},
+                        // {text:costEtm(data.cost_estimate)[0],fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         '\n',
                         {text:'.......................',fontSize:16,color:'white'},
-                        {text:'ประมาณการค่าใช้จ่ายในการเดินทางไปราชการครั้งนี้ เป็นจำนวนเงิน ',fontSize:16},
-                        {text:chklenStr(costEtm(data.cost_estimate)[1],0.2),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
-                        {text:'บาท แยกเป็นค่าใช้จ่าย ดังนี้',fontSize:16},
-                        {text:costEtm(data.cost_estimate)[0],fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
-                        '\n',
-                        {text:'.......................',fontSize:16,color:'white'},
-                        {text:'3.ขออนุมัติเบิกเงินค่าลงทะเบียน(ถ้ามี) เป็นจำนวนเงิน ',fontSize:16},
-                        {text:chklenStr(   (typeof data.cost_registration==='object')?data.cost_registration[0].bath:''   ,0.2),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:'๓.ขออนุมัติเบิกเงินค่าลงทะเบียน(ถ้ามี) เป็นจำนวนเงิน ',fontSize:16},
+                        {text:chklenStr(   (typeof data.cost_registration==='object')?changeToThaiNumber(data.cost_registration[0].bath):''   ,0.2),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text:' บาท ',fontSize:16},
                         {text:costRegis((typeof data.cost_registration==='object')?data.cost_registration[0].bath:''),fontSize:16},
                         '\n',
                         {text:'.......................',fontSize:16,color:'white'},
-                        {text:'4.ในระหว่างที่ข้าพเจ้าเดินทางไปราชการ ขอให้ (ชื่อ) ',fontSize:15},
+                        {text:'๔.ในระหว่างที่ข้าพเจ้าเดินทางไปราชการ ขอให้ (ชื่อ) ',fontSize:15},
                         {text:chklenStr(     
                             (data.person_instead)?( 
                                     ((data.person_instead).indexOf("_")>=0)?     
@@ -1025,7 +1025,7 @@ var changeToThaiNumber = (num) => {
                     {text:'รายชื่อผู้ร่วมเดินทางไปราชการ',decoration: 'underline',fontSize:18,bold:true,alignment:'center'},
                     '\n\n',
                     {text:'เรื่อง ',fontSize:18,bold:true},
-                    {text:chklenStr(data.gogov_topic,6),fontSize:15,decoration: 'underline',decorationStyle: 'dotted'},
+                    {text:chklenStr(changeToThaiNumber(data.gogov_topic),6),fontSize:15,decoration: 'underline',decorationStyle: 'dotted'},
                     '\n\n'
                 ]
             }
@@ -1040,7 +1040,7 @@ var changeToThaiNumber = (num) => {
                         '<p>&nbsp;</p>'+ 
                         '<p>(ลงชื่อ)................................................................</p>'+
                         '<p>.       ('+OnlineUser.pname+') </p>'+
-                        '<p>(ตำแหน่ง) '+(chkPositionName())+'</p>'+
+                        '<p>(ตำแหน่ง) '+(changeToThaiNumber(chkPositionName()))+'</p>'+
                         '<p>&nbsp;&nbsp;วันที่..................../..................../.....................</p>'+
                     '</td>'+
                 '</tr>'+
@@ -1051,7 +1051,7 @@ var changeToThaiNumber = (num) => {
             var x =
             '<table  style="font-size:16px;" border="1" widths="9%,41%,40%,10%">'+
                 '<tr>'+
-                    '<td>ลำดับที่ test</td>'+
+                    '<td>ลำดับที่</td>'+
                     '<td>ชื่อ-สกุล</td>'+
                     '<td>ตำแหน่ง</td>'+
                     '<td>หมายเหตุ</td>'+
@@ -1059,9 +1059,9 @@ var changeToThaiNumber = (num) => {
                 $.each(data.group_gogov2,function(i,v){
                     x+=
                     '<tr>'+
-                        '<td>'+(i+1)+'</td>'+
+                        '<td>'+changeToThaiNumber((i+1))+'</td>'+
                         '<td>'+$.fn.splitStrToArr(v,"_")[0]+'</td>'+
-                        '<td>'+($.fn.splitStrToArr(v,"_")[1])+($.fn.splitStrToArr(v,"_")[2])+'</td>'+
+                        '<td>'+changeToThaiNumber(($.fn.splitStrToArr(v,"_")[1]))+" "+changeToThaiNumber(($.fn.splitStrToArr(v,"_")[2]))+'</td>'+
                         '<td></td>'+
                     '</tr>';
                 });
@@ -2220,7 +2220,7 @@ var changeToThaiNumber = (num) => {
                         '</div>'+
                     '</div>'+//nth-child(7)     
 
-                    '<div class="row" style="border:1px solid;border-top:0;border-bottom:0;margin-bottom:2px;">'+//nth-child(8)  
+                    '<div id="gogov_hide1" class="row" style="border:1px solid;border-top:0;border-bottom:0;margin-bottom:2px;">'+//nth-child(8)  
                         '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">'+
                             '<div class="input-group">'+
                                 '<label for="name" class="control-label">หนังสือเรื่องเดิม</label>'+
@@ -2242,7 +2242,7 @@ var changeToThaiNumber = (num) => {
                         '</div>'+       
                     '</div>'+//nth-child(8)
 
-                    '<div class="row" style="border:1px solid;">'+//nth-child(9)  
+                    '<div id="gogov_hide2" class="row" style="border:1px solid;">'+//nth-child(9)  
                         '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">'+  //ค่าเบี้ยเลี้ยง,ค่าที่พัก,ค่าพาหนะ
                             '<label for="name" class="cols-sm-2 control-label">ประมาณการค่าใช้จ่าย</label>'+
                             '<div class="input-group btn-group" data-toggle="buttons">'+   
@@ -2607,7 +2607,7 @@ var changeToThaiNumber = (num) => {
                     s1.each(function(i,v){
                         if($(this).find('option:selected').val()){//push array รายชื่อผู้ร่วมเดินทางไปราชการ
                             objdata.group_gogov.push($(this).find('option:selected').val());
-                            objprint.group_gogov.push($(this).find('option:selected').val());
+                            objprint.group_gogov.push($(this).find('option:selected').text());
                             //ทำชื่อผู้ร่วมเดินทางใหม่ ให้มีตำแหน่งเข้าไปด้วย
                             objprint.group_gogov2.push(
                                 $(this).find('option:selected').text()+'_'+
@@ -2747,7 +2747,7 @@ var changeToThaiNumber = (num) => {
                 if(chk){
                     console.log(objdata);
                     $.ajax({
-                        url:"GoGovSaveData3.php", 
+                        url:"GoGovSaveData2.php", 
                         type:"post",
                         cache:false,
                         dataType:'json',

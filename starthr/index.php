@@ -38,7 +38,9 @@
             #on_leave, 
             #performance_appraisal, 
             #people, 
-            #Dashboard{
+            #Dashboard,
+            #gogov_hide1,
+            #gogov_hide2{
                 display: none;
             }
             <?php if(empty($_SESSION['CHACK_CID'])){ ?>

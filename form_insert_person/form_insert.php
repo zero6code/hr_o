@@ -20,10 +20,10 @@
 <body>
 <div class="container-fluid">
     <div class="row mt-2">
-        <div class="col col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2 col-xxl-2">
+        <div class="col col-12 col-sm-12 col-md-12 col-lg-1 col-xl-1 col-xxl-1">
             <button type="button" class="btn btn-outline-primary" style="width:100%; height:3rem;" onclick="window.location.href='../starthr/index.php'">กลับ</button>
         </div>
-        <div class="col col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4">
+        <div class="col col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2 col-xxl-2">
             <div class="card">
                 <div class="card-header"><h3>เพิ่มบุคลากร</h3></div>
                 <div class="card-body">
@@ -86,7 +86,7 @@
                 </div>
             </div>
         </div>
-        <div class="col col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4">
+        <div class="col col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 col-xxl-9">
             <div class="card" >
                 <div class="card-header"><h3>ราขชื่อบุคลากร</h3></div>
                 <div class="card-body"  style="height: 46.15rem;  overflow-x: hidden;   overflow-y: scroll;">
@@ -97,6 +97,12 @@
                         <th scope="col">รหัสประจำตัวประชาชน</th>
                         <th scope="col">ชื่อ</th>
                         <th scope="col">นามสกุล</th>
+                        <th scope="col">วันเกิด</th>
+                        <th scope="col">ประเภทบุคลากร</th>
+                        <th scope="col">ตำแหน่งสายงาน</th>
+                        <th scope="col">ระดับตำแหน่ง</th>
+                        <th scope="col">หน่วยงาน</th>
+                        <th scope="col">กลุ่มภารกิจ</th>
                         </tr>
                     </thead>
                     <tbody class="">

@@ -52,7 +52,34 @@ $select_groupwork = function() use($conn){
 };
 // // show list name person.
 $select_listPerson = function() use($conn){
-    $query_data = $conn->query(sprintf("SELECT id, cid, pname, fname, lname FROM person ORDER BY id DESC"));
+    $query_data = $conn->query(sprintf("
+
+    select 
+	person.id as id,
+    person.cid as cid,
+    person.pname as pname,
+    person.fname as fname,
+    person.lname as lname,
+    person.birth_date as birth_date,
+    position.position_name as position_name,
+    class_position.class_position_type_name2 as class_position_name,
+    department.dep_name as dep_name,
+    groupwork.groupwork_name as groupwork_name,
+    government_emp_type.government_emp_type_name as gov_type_name
+from person
+join position
+on person.position_code = position.position_code
+join class_position
+on person.class_position_shortname = class_position.class_position_shortname
+join department
+on person.dep_code = department.dep_code
+join groupwork
+on person.groupwork = groupwork.groupwork_code
+join government_emp_type
+on person.government_emp_type = government_emp_type.government_emp_type_code
+order by person.id DESC
+
+    "));
     while($data = $query_data->fetch_object()){
         printf("
                 <tr>
@@ -60,8 +87,16 @@ $select_listPerson = function() use($conn){
                     <td>%s</td>
                     <td>%s %s</td>
                     <td>%s</td>
+                    <td>%s</td>
+                    <td>%s</td>
+                    <td>%s</td>
+                    <td>%s</td>
+                    <td>%s</td>
+                    <td>%s</td>
                 </tr>
-                ", $data->id, $data->cid, $data->pname, $data->fname, $data->lname);
+                ", $data->id, $data->cid, $data->pname, $data->fname, $data->lname, 
+                   $data->birth_date, $data->gov_type_name, $data->position_name, $data->class_position_name,
+                   $data->dep_name, $data->groupwork_name);
     }
 }
 ?>
