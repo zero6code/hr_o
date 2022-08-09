@@ -19,11 +19,11 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row mt-2">
-        <div class="col col-12 col-sm-12 col-md-12 col-lg-1 col-xl-1 col-xxl-1">
+        <div class="col col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2 col-xxl-2 mt-2">
             <button type="button" class="btn btn-outline-primary" style="width:100%; height:3rem;" onclick="window.location.href='../starthr/index.php'">กลับ</button>
         </div>
-        <div class="col col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2 col-xxl-2">
+    <div class="row mt-2">
+        <div class="col col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 mx-auto ">
             <div class="card">
                 <div class="card-header"><h3>เพิ่มบุคลากร</h3></div>
                 <div class="card-body">
@@ -86,10 +86,10 @@
                 </div>
             </div>
         </div>
-        <div class="col col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 col-xxl-9">
+        <div class="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <div class="card" >
                 <div class="card-header"><h3>ราขชื่อบุคลากร</h3></div>
-                <div class="card-body"  style="height: 46.15rem;  overflow-x: hidden;   overflow-y: scroll;">
+                <div class="card-body"  style="height: 65vh;  overflow-x: auto;   overflow-y: scroll; margin-bottom: 5vh;">
                 <table class="table" >
                     <thead>
                         <tr>

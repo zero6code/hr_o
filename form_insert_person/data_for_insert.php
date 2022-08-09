@@ -52,6 +52,9 @@ $select_groupwork = function() use($conn){
 };
 // // show list name person.
 $select_listPerson = function() use($conn){
+
+    $i = 0;
+
     $query_data = $conn->query(sprintf("
 
     select 
@@ -94,9 +97,13 @@ order by person.id DESC
                     <td>%s</td>
                     <td>%s</td>
                 </tr>
+ 
+
                 ", $data->id, $data->cid, $data->pname, $data->fname, $data->lname, 
                    $data->birth_date, $data->gov_type_name, $data->position_name, $data->class_position_name,
                    $data->dep_name, $data->groupwork_name);
+
+    
     }
 }
 ?>
