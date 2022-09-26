@@ -1347,35 +1347,35 @@ var changeToThaiNumber = (num) => {
                     text:[
                         {text: 'สัญญายืมเงินเลขที่ ',fontSize:16},
                         {text:chklenStr( 
-                                    (doc2Agreement(data.agreement)[2])  ? doc2Agreement(data.agreement)[0]  :""
+                                    (doc2Agreement(data.agreement)[2])  ? changeToThaiNumber(doc2Agreement(data.agreement)[0])  :""
                             ,0.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: 'วันที่ ',fontSize:16},
                         {text:chklenStr( 
-                                    (doc2Agreement(data.agreement)[2])  ?    $.fn.formatDate4(doc2Agreement(data.agreement)[1]).strThaiDate2  :  ""
+                                    (doc2Agreement(data.agreement)[2])  ?    changeToThaiNumber($.fn.formatDate4(doc2Agreement(data.agreement)[1]).strThaiDate2)  :  ""
                             ,3.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
-                        {text: 'ส่วนที่ 1',fontSize:16},
+                        {text: 'ส่วนที่ ๑',fontSize:16},
                         '\n',
                         {text: 'ชื่อผู้ยืม ',fontSize:16},
                         {text: chklenStr(  (doc2Agreement(data.agreement)[2])  ?    ((doc2ObjGogovPrint.pname)?doc2ObjGogovPrint.pname:"") :  ""  ,1),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' จำนวนเงิน ',fontSize:16},
-                        {text:chklenStr( (doc2Agreement(data.agreement)[2]) ? doc2Agreement(data.agreement)[2]  :""   ,2.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
-                        {text: ' บาท แบบ 8708',fontSize:16},
+                        {text:chklenStr( (doc2Agreement(data.agreement)[2]) ? changeToThaiNumber(doc2Agreement(data.agreement)[2])  :""   ,2.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: ' บาท แบบ ๘๗๐๘',fontSize:16},
                         '\n\n',
                         {text: 'ใบเบิกค่าใช้จ่ายในการเดินทางไปราชการ',fontSize:20,bold:true,alignment:'center'},
                         '\n\n',
-                        {text: 'ที่ทำการ โรงพยาบาลจิตเวชสงขลาราชนครินทร์',fontSize:16,alignment:'right'},
+                        {text: 'ที่ทำการ โรงพยาบาลสวนสราญรมย์',fontSize:16,alignment:'right'},
                         '\n\n',
-                        {text:replaceThaiMonth(new Date()),fontSize:16,alignment:'right',decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:changeToThaiNumber(replaceThaiMonth(new Date())),fontSize:16,alignment:'right',decoration: 'underline',decorationStyle: 'dotted'},
                         '\n\n',
                         {text: 'เรื่อง ขออนุมัติเบิกค่าใช้จ่ายในการเดินทางไปราชการ',fontSize:16},
                         '\n\n',
-                        {text: 'เรียน ผู้อำนวยการโรงพยาบาลจิตเวชสงขลาราชนคริทร์',fontSize:16},
+                        {text: 'เรียน ผู้อำนวยการโรงพยาบาลสวนสราญรมย์',fontSize:16},
                         '\n\n',
                         {text:'............................',fontSize:16,color:'white'},
                         {text: 'ตามคำสั่ง/บันทึก ที่ ',fontSize:16},
-                        {text:chklenStr((doc2ObjGogovPrint)?doc2ObjGogovPrint.officialdoc_num:'',1.2),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:chklenStr((doc2ObjGogovPrint)?changeToThaiNumber(doc2ObjGogovPrint.officialdoc_num):'',1.2),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' ลงวันที่ ',fontSize:16},
-                        {text:chklenStr((doc2ObjGogovPrint.date_stamp)?doc2ObjGogovPrint.date_stamp:'',1.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:chklenStr((doc2ObjGogovPrint.date_stamp)?changeToThaiNumber(doc2ObjGogovPrint.date_stamp):'',1.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' ได้อนุมัติให้ ',fontSize:16},
                         '\n',
                         {text: 'ข้าพเจ้า ',fontSize:16},
@@ -1396,22 +1396,22 @@ var changeToThaiNumber = (num) => {
                         {text: ' โดยออกเดินทางจาก ',fontSize:16},
                         {text: chklenStr((data.go_from)?chkGofromGoback(data.go_from):"",2),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' ตั้งแต่วันที่ ',fontSize:16},
-                        {text: chklenStr((data.go_from_date)?$.fn.formatDate4(data.go_from_date).strThaiDate2:"",1),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr((data.go_from_date)?changeToThaiNumber($.fn.formatDate4(data.go_from_date).strThaiDate2):"",1),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' เวลา ',fontSize:16},
-                        {text: chklenStr((data.go_from_date)?$.fn.formatDate4(data.go_from_date).formatTime:"",0.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr((data.go_from_date)?changeToThaiNumber($.fn.formatDate4(data.go_from_date).formatTime):"",0.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' น.',fontSize:16},
                         '\n',
                         {text: 'และกลับถึง ',fontSize:16},
                         {text: chklenStr((data.go_back)?chkGofromGoback(data.go_back):"",2.2),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' วันที่ ',fontSize:16},
-                        {text: chklenStr((data.go_back_date)?$.fn.formatDate4(data.go_back_date).strThaiDate2:"",1.7),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr((data.go_back_date)?changeToThaiNumber($.fn.formatDate4(data.go_back_date).strThaiDate2):"",1.7),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' เวลา ',fontSize:16},
-                        {text: chklenStr((data.go_back_date)?$.fn.formatDate4(data.go_back_date).formatTime:"",0.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr((data.go_back_date)?changeToThaiNumber($.fn.formatDate4(data.go_back_date).formatTime):"",0.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' น.',fontSize:16},
                         {text: ' รวมเวลาไปราชการครั้งนี้ ',fontSize:16},
-                        {text: chklenStr((data.go_from_date&&data.go_back_date)?$.fn.DateDiff4(data.go_from_date,data.go_back_date)[0]:"",0.15),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr((data.go_from_date&&data.go_back_date)?changeToThaiNumber($.fn.DateDiff4(data.go_from_date,data.go_back_date)[0]):"",0.15),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: 'วัน ',fontSize:16},
-                        {text: chklenStr((data.go_from_date&&data.go_back_date)?$.fn.DateDiff4(data.go_from_date,data.go_back_date)[1]:"",0.15),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr((data.go_from_date&&data.go_back_date)?changeToThaiNumber($.fn.DateDiff4(data.go_from_date,data.go_back_date)[1]):"",0.15),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' ชั่วโมง',fontSize:16},
                         '\n\n',
                         {text:'............................',fontSize:16,color:'white'},
@@ -1420,29 +1420,29 @@ var changeToThaiNumber = (num) => {
                         {text: 'ค่าเบี้ยเลี้ยงเดินทาง ประเภท',fontSize:16},
                         {text: chklenStr(' ',2),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: 'จำนวน ',fontSize:16},
-                        {text: chklenStr( ((data.datediff)[0]  )?parseInt( (data.datediff)[0] ):'',0.14),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr( ((data.datediff)[0]  )?changeToThaiNumber(parseInt( (data.datediff)[0] )):'',0.14),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' วัน รวม ',fontSize:16},
-                        {text: chklenStr( (data.budget1)?$.fn.numberWithCommas(parseInt(data.budget1)):'',0.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr( (data.budget1)?changeToThaiNumber($.fn.numberWithCommas(parseInt(data.budget1))):'',0.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' บาท',fontSize:16},
                         '\n',
                         {text: 'ค่าเช่าที่พักประเภท',fontSize:16},
                         {text: chklenStr(' ',2.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: 'จำนวน ',fontSize:16},
-                        {text: chklenStr( (data.budget2_list1 !=='__')?$.fn.splitStrToArr(data.budget2_list1,'_')[2]:'',0.12),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr( (data.budget2_list1 !=='__')?changeToThaiNumber($.fn.splitStrToArr(data.budget2_list1,'_')[2]):'',0.12),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' วัน รวม ',fontSize:16},
-                        {text: chklenStr( (data.budget2)?$.fn.numberWithCommas(parseInt(data.budget2)):'',0.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr( (data.budget2)?changeToThaiNumber($.fn.numberWithCommas(parseInt(data.budget2))):'',0.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' บาท',fontSize:16},
                         '\n',
                         {text: 'ค่าพาหนะ',fontSize:16},
                         {text: chklenStr(' ',3.85),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' รวม ',fontSize:16},
-                        {text: chklenStr( (data.budget3)?$.fn.numberWithCommas(parseInt(data.budget3)):'',0.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr( (data.budget3)?changeToThaiNumber($.fn.numberWithCommas(parseInt(data.budget3))):'',0.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' บาท',fontSize:16},
                         '\n',
                         {text: 'ค่าใช้จ่ายอื่น',fontSize:16},
                         {text: chklenStr(' ',3.78),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' รวม ',fontSize:16},
-                        {text: chklenStr(  $.fn.numberWithCommas(   ((data.budget4)? $.fn.StrToNumInt(data.budget4):0) + ((data.budget5)?$.fn.StrToNumInt(data.budget5):0)   )    ,0.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr(  $.fn.numberWithCommas(   ((data.budget4)? changeToThaiNumber($.fn.StrToNumInt(data.budget4)):0) + ((data.budget5)?$.fn.StrToNumInt(data.budget5):0)   )    ,0.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' บาท',fontSize:16},
                         '\n',
                         {text:'............................',fontSize:16,color:'white'},
@@ -1450,7 +1450,7 @@ var changeToThaiNumber = (num) => {
                         {text:'............................',fontSize:16,color:'white'},
                         {text:'.................',fontSize:16,color:'white'},
                         {text: 'รวมทั้งสิ้น ',fontSize:16},
-                        {text: chklenStr(doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[0],1),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: changeToThaiNumber(chklenStr(doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[0],1)),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' บาท',fontSize:16},
                         '\n',
                         {text: 'จำนวนเงิน (ตัวอักษร) ',fontSize:16},
@@ -1464,7 +1464,7 @@ var changeToThaiNumber = (num) => {
             {text: ' ', fontSize:16,pageBreak: 'after'},//สิ้นสุดหน้า                             
             {
                 text:[
-                    {text:'-2-',fontSize:16,alignment:'center'},
+                    {text:'-๒-',fontSize:16,alignment:'center'},
                     '\n',
                     {text:' ',fontSize:16,alignment:'center'}
                 ]
@@ -1474,7 +1474,7 @@ var changeToThaiNumber = (num) => {
             {text: ' ', fontSize:16,pageBreak: 'after'},//สิ้นสุดหน้า                             
             {
                 text:[
-                    {text:'-3-',fontSize:16,alignment:'center'},
+                    {text:'-๓-',fontSize:16,alignment:'center'},
                     '\n',
                     {text:' ',fontSize:16,alignment:'center'}
                 ]
@@ -1483,18 +1483,18 @@ var changeToThaiNumber = (num) => {
         var doc4 = [  
             {
                 text:[
-                    {text:'-4-',fontSize:16,alignment:'center'},
+                    {text:'-๔-',fontSize:16,alignment:'center'},
                     '\n',
-                    {text:'ส่วนที่ 2',fontSize:16,alignment:'right'},
+                    {text:'ส่วนที่ ๒',fontSize:16,alignment:'right'},
                     '\n',
-                    {text:'แบบ 8708',fontSize:16,alignment:'right'},
+                    {text:'แบบ ๘๗๐๘',fontSize:16,alignment:'right'},
                     '\n',
                     {text:'หลักฐานการจ่ายเงินค่าใช้จ่ายในการเดินทางไปราชการ',styles: [ 'header'],fontSize:16,alignment:'center'},
                     '\n',
-                    {text:'ชื่อส่วนราชการ โรงพยาบาลจิตเวชสงขลาราชนครินทร์ จังหวัด สงขลา',fontSize:16,alignment:'center'},
+                    {text:'ชื่อส่วนราชการ โรงพยาบาลสวนสราญรมย์ จังหวัด สุราษฎร์ธานี',fontSize:16,alignment:'center'},
                     '\n',
                     {text:'ประกอบใบเบิกค่าใช้จ่ายในการเดินทางของ ',fontSize:16,alignment:'center'},
-                    {text:doc2ObjGogovPrint.pname+' ลง'+$.fn.StrThaiDate4(new Date()),fontSize:16,alignment:'center',decoration: 'underline',decorationStyle: 'dotted'}
+                    {text:doc2ObjGogovPrint.pname+' ลง'+changeToThaiNumber($.fn.StrThaiDate4(new Date())),fontSize:16,alignment:'center',decoration: 'underline',decorationStyle: 'dotted'}
            
                 ],pageOrientation: 'landscape', pageBreak: 'before' ,margin: 0//margin: [ 5, 5, 5, 5 ]
             }
@@ -1567,7 +1567,7 @@ var changeToThaiNumber = (num) => {
                     '<td>'+
                         '<p>&nbsp;</p>'+ 
                         '<p>ได้รับเงินค่าใช้จ่ายในการเดินทางไปราชการ      จำนวน</p>'+ 
-                        '<p>('+doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[1]+')</p>'+ 
+                        '<p>('+changeToThaiNumber(doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[1])+')</p>'+ 
                         '<p>&nbsp;</p>'+ 
                         '<p>(ลงชื่อ)............................................................ผู้รับเงิน</p>'+
                         '<p>.       ('+( (doc2ObjGogovPrint.pname)?doc2ObjGogovPrint.pname:"" )+') </p>'+
@@ -1576,12 +1576,12 @@ var changeToThaiNumber = (num) => {
                         '</p>'+
                         '<p>&nbsp;&nbsp;วันที่..................../..................../.....................</p>'+
                         '<p>&nbsp;</p>'+ 
-                        '<p>จากเงินยืมตามสัญญาเลขที่ <u>'+ ( (doc2Agreement(data.agreement)[2])  ? doc2Agreement(data.agreement)[0]  :"") +'</u></p>'+
+                        '<p>จากเงินยืมตามสัญญาเลขที่ <u>'+ ( (doc2Agreement(data.agreement)[2])  ? changeToThaiNumber(doc2Agreement(data.agreement)[0])  :"") +'</u></p>'+
                            
                     '</td>'+
                     '<td>'+
                         '<p>&nbsp;</p>'+ 
-                        '<p>'+doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[0]+' บาท</p>'+ 
+                        '<p>'+changeToThaiNumber(doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[0])+' บาท</p>'+ 
                         '<p>&nbsp;ไว้เป็นการถูกต้องแล้ว</p>'+ 
                         '<p>&nbsp;</p>'+ 
                         '<p>(ลงชื่อ)............................................................ผู้จ่ายเงิน</p>'+
@@ -1590,7 +1590,7 @@ var changeToThaiNumber = (num) => {
                         '<p>&nbsp;&nbsp;วันที่..................../..................../.....................</p>'+
                         '<p>&nbsp;</p>'+ 
                         '<p>&nbsp;</p>'+ 
-                         ' วันที่ '+  (   (doc2Agreement(data.agreement)[2])  ?    $.fn.formatDate4(doc2Agreement(data.agreement)[1]).strThaiDate2  :  ""      )  +'</p>'+ 
+                         ' วันที่ '+  (   (doc2Agreement(data.agreement)[2])  ?    changeToThaiNumber($.fn.formatDate4(doc2Agreement(data.agreement)[1]).strThaiDate2)  :  ""      )  +'</p>'+ 
                     '</td>'+
                 '</tr>'+
             '</table>'+
@@ -1615,12 +1615,12 @@ var changeToThaiNumber = (num) => {
                     '<td>'+
                         '<p>&nbsp;</p>'+ 
                         '<p><u><b>คำชี้แจง</b></u></p>'+ 
-                        '<p>1.กรณีเดินทางเป็นหมู่คณะและจัดทำใบเบิกค่าใช้จ่ายรวมฉบับเดียวกัน หากระยะเวลาในการเริ่มต้น และสิ้นสุดการเดินทาง'+
+                        '<p>๑.กรณีเดินทางเป็นหมู่คณะและจัดทำใบเบิกค่าใช้จ่ายรวมฉบับเดียวกัน หากระยะเวลาในการเริ่มต้น และสิ้นสุดการเดินทาง'+
                         'ของแต่ละบุคคลแตกต่างกัน ให้แสดงรายละเอียดของวันเวลาที่แตกต่างกันของบุคคลนั้นในช่องหมายเหตุ</p>'+
-                        '<p>2.กรณียื่นขอเบิกค่าใช้จ่ายรายบุคคล ให้ผู้ขอรับเงินเป็นผู้ลงลายมือชื่อผู้รับเงินและวันเดือนปีที่รับเงิน กรณีที่มีการยืมเงิน'+
+                        '<p>๒.กรณียื่นขอเบิกค่าใช้จ่ายรายบุคคล ให้ผู้ขอรับเงินเป็นผู้ลงลายมือชื่อผู้รับเงินและวันเดือนปีที่รับเงิน กรณีที่มีการยืมเงิน'+
                         'ให้ระบุวันที่ที่ได้รับเงินยืม เลขที่สัญญายืมเงิน และวันที่อนุมัติเงินยืมด้วย</p>'+
-                        '<p>3.กรณีที่ยื่นขอเบิกค่าใช้จ่ายรวมเป็นหมู่คณะ ผู้ขอรับเงินมิต้องลงลายมือชื่อในช่องผู้รับเงิน ทั้งนี้ให้ผู้มีสิทธิแต่ละคนลง'+
-                        'ลายมือชื่อผู้รับเงินในหลักฐานการจ่ายเงิน(ส่วนที่ 2)</p>'+
+                        '<p>๓.กรณีที่ยื่นขอเบิกค่าใช้จ่ายรวมเป็นหมู่คณะ ผู้ขอรับเงินมิต้องลงลายมือชื่อในช่องผู้รับเงิน ทั้งนี้ให้ผู้มีสิทธิแต่ละคนลง'+
+                        'ลายมือชื่อผู้รับเงินในหลักฐานการจ่ายเงิน(ส่วนที่ ๒)</p>'+
                     '</td>'+
                 '</tr>'+
             '</table>';
@@ -1661,10 +1661,10 @@ var changeToThaiNumber = (num) => {
                     '<table border="1" style="font-size:14px;">'+
                         '<tr>'+
                             '<td>'+//เริ่มเนื้อหาทั้งหมดในนี้
-                                '<p style="text-align:right;">แบบ บก.111</p>'+
+                                '<p style="text-align:right;">แบบ บก.๑๑๑</p>'+
                                 '<p style="font-weight:bold;text-align:center;">ใบรับรองแทนใบเสร็จรับเงิน</p>'+
                                 '<p> </p>'+
-                                '<p style="text-align:center;">ส่วนราชการ โรงพยาบาลจิตเวชสงขลาราชนครินทร์</p>'+
+                                '<p style="text-align:center;">ส่วนราชการ โรงพยาบาลสวนสราญรมย์</p>'+
                                 '<p> </p>'+
                                 '<p> </p>'+
                                 '<table border="1" widths="12%,70%,10%,8%">'+
@@ -1678,10 +1678,10 @@ var changeToThaiNumber = (num) => {
                                         '<td>.............</td>'+
                                         '<td>'+//เส้นทางเดินทาง
                                             '<p style="text-align:left;">'+
-                                                '<u>เดินทางจากที่พักเลขที่</u> '+txtAddrFrom+
+                                                '<u>เดินทางจากที่พักเลขที่</u> '+changeToThaiNumber(txtAddrFrom)+
                                             '</p>'+ 
                                             '<p style="text-align:left;">'+
-                                                '<u>ถึงที่พักเลขที่</u> '+txtAddrBack+
+                                                '<u>ถึงที่พักเลขที่</u> '+changeToThaiNumber(txtAddrBack)+
                                             '</p>'+
                                         '</td>'+
                                         '<td>.............</td>'+
@@ -1805,7 +1805,7 @@ var changeToThaiNumber = (num) => {
                                         '<td></td>'+
                                         '<td><p style="text-align:center;">รวมเป็นเงิน</p></td>'+
                                         '<td>'+
-                                              '<p style="text-align:right;">'+$.fn.numberWithCommas(sumNoRecipt)+'</p>'+
+                                              '<p style="text-align:right;">'+changeToThaiNumber($.fn.numberWithCommas(sumNoRecipt))+'</p>'+
                                         '</td>'+
                                         '<td></td>'+
                                     '</tr>'+
@@ -1818,7 +1818,7 @@ var changeToThaiNumber = (num) => {
                                 '</p>'+
                                 '<p style="text-align:left;">ข้าพเจ้า '+( (doc2ObjGogovPrint.pname)?doc2ObjGogovPrint.pname:"" )+
                                     ' ตำแหน่ง '+( (doc2ObjGogovPrint.position_name)?doc2ObjGogovPrint.position_name:"" )+
-                                    ( (doc2ObjGogovPrint.class_position)?doc2ObjGogovPrint.class_position:"" )+' กองโรงพยาบาลจิตเวชสงขลาราชนครินทร์ ขอรับรองว่า รายจ่ายข้างต้นนี้ ไม่อาจเรียกใบเสร็จ'+
+                                    ( (doc2ObjGogovPrint.class_position)?doc2ObjGogovPrint.class_position:"" )+' กองโรงพยาบาลสวนสราญรมย์ ขอรับรองว่า รายจ่ายข้างต้นนี้ ไม่อาจเรียกใบเสร็จ'+
                                     'รับเงินจากผู้รับได้ และข้าพเจ้าได้จ่ายไปในงานของราชการโดยแท้'+
                                 '</p>'+
                                 '<p> </p>'+
@@ -1878,15 +1878,15 @@ var changeToThaiNumber = (num) => {
                         (doc2ObjGogovPrint.position_name) +
                         ((doc2ObjGogovPrint.class_position)?doc2ObjGogovPrint.class_position:'')
                         )+'</td>'+
-                    '<td rowspan="35">'+(  (data.budget1)?$.fn.numberWithCommas(parseInt(data.budget1)):''  )+'</td>'+
-                    '<td rowspan="35">'+(  (data.budget2)?$.fn.numberWithCommas(parseInt(data.budget2)):''  )+'</td>'+
-                    '<td rowspan="35">'+( (data.budget3)?$.fn.numberWithCommas(parseInt(data.budget3)):'' )+'</td>'+
+                    '<td rowspan="35">'+(  (data.budget1)? changeToThaiNumber($.fn.numberWithCommas(parseInt(data.budget1))):''  )+'</td>'+
+                    '<td rowspan="35">'+(  (data.budget2)? changeToThaiNumber($.fn.numberWithCommas(parseInt(data.budget2))):''  )+'</td>'+
+                    '<td rowspan="35">'+( (data.budget3)? changeToThaiNumber($.fn.numberWithCommas(parseInt(data.budget3))):'' )+'</td>'+
                     '<td rowspan="35">'+
-                        $.fn.numberWithCommas(  
+                    changeToThaiNumber($.fn.numberWithCommas(  
                             (  (data.budget4) ? parseInt(data.budget4):0  ) + ( (data.budget5)?parseInt(data.budget5):0 )   
-                        )+
+                        ))+
                     '</td>'+
-                    '<td rowspan="35">'+(doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[0])+'</td>'+
+                    '<td rowspan="35">'+( changeToThaiNumber(doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[0]))+'</td>'+
                     '<td rowspan="35">&nbsp;</td>'+
                     '<td rowspan="35">&nbsp;</td>'+
                     '<td rowspan="35">&nbsp;</td>'+
@@ -1901,7 +1901,7 @@ var changeToThaiNumber = (num) => {
                         '<td>&nbsp;</td>'+
                         '<td>&nbsp;</td>'+
                         '<td>&nbsp;</td>'+
-                        '<td>'+(doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[0])+'</td>'+
+                        '<td>'+( changeToThaiNumber(doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[0]))+'</td>'+
                         '<td colspan="3">ตามสัญญายืมเงินเลขที่</td>'+
                         '<td>&nbsp;.</td>'+
                         '<td>&nbsp;.</td>'+     
