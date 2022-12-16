@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="./doccss.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Sarabun&display=swap" rel="stylesheet">
+	 <link rel="stylesheet" type="text/css" href="./../css/bootstrap/css/bootstrap.min.css">
+	<title></title>
+	<style type="text/css">
+		.show{
+			display: block;
+		}
+		.f{
+			color: #FF0046;
+			font-weight: bold;
+		}
+		.bg{
+			background-color: rgba(255, 255, 255, 0);
+			  backdrop-filter: blur(5px);
+		}
+	</style>
+</head>
+<body>
+<nav style="height: 4rem;width:100%;background-color: rgba(255, 255, 255, 1); position: fixed; top:0;text-align: center" class=shadow>
+	<button onclick="Export2Word();" style="width: 20rem; margin-top: 0.75rem; text-align: center;" class="btn btn-success" >ดาวน์โหลด เอกสาร</button>
+</nav>
+
+<!-- <div class="modal show f bg" tabindex="-1" id="modala" style="background-color: ;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title f">หมายเหตุ</h5>
+        <button id="btnclose" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeBtn();"></button>
+      </div>
+      <div class="modal-body f mx-auto">
+        <p>เมื่อทำการโหลดเอกสารแล้วให้เปลี่ยน ฟอร์น เป็น  TH SarabunPSK</p>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div id="doc">
+	<style>
+		body{
+			font-family: 'Sarabun', sans-serif;
+		}
+    table, tr, td, th{
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 5px;
+        text-align: left;
+    }
+    @font-face
+			{font-family:"TH SarabunPSK";
+			mso-font-charset:222;
+			mso-generic-font-family:swiss;
+			mso-font-pitch:variable;
+			mso-font-signature:16777219 0 0 0 65809 0;}
+    .normal {
+        /* font-family:"Sarabun",sans-serif;  */
+        line-height:107%;
+        font-size:16.0pt;
+        mso-ascii-font-family:TH SarabunPSK;
+        mso-ascii-theme-font:TH SarabunPSK;
+        mso-ansi-language: TH;
+        line-height:107%;
+        font-family:"TH SarabunPSK",sans-serif'
+    }
+
+    @page portrait_A4_page  {
+        size:595.3pt 841.9pt;
+        margin:36.0pt 56.6929134pt 36.0pt 85.0393701pt;
+        mso-header-margin:35.4pt;
+        mso-footer-margin:35.4pt;
+        mso-paper-source:0;
+    }
+
+    div.portrait_A4_page { page:portrait_A4_page; }
+
+    @page landscape_A4_page {
+        size:841.9pt 595.3pt;
+        mso-page-orientation:landscape;
+        margin:36.0pt 36.0pt 36.0pt 36.0pt;
+        mso-header-margin:35.45pt;
+        mso-footer-margin:35.45pt;
+        mso-paper-source:0;
+    }
+
+    div.landscape_A4_page { page:landscape_A4_page; }
+    .f14{
+		font-size: 16pt;
+	}
+
+	.betweenline{
+		    margin:6.0pt 0pt 0pt 0pt;
+	}
+	.betweenline2{
+		    margin:6.0pt 0pt 0pt 70.8661418pt;
+	}
+	.betweenline3{
+		    margin:0pt 0pt 0pt 70.8661418pt;
+	}
+	.texthead{
+		    margin:0pt 0pt 0pt 120.8661418pt;
+	}
+	.f18{
+		font-size: 20pt;
+	}
+	.f29{
+		font-size: 29pt;
+	}
+	.text_c{
+		text-align:center;
+	}
+	.text_r{
+		text-align:right;
+	}
+	.text_l{
+		text-align:left;
+	}
+	.box{
+ 		float: right;
+	}
+	.h{
+		padding-left: 150pt;
+	}
+
+	.fb{
+		font-weight: bold;
+	}
+	@page imgkrut{
+		width:1.5cm;
+		size:42.52pt 42.52pt;
+	}
+.imgkrut{
+	width:1.5cm;
+	size:42.52pt 42.52pt;
+}
+img.imgkrut { page:imgkrut; }
+u {
+ text-decoration-style: dotted;
+ text-decoration-thickness: 1px;
+ mso-border-between:4px dotted rgb(0, 0, 0);
+ 
+  }
+
+/*lang=TH style='line-height:107%;font-family:"TH SarabunPSK",sans-serif'*/
+
+/*	.dottext{
+		 text-decoration-style: dotted;
+		  text-decoration-line: underline;
+	}*/
+</style>
+
+<div class=portrait_A4_page >
+  <span class=normal >
+  	<div id="doc1_2" > 
+  		<div class=areaset_2 >
+  			<div class=setdisplaypage  style="text-overflow:clip;white-space:normal;overflow: hidden;">
+  				 
+  				 	<img src="http://127.0.0.1/www/hr_o/makedoc/krut.jpg"  width="56.692913386" height="56.692913386">
+  				 	<span class=f29 style="padding-left: 50px;">                  บันทึกข้อความ</span><br>
+  				 	<span class=f18 style="	font-weight: bold; margin-top: -3pt; mso-border-between:1px dotted black;">ส่วนราชการ</span><u>   <span class=f14 id="data1"></span>                                           </u><br>
+  				 	<span class=f18 style="	font-weight: bold;">ที่</span><u>   <span class=f14 id="data2"></span>                                 </u><span class=f18 style="	font-weight: bold;">วันที่</span><u>   <span class=f14 id="data3"></span>                       </u><br>
+  				 	<span class=f18 style="	font-weight: bold;">เรื่อง</span><u>   <span class=f14 >ขออนุมัติเดินทางไปราชการ</span>                                                                         </u><br>
+  				 	<div class=betweenline>
+  				 		<span class=f14 >เรียน ผู้อำนวยการโรงพยาบาลสวนสราญรมย์(ผ่านหัวหน้า<span class=f14 id="data21"></span>)</span><br>
+  				 	</div>
+  				 	<div class=betweenline2>
+  				 		<span class=f14 >ด้วยข้าพเจ้า</span><u>   <span class=f14 id="data4"></span>   </u>
+  				 			
+  				 		<span class=f14>ตำแหน่ง</span><u> <span class=f14 id="data5"></span> <span class=f14 id="data6"></span>              </u>
+  				 			
+  				 	</div>
+  				 	<span class=f14>พร้อมด้วย (ดังรายชื่อแนบท้าย) ขออนุมัติเดินทางไปราชการเพื่อ</span><u>   <span class=f14 id="data7"></span>   </u><br>
+  				 	<span class=f14>เรื่อง</span><u>   <span class=f14  id="data8"></span>   </u><br>
+  				 	<span class=f14>ในวันที่</span><u> <span class=f14 id="data9"></span> </u>
+  				 	<span class=f14>ถึงวันที่</span><u> <span class=f14 id="data10"></span> </u>
+  				 	<span class=f14>จัดโดย</span><u>   <span class=f14 id="data11"></span>   </u><br>
+  				 	<span class=f14>สถานที่</span><u>   <span class=f14 id="data12"></span>   </u><br>
+
+  				 	<div class=betweenline2>
+  				 		<span class=f14>ในการนี้ ข้าพเจ้าขออนุมัติ</span><br>
+  				  </div>
+  				  <div class=betweenline3>
+  				 		<span class=f14>๑.ขออนุมัติเดินทางไปราชการ โดยไม่ถือเป็นวันลา ตั้งแต่วันที่</span><u>   <span class=f14 id="data13"></span>   </u><br>
+  				 	</div>
+  				 	<span class=f14>ถึงวันที่</span><u><span class=f14 id="data14"></span></u>
+  				 	<span class=f14>รวมไปราชการครั้งนี้<u><span class=f14 id="data15"></span></u>และขอเบิกค่าใช้จ่ายในการเดินทางไปราชการจาก</span><br>
+  				 	<u><span class=f14 id="data16"></span>   </u><br>
+  				 	<div class=betweenline3>
+  				 		<span class=f14>๒.ขออนุมัติเดินทางโดย</span><u>   <span class=f14 id="data17"></span>   </u><br>
+  				 	</div>
+  				 	<div class=betweenline3>
+  				 		<span class=f14>๓.ขออนุมัติเบิกเงินค่าลงทะเบียน(ถ้ามี) เป็นจำนวนเงิน<u><span class=f14 id="data18"></span></u>บาท <span class=f14 id="data19"></span></span><br>
+  				 	</div>
+  				 	<div class=betweenline3>
+  				 		<span class=f14>๔.ในระหว่างที่ข้าพเจ้าเดินทางไปราชการ ขอให้ (ชื่อ)<u>   <span class=f14 id="data20"></span>   </u></span><br>
+  				 	</div>
+  				 	<span class=f14>ปฏิบัติหน้าที่แทนข้าพเจ้า จนกว่าจะกลับมาปฏิบัติราชการตามปกติ</span><br>
+  				 	<div class=betweenline2>
+  				 		<span class=f14>จึงเรียนมาเพื่อโปรดพจารณาอนุมัติ</span><br><br><br>
+  					</div>
+  				 <table style="width:100%; border: 1px solid white;" class="normal">
+  				 		<tr>
+  				 			<td style="width:50%; border: 1px solid white;">
+  				 				<span class=f14>เรียนผู้อำนวยการโรงพยาบาลสวนสราญรมย์</span><br>
+  				 				<span class=f14>เพื่อโปรดพิจารณา</span>
+  				 			</td>
+  				 			<td style="width:50%; border: 1px solid white;">
+  				 					<div>
+											<span class=f14>ลงชื่อ..................................................................</span><br>
+											<span class=f14>&emsp;&emsp;&emsp;(<span id="fullname"></span>)</span><br>
+											<span class=f14>ตำแหน่ง <span id="position"></span><span id="positionclass"></span></span><br>
+											<span class=f14>วันที่............./................................../........................</span>
+										</div>
+  				 			</td>
+  				 		</tr>
+  				 		<tr style=" border: 1px solid rgb(255, 255, 255);">
+  				 			<td style="width:50%; border: 1px solid rgb(255, 255, 255);">
+  				 					<div>
+											<span class=f14>ลงชื่อ..................................................................</span><br>
+											<span class=f14>&emsp;&emsp;(..........................................................)</span><br>
+											<span class=f14>ตำแหน่ง .........................................................</span><br>
+											<span class=f14>วันที่............./................................/........................</span>
+										</div>
+  				 			</td>
+  				 		</tr>
+  				 </table>
+
+				</div>
+    		</div>
+    	</div>
+
+  </span>      
+</div>    
+
+ <br clear=all style='mso-special-character:line-break; page-break-before:always'>  
+
+<div class=portrait_A4_page class=normal>
+  <span >
+  	<div id="doc1_2"> 
+  		<div class=areaset_2>
+  			<div class=setdisplaypage>
+  				<div class=text_c>
+                    <span class=normal>
+                        <span class=f14>- 2 -</span><br><br>
+                        <span class=f14>รายชื่อผู้ร่วมเดินทางไปราชการ</span><br><br>
+                    </span>
+  				</div>
+  				<span class=normal><span class=f14>เรื่อง<u>   <span class=f14 id="gogov_topic"></span>   </u></span><br></span>
+  					<table style="width:100%"  class=normal>
+		  				<thead>
+			  				<tr  class=f14>
+								<th class=text_c style="width:10%" >ลำดับที่</th>
+								<th class=text_c style="width:35%" >ชื่อ</th>
+								<th class=text_c style="width:35%" >ตำแหน่ง</th>
+								<th class=text_c style="width:20%" >หมายเหตุ</th>
+							</tr>
+						</thead>
+								<tbody id="tableshow"  class=f14></tbody>
+		  			</table>
+				</div>
+    		</div>
+    	</div>
+
+  </span>      
+</div>  
+
+
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+var closeBtn = () => document.getElementById("modala").classList.remove("show");
+
+	
+function Export2Word( filename = ''){
+    var preHtml = ("<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40' lang=TH >")+
+    				("<head>")+
+    					("<meta http-equiv=Content-Type content='text/html; charset=utf-8'>")+
+    						("<title>Export HTML To Doc</title>")+
+    							
+    				("</head>")+
+    				("<body>");
+    var postHtml = "</body></html>";
+    var html = preHtml+document.getElementById('doc').innerHTML+postHtml;
+	// var html = document.getElementById('doc').innerHTML;
+
+    var blob = new Blob(['\ufeff', html], {
+        type: 'application/msword'
+    });
+    
+    // Specify link url
+
+    // var output = meta.replace("_html_", head.replace("_styles_", css)+html)
+    var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
+    
+    // Specify file name
+    filename = filename?filename+'.doc':'document.doc';
+    
+    // Create download link element
+    var downloadLink = document.createElement("a");
+
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob ){
+        navigator.msSaveOrOpenBlob(blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = url;
+        
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+    
+    document.body.removeChild(downloadLink);
+}
+
+function StrThaiDate4 (date){
+        var returnV='';
+        if(date){
+            var thaiCalendarArray = {
+                months: ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"]
+            };
+            var day = date.getDate(),
+            month = thaiCalendarArray.months[date.getMonth()],
+            year = date.getFullYear() + 543;  
+            returnV = 'วันที่ '+day+' เดือน '+month+' พ.ศ. '+ year;
+        }
+        return returnV;
+    };
+function replaceThaiMonth(Date){
+    var str = this.StrThaiDate4(Date);
+    var nstr = (str.indexOf("เดือน")>=0)?str.replace("เดือน",""):str;
+    return nstr;
+}
+
+// showdata_table();
+
+// var narat = location.href.split("datadoc=")[1];
+// document.getElementById("dateNow1").innerText += narat;
+        // function chklenStr(str,wMax){//wMax หน่วยเป็นนิ้ว
+        //     var newStr =str,wStr;
+        //     wStr = textWidth(newStr);//ความกว้าง str
+        //     var wiMax = parseFloat(wMax*96);//1 inch = 96px
+        //     while (wStr < wiMax) {
+        //         newStr += ' ';
+        //         wStr = wStr+4.5;//เพิ่มทีละ 4.5px
+        //     }
+        //     return newStr;
+        // };
+var changeToThaiNumber = (num) => {
+    var arr_change_number = {"1":"๑", "2":"๒", "3":"๓", "4" : "๔", "5" : "๕", "6" : "๖", "7" : "๗", "8" : "๘", "9" : "๙", "0" : "๐"};
+    var str = num.toString();
+    for (var val in arr_change_number){
+        str = str.split(val).join(arr_change_number[val]);
+    } 
+    return str
+}
+var thaidate = (date) =>{
+	 let numMonth = (date.substring(5, 7));
+   var ThaiMonth = {"01":"มกราคม", "02":"กุมภาพันธ์", "03":"มีนาคม", "04" : "เมษายน", "05" : "พฤษภาคม", "06" : "มิถุนายน", "07" : "กรกฎาคม", "08" : "สิงหาคม", "09" : "กันยายน", "10" : "ตุลาคม", "11" : "พฤศจิกายน", "12" : "ธันวาคม"};
+	return (date.substring(8, 10))+" "+(ThaiMonth[numMonth])+" "+((date.substring(0, 4)*1)+543);
+}
+
+ function doc2Agreement(agreementData){
+     var ret=[],arrSp=[],reg='',date='',bath=0;
+     if(agreementData){
+         if(agreementData.indexOf("_")>=0){
+             arrSp = this.splitStrToArr(data.agreement,"_");
+             reg = arrSp[0];
+             date = arrSp[1].toString();//.substring(1,10);
+             bath = (arrSp[2])?arrSp[2]:0;
+             ret = [reg,date,bath];
+         }
+     }
+     return ret;
+ }
+var formatDate4 = function(strDateTime){//แปลงจาก 04/02/2020 13:10 หรือ 04/02/2563 13:10 เป็น วันที่ 5 เดือน กุมภาพันธ์ พ.ศ. 2563
+        var Ynow1 = (new Date()).getFullYear(),//ปี คศ ปัจจุบัน
+                Ynow2 = Ynow1+543,//ปี พศ ปัจจุบัน
+                thaiCalendarArray = {months: ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"]},
+                arr,d,dd,m,mm,y,yk,yb,a,
+                obj={
+                    'strThaiDate1':'',//เช่น วันที่ 1 เดือน กุมภาพันธ์ พ.ศ.2563
+                    'strThaiDate2':'',//เช่น 1 กุมภาพันธ์ 2563
+                    'formatDate1':'',//เช่น 2020-02-01
+                    'formatDate2':'',//
+                    'formatTime':''
+                };
+            if(strDateTime){
+                if(strDateTime.indexOf(" ")>=0){
+                    a = strDateTime.split(" ");//แยกวันกับเวลาออกจากกัน
+                    if(a[0].indexOf("/")>=0){//วันที่มีรูปแบบเป็น dd/mm/yyy หรือไม่
+                        arr = a[0].split("/");
+                        d = parseInt(arr[0]);
+                        dd = ( arr[0].length < 2 ) ? '0'+arr[0] : arr[0];
+                        m = thaiCalendarArray.months[parseInt(arr[1])-1]; 
+                        mm = ( arr[1].length < 2 ) ? '0'+arr[1] : arr[1];
+                        y = parseInt(arr[2]);//ปี่ที่กรอกเข้ามา
+                        if( (y>=1857) && (y<=Ynow1) ){//อยู่ในช่วงปี คศ 
+                            yk = y;
+                            yb = y+543;
+                        }else if( (y>=2400) && (y<=Ynow2) ){//อยู่ในช่วงปี พศ
+                            yk =y-543;
+                            yb = y;
+                        }else{//นอกนั้น ให้เป็นปี คศ หรือ พศ ปัจจุบันไปเลย
+                            yk = Ynow1;
+                            yb = Ynow2;
+                        }
+                        obj.strThaiDate1 = 'วันที่ '+d+' เดือน '+m+' พ.ศ. '+ yb.toString();
+                        obj.strThaiDate2 = d+' '+m+' '+ yb.toString();
+                        obj.formatDate1 = yk+'-'+mm+'-'+dd;
+                        obj.formatTime = a[1];
+                    }
+                }
+            }
+            return obj;
+    }//แปลงจาก 04/02/2020 13:10 หรือ 04/02/2563 13:10 เป็น object ได้หลายรูปแบบวันที่
+
+
+   var DateDiff2 = function(a,b){//a = 2019-08-27 3:29
+        var aa = new Date(new Date(a).toLocaleString("en-US", {timeZone: "Asia/Bangkok"}));
+        var bb = new Date(new Date(b).toLocaleString("en-US", {timeZone: "Asia/Bangkok"}));
+        var diffSeconds = (bb - aa)/1000;
+        
+        //calculate
+        var days = Math.floor(diffSeconds / (3600*24));
+        var hrs_d = Math.floor((diffSeconds - (days * (3600*24))) / 3600);
+        var hrs  = Math.floor(diffSeconds / 3600);
+        var mnts = Math.floor((diffSeconds - (hrs * 3600)) / 60);
+        var secs = diffSeconds - (hrs * 3600) - (mnts * 60);
+        
+         //Add 0 if one digit
+        if(hrs_d<10) hrs_d = "0" + hrs_d;
+        if(mnts<10) mnts = "0" + mnts;
+        if(secs<10) secs = "0" + secs;
+        return [days,hrs_d,mnts,secs];
+    }
+    var splitStrToArr = function(str,sep){
+        var arr = [];
+        if(str){
+            if(str.indexOf(sep)>=0){
+                arr = str.split(sep);
+            }
+        }
+        return arr;
+    }
+    var DateDiff4 = (d1,d2) => {
+        var newD1,newD2,Ttime1,Ttime2,ret=[];
+        if(d1 && d2){
+          if(d1.indexOf(" ")>=0 && d2.indexOf(" ")>=0){
+              Ttime1 = this.splitStrToArr(d1," ")[1];//time1
+              Ttime2 = this.splitStrToArr(d2," ")[1];//time2
+              //split date
+              if(this.splitStrToArr(d1," ")[0].indexOf("/")>=0 && this.splitStrToArr(d2," ")[0].indexOf("/")>=0){
+                 newD1 = this.formatDate4(d1).formatDate1;
+                 newD2 = this.formatDate4(d2).formatDate1;
+                 ret = this.DateDiff2(newD1+' '+Ttime1,newD2+' '+Ttime2);
+              }
+          }  
+        }
+        return ret;
+    }
+    var getBathText = function(inputNumber){
+        var getText = function (input) {
+          var toNumber = input.toString();
+          var numbers = toNumber.split('').reverse();
+
+          var numberText = "/หนึ่ง/สอง/สาม/สี่/ห้า/หก/เจ็ด/แปด/เก้า/สิบ".split('/');
+          var unitText = "/สิบ/ร้อย/พัน/หมื่น/แสน/ล้าน".split('/');
+
+          var output = "";
+          for (var i = 0; i < numbers.length; i++) {
+              var number = parseInt(numbers[i]);
+              var text = numberText[number];
+              var unit = unitText[i];
+
+              if (number === 0)
+                  continue;
+
+              if (i === 1 && number === 2) {
+                  output = "ยี่สิบ" + output;
+                  continue;
+              }
+
+              if (i === 1 && number === 1) {
+                  output = "สิบ" + output;
+                  continue;
+              }
+
+
+              output = text + unit + output;
+          }
+
+          return output;
+      }
+      var fullNumber = Math.floor(inputNumber);
+        var decimal = inputNumber - fullNumber;
+        if(decimal === 0){
+          return getText(fullNumber) + "บาทถ้วน";
+        }else{
+          // convert decimal into full number, need only 2 digits
+          decimal = decimal * 100;
+          decimal = Math.round(decimal);
+          return getText(fullNumber) + "บาท" + getText(decimal) + "สตางค์";
+        }
+    }
+    var numberWithCommas = function(number) {
+        var parts = number.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return parts.join(".");  
+    }
+    function doc2SumBudget(b1,b2,b3,b4,b5){
+            var bd1=0,bd2=0,bd3=0,bd4=0,bd5=0,sum=0,ret=[];
+            bd1 = isNaN(parseInt(b1.toString().replace(/,/g, ''), 10)) ? 0 : parseInt(b1.toString().replace(/,/g, ''), 10); 
+            bd2 = isNaN(parseInt(b2.toString().replace(/,/g, ''), 10)) ? 0 : parseInt(b2.toString().replace(/,/g, ''), 10); 
+            bd3 = isNaN(parseInt(b3.toString().replace(/,/g, ''), 10)) ? 0 : parseInt(b3.toString().replace(/,/g, ''), 10); 
+            bd4 = isNaN(parseInt(b4.toString().replace(/,/g, ''), 10)) ? 0 : parseInt(b4.toString().replace(/,/g, ''), 10); 
+            bd5 = isNaN(parseInt(b5.toString().replace(/,/g, ''), 10)) ? 0 : parseInt(b5.toString().replace(/,/g, ''), 10); 
+            sum = bd1+bd2+bd3+bd4+bd5;
+            ret = [this.numberWithCommas(sum),this.getBathText(sum)];
+            return ret;
+    }
+
+    // let tablebudgetList = () => {
+    // 	return (
+    // 	  // if(data.budget3_list1){
+    //     //  if( (data.budget3_list1).indexOf('_')>=0 && (data.budget3_list1)!=='___' ){
+    //      					`
+    //               <tr>
+		// 								    <td class=text_c style="width:15%">วัน เดือน ปี</td>
+		// 								    <td style="width:55%">รายการ</td>
+		// 								    <td class=text_c style="width:15%">00000</td>
+		// 								    <td class=text_c style="width:15%"></td>
+		// 								</tr>
+		// 								<tr>
+		// 							    <th style="width:15%"></th>
+		// 							    <th class=text_c style="width:55%">รวมเป็นเงิน</th>
+		// 							    <th class=text_c style="width:15%">00000</th>
+		// 							    <th class=text_c style="width:15%"></th>
+		// 							</tr>
+    //                 	`;
+
+    //    //   }	
+    //    // }
+		// 				);
+    // }
+  var StrToNumInt = function(strNum){
+        var numInt = 0;
+        if(strNum){ 
+            numInt = isNaN(parseInt(strNum.toString().replace(/,/g, ''), 10)) ? 0 : parseInt(strNum.toString().replace(/,/g, ''), 10); 
+        }
+        return numInt;
+   }
+ function bd3Cal(bd3list){
+    var strBath = this.splitStrToArr(bd3list,'_')[2];
+    var n = 0;
+    if(strBath){
+        //n = $.fn.numberWithCommas($.fn.StrToNumInt(strBath));
+        n = this.StrToNumInt(strBath);
+        //console.log(n);
+    }
+    return n;
+   }
+
+
+
+// var changeToNumber = (num) => {
+//     var arr_change_number = {"๑":"1", "๒":"2", "๓":"3", "๔" : "4", "๕" : "5", "๖" : "6", "๗" : "7", "๘" : "8", "๙" : "9", "๐" : "0"};
+//     var str = num.toString();
+//     for (var val in arr_change_number){
+//         str = str.split(val).join(arr_change_number[val]);
+//     } 
+//     return str
+// }
+var DateDiff = function(a,b){
+        return (new Date(new Date(b) - new Date(a)))/1000/60/60/24;
+}
+var formatDate3 = function(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) 
+            month = '0' + month;
+        if (day.length < 2) 
+            day = '0' + day;
+
+        return [year, month, day].join('-');
+}
+var ReverseStrThaiDate1 = function(StrThaiDate){
+        var newDate = this.formatDate3(new Date());
+        var months = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+        if(StrThaiDate){
+            if(StrThaiDate.indexOf(" ")>=0){
+                var arr = StrThaiDate.split(" "),
+                    d=parseInt(arr[0]),m = 1,y=parseInt(arr[2])-543;
+                if(months.indexOf(arr[1])>=0){
+                    m = months.indexOf(arr[1])+1;
+                    var mm = (m<10)?'0'+m:m;
+                    var dd = (d<10)?'0'+d:d;
+                    newDate = y+'-'+mm+'-'+dd;
+                }
+            }
+        }
+        
+        return newDate;
+    }
+    function moneyType(money_type){
+            var arr = this.splitStrToArr(money_type,"_"),
+                len = arr.length,
+                str = "";
+            if(len===0){
+                str = money_type;
+            }else if(len===2){
+                str = arr[0]+' ปี '+arr[1];
+            }else if(len===3){
+                str = arr[0]+' ปี '+arr[1] + ' หมวด '+arr[2];
+            }
+            return str;
+        }
+        function carType(car_type){
+            var arr = this.splitStrToArr(car_type,"_"),
+                len = arr.length,
+                str = "";
+            if(len===0){
+                str = car_type;
+            }else if(len===3){
+                str = arr[0]+' ทะเบียน '+arr[1] + ' '+arr[2];
+            }
+            return str;
+        }
+
+        function costRegis(cost_registration, year, group){
+            var txt = "โดยเบิกจาก";
+            if(cost_registration==='เงินบำรุง'){
+                txt += "เงินบำรุง ปี "+year+" งบดำเนินงาน หมวดค่าตอบแทน ใช้สอยและวัสดุ ";
+            }else if(cost_registration==='เงินงบประมาณ'){
+                txt += "เงินงบประมาณ ปี "+year+" หมวด "+group;
+            }else{
+                txt = "";
+            }
+            return txt;
+        }
+
+    var group_gogov = (arr) =>{
+        let tr='';
+        let n = 1;
+        for(var i in arr){
+            tr += (`<tr>
+				    <td class=text_c style="width:10%">${this.changeToThaiNumber(n++)}</td>
+				    <td style="width:35%">${this.splitStrToArr(arr[i],"_")[0]}</td>
+				    <td class=text_c style="width:35%">${this.splitStrToArr(arr[i],"_")[1]} ${ this.changeToThaiNumber(this.splitStrToArr(arr[i],"_")[2])}</td>
+				    <td class=text_c style="width:20%"></td>
+			</tr>`);
+			
+        }
+        return  tr;
+    }
+    var searchdata = () => {
+    	var datad = location.href.split("datadocq=")[1];
+    	// var datad2 = location.href.split("userid=")[1];
+
+
+    	if(datad === ' '){    				return false;
+    	}else{
+    				 fetch('getdataq.php?datadocq='+datad)
+            .then((response) => response.json())
+            .then((data) => {
+                // var show = document.getElementById('show'); 
+                if (data['empty']) {
+                   
+                }else{
+                    
+                	 for (var i in data){
+                        var myobj = JSON.parse(data[i].cost_registration);
+                        var myarr = JSON.parse(data[i].json_print);
+
+
+                        document.getElementById("data21").innerHTML += (data[i].dep_name === null)? data[i].groupwork_name : data[i].groupwork_name;
+                	 	  	document.getElementById("data1").innerHTML += (data[i].dep_name === null)? data[i].groupwork_name : data[i].groupwork_name+" "+data[i].dep_name;
+                	 	  	document.getElementById("data2").innerHTML += this.changeToThaiNumber(data[i].officialdoc_num);
+                	 	  	document.getElementById("data3").innerHTML += ((data[i].date_stamp) === null)?"                         ":this.changeToThaiNumber(myarr.date_stamp);
+                	 	  	document.getElementById("data4").innerHTML += ((data[i].pname)+" "+(data[i].fname)+" "+(data[i].lname));
+                	 	  	document.getElementById("data5").innerHTML += this.changeToThaiNumber(data[i].position_name)+" ";
+                    		document.getElementById("data6").innerHTML += (data[i].class_position_shortname === null)?  " ": this.changeToThaiNumber(data[i].class_position_type_name2);
+                            document.getElementById("data7").innerHTML += (data[i].gogov_for)+"                               ";
+                            document.getElementById("data8").innerHTML += this.changeToThaiNumber(data[i].gogov_topic)+"                                                                              ";
+                            document.getElementById("data9").innerHTML += this.changeToThaiNumber(myarr.gogov_real_date1)+" ";
+                            document.getElementById("data10").innerHTML += this.changeToThaiNumber(myarr.gogov_real_date2)+" ";
+                            document.getElementById("data11").innerHTML +=  (myarr.dep_project_owner === null)?  "                                                          ": myarr.dep_project_owner+" ";
+                            document.getElementById("data12").innerHTML += this.changeToThaiNumber(myarr.gogov_place)+"                             ";
+                            document.getElementById("data13").innerHTML += this.changeToThaiNumber(myarr.gogov_date1)+" ";
+                            document.getElementById("data14").innerHTML += this.changeToThaiNumber(myarr.gogov_date2);
+                            document.getElementById("data15").innerHTML += this.changeToThaiNumber(parseInt(this.DateDiff(this.ReverseStrThaiDate1(myarr.gogov_date1),this.ReverseStrThaiDate1(myarr.gogov_date2)))+1)+" วัน ";
+                            document.getElementById("data16").innerHTML += this.changeToThaiNumber(this.moneyType(data[i].money_type))+"                                                           ";
+                            document.getElementById("data17").innerHTML += (((data[i].car_type) === null)? "": this.carType(data[i].car_type)+"(ขาไป)")+(((data[i].car_type2) === null)? "": this.carType(data[i].car_type2)+"(ขากลับ)");
+                            document.getElementById("data18").innerHTML +=  (myobj[0].bath === "")?  " 0 ":this.changeToThaiNumber(myobj[0].bath); 
+                            // document.getElementById("data19").innerHTML += this.costRegis(myobj[0].costtype, myobj[0].year, myobj[0].group);
+                            document.getElementById("data20").innerHTML += (data[0].person_instead)?( ((data[0].person_instead).indexOf("_")>=0)?(this.splitStrToArr(data[0].person_instead,"_")[0]+' '+this.splitStrToArr(data[0].person_instead,"_")[1]+' '+this.changeToThaiNumber(this.splitStrToArr(data[0].person_instead,"_")[2] )):''):'';  
+
+                            // (data[i].dmh_child_name === null)?  "                              ": this.changeToThaiNumber(myarr.dmh_child_name);
+                            document.getElementById("fullname").innerHTML += ((data[i].pname)+" "+(data[i].fname)+" "+(data[i].lname));
+                            document.getElementById("position").innerHTML += this.changeToThaiNumber(data[i].position_name)+" ";
+                    		document.getElementById("positionclass").innerHTML += (data[i].class_position_shortname === null)?  " ": this.changeToThaiNumber(data[i].class_position_type_name2);
+
+
+                            document.getElementById("tableshow").innerHTML += this.group_gogov(myarr.group_gogov2);
+                            document.getElementById("gogov_topic").innerHTML += this.changeToThaiNumber(myarr.gogov_topic)+"                                                                           ";
+                	 }
+                }
+            })
+            .catch((error) =>{
+                // message("error");
+            });
+        }
+    }
+
+
+
+
+    searchdata();
+</script>
+
+
+
+   <script type="text/javascript" src="./../css/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>

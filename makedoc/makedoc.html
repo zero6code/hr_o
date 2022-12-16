@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="./doccss.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Sarabun&display=swap" rel="stylesheet">
+	 <link rel="stylesheet" type="text/css" href="./../css/bootstrap/css/bootstrap.min.css">
+	<title></title>
+	<style type="text/css">
+		.show{
+			display: block;
+		}
+		.f{
+			color: #FF0046;
+			font-weight: bold;
+		}
+		.bg{
+			background-color: rgba(255, 255, 255, 0);
+			  backdrop-filter: blur(5px);
+		}
+	</style>
+</head>
+<body>
+<nav style="height: 4rem;width:100%;background-color: rgba(255, 255, 255, 1); position: fixed; top:0;text-align: center" class=shadow>
+	<button onclick="Export2Word();" style="width: 20rem; margin-top: 0.75rem; text-align: center;" class="btn btn-success" >ดาวน์โหลด เอกสาร</button>
+</nav>
+
+<div class="modal show f bg" tabindex="-1" id="modala" style="background-color: ;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title f">หมายเหตุ</h5>
+        <button id="btnclose" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeBtn();"></button>
+      </div>
+      <div class="modal-body f mx-auto">
+        <p>เมื่อทำการโหลดเอกสารแล้วให้เปลี่ยน ฟอร์น เป็น  TH SarabunPSK</p>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="doc">
+	<style>
+		body{
+			font-family: 'Sarabun', sans-serif;
+		}
+    table, tr, td, th{
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 5px;
+        text-align: left;
+    }
+    .normal {
+        font-family:"Sarabun",sans-serif; 
+        line-height:107%;
+        font-size:16.0pt;
+        mso-ascii-font-family:TH SarabunPSK;
+        mso-ascii-theme-font:TH SarabunPSK;
+        mso-ansi-language: TH;
+    }
+
+    @page portrait_A4_page  {
+        size:595.3pt 841.9pt;
+        margin:36.0pt 36.0pt 36.0pt 36.0pt;
+        mso-header-margin:35.4pt;
+        mso-footer-margin:35.4pt;
+        mso-paper-source:0;
+    }
+
+    div.portrait_A4_page { page:portrait_A4_page; }
+
+    @page landscape_A4_page {
+        size:841.9pt 595.3pt;
+        mso-page-orientation:landscape;
+        margin:36.0pt 36.0pt 36.0pt 36.0pt;
+        mso-header-margin:35.45pt;
+        mso-footer-margin:35.45pt;
+        mso-paper-source:0;
+    }
+
+    div.landscape_A4_page { page:landscape_A4_page; }
+    .f14{
+		font-size: 16pt;
+	}
+
+	.f18{
+		font-size: 20pt;
+	}
+	.text_c{
+		text-align:center;
+	}
+	.text_r{
+		text-align:right;
+	}
+	.box{
+ 		float: right;
+	}
+
+
+
+
+/*	.dottext{
+		 text-decoration-style: dotted;
+		  text-decoration-line: underline;
+	}*/
+</style>
+
+<div class=portrait_A4_page>
+  <span class=normal>
+  	<div id="doc1"> 
+  		<div class=areaset>
+  			<div class=setdisplaypage>
+    			<span  class=f14>สัญญายืมเงินเลขที่ <span id="agreement" ></span> วันที่ <span id="agreementdate" ></span> ส่วนที่1</span><br>
+				<span  class=f14>ชื่อผู้ยืม <span id="agreementname" ></span> จำนวนเงิน <span id="agreementmoney" ></span>  บาท แบบ 8708</span><br><br>
+				<div class=text_c>
+					<span class=f18 >ใบเบิกค่าใช้จ่ายในการเดินทางไปราชการ</span><br><br>
+				</div>
+				<div class=text_r>
+					<span class="f14" >ที่ทำการ โรงพยาบาลสวนสราญรมย์</span><br>
+					<span class="f14" id="dateNow1"></span><br><br>
+				</div>
+				<span class=f14 >เรื่อง ขออนุญาติเบิกค่าใช้จ่ายในการเดินทางไปราชการ</span><br>
+				<span class=f14 >เรียน ผู้อำนวยการโรงพยาบาลสวนสราญรมย์</span><br><br>
+					<span class=f14 >&emsp;&emsp;ตามคำสั่ง/บันทึก ที่ .............<span id="officialdoc_num"></span>.......... ลงวันที่ ...........<span id="date_stamptext"></span>......... ได้อนุญาติให้</span><br>
+				<span class=f14>ข้าพเจ้า ......<span id="fullname"></span>......... ตำแหน่ง ......................<span id="position"></span> <span id="positionclass"></span>..............................</span><br>
+				<span class=f14>สังกัด.......................<span id="dep"></span>..............................พร้อมด้วย...........สัมภาระ..................................</span><br>
+				<span class=f14>เดินทางไปปฏิบัติราชการ เพื่อ...........<span id="gogov_for"></span>....................................................................................</span><br>
+				<span class=f14>โดยออกเดินทางจาก <span id="chackfrom"></span>  ตั้งแต่วันที่......<span id="chackfromdate"></span>.............เวลา...<span id="chackfromtime"></span>...น.</span><br>
+				<span class=f14>และกลับถึง <span id="chackback"></span>  ตั้งแต่วันที่...........<span id="chackbackdate"></span>.......................เวลา...<span id="chackbacktime"></span>...น.</span><br>
+				<span class=f14>รวมเวลาที่ใช้ในราชการครั้งนี้...<span id="sumdate"></span>...วัน...<span id="sumtime"></span>...ชั่วโมง</span><br><br>
+					<span class=f14>&emsp;&emsp;ข้าพเจ้าขอเบิกค่าใช้จ่ายในการเดินทางไปราชการสำหรับ [ ]ข้าพเจ้า [ ] คณะเดินทาง ดังนี้</span><br>
+				<span class=f14>ค่าเบี้ยเลี้ยงเดินทางประเภท...........................................................................................จำนวน...<span id="sumdate2"></span>...วัน รวม...<span id="sumdate2money"></span>...บาท</span><br>
+				<span class=f14>ค่าเช่าที่พักประเภท........................................................................................................จำนวน...<span id="sumdate3"></span>...วัน รวม...<span id="sumdate3money"></span>...บาท</span><br>
+				<span class=f14>ค่าพาหนะ....................................................................................................................................................รวม...<span id="budget3"></span>...บาท</span><br>
+				<span class=f14>ค่าใช้จ่ายอื่น.................................................................................................................................................รวม...<span id="budget4"></span>...บาท</span>
+				<div  class=text_r>
+					<span class=f14>รวมทั้งสิ้น...<span id="budgetsum"></span>...บาท</span><br>
+				</div>
+				<span class=f14>จำนวนเงิน (ตัวอักษร)...<span id="budgetsumtext"></span>...</span><br>
+				<span class=f14>&emsp;&emsp;ข้าพเจ้าขอรับรองว่ารายงานที่กล่าวมาข้างต้นเป้นความจริง และหลักฐานการจ่างเงินที่ส่งมาด้วยจำนวน.......ฉบับ รวมทั้งจำนวนเงินที่ขอเบิกถูกต้องตามกฎหมายทุกประการ</span><br><br>
+				<div>
+					<table  style="width:100%; border: 1px solid white;" >
+						<td style="width:50%; border: 1px solid white;"></td>
+  						<td  style="width:50%; border: 1px solid white;">
+							<div class=text_c>
+								<span class=f14>ลงชื่อ..................................................................ผู้ขอรับเงิน</span><br>
+								<span class=f14>(<span id="fullname2"></span>)</span><br>
+								<span class=f14>ตำแหน่ง ....<span id="position2"></span><span id="positionclass2"></span>....</span>
+							</div>
+						</td>
+					</table>
+				</div>
+    		</div>
+    	</div>
+	</div>
+  </span>
+    <br clear=all style='mso-special-character:line-break; page-break-before:always'>        
+</div>    
+
+<br clear=all style='page-break-before:always; mso-break-type:section-break'>
+
+<div class=portrait_A4_page>
+  <span class=normal>
+  	<div id="doc1"> 
+    	<div class=areaset>
+  			<div class=setdisplaypage>
+  				<div class=text_c>
+  					<span class=f14>- 2 -</span><br><br>
+  				</div>
+  				<table  style="width:100%">
+  					<td  style="width:50%">
+  						<span class=f14>ได้ตรวจสอยหลักฐานการเบิกจ่ายเงินที่แนบถูกต้องแล้ว เห้นควรอนุมัติให้เบิกจ่ายได้</span><br><br><br>
+  						<div>
+							<span class=f14>ลงชื่อ..................................................................ผู้ขอรับเงิน</span><br>
+							<span class=f14>&emsp;&emsp;&emsp;(...........................................................)</span><br>
+							<span class=f14>ตำแหน่ง ...........................................................................</span><br>
+							<span class=f14>วันที่............./....................................../.........................</span>
+						</div>
+  					</td>
+  					<td>
+  						<span class=f14>อนุญาติให้เบิกจ่าย</span><br><br><br><br>
+  						 <div>
+							<span class=f14>ลงชื่อ..................................................................ผู้ขอรับเงิน</span><br>
+							<span class=f14>&emsp;&emsp;&emsp;(...........................................................)</span><br>
+							<span class=f14>ตำแหน่ง ...........................................................................</span><br>
+							<span class=f14>วันที่............./....................................../........................</span>
+						</div>
+  					</td>
+  				</table><br>
+  				<span class=f14>ได้รับเงินในการเดินทางไปราชการ  จำนวน <span id="budgetsum2"></span> บาท</span><br>
+  				<span class=f14>(<span id="budgetsumtext2"></span>) ไว้ถูกต้องแล้ว</span><br><br>
+  				<table  style="width:100%; border: 1px solid white;">
+  					<td  style="width:50%; border: 1px solid white;">
+  						<div>
+							<span class=f14>ลงชื่อ..................................................................ผู้ขอรับเงิน</span><br>
+							<span class=f14>&emsp;&emsp;&emsp;(<span id="fullname3"></span>)</span><br>
+							<span class=f14>ตำแหน่ง ....<span id="position3"></span><span id="positionclass3"></span>....</span><br>
+							<span class=f14>วันที่............./....................................../........................</span>
+						</div>
+  					</td>
+  					<td style="width:50%; border: 1px solid white;">
+  						 <div>
+							<span class=f14>ลงชื่อ..................................................................ผู้จ่ายเงิน</span><br>
+							<span class=f14>&emsp;&emsp;&emsp;(...........................................................)</span><br>
+							<span class=f14>ตำแหน่ง ...........................................................................</span><br>
+							<span class=f14>วันที่............./....................................../........................</span>
+						</div>
+  					</td>
+  				</table><br>
+  				<span class=f14>จากเงินยืมตามสัญญาเลขที่ <u><span id="agreement2"></span></u></span><br>
+  				<table  style="width:100%;">
+  					<tr >
+  						<td>
+  							<span class=f14>
+  								<u>หมายเหตุ</u>
+  							</span><br><br>
+  							<span class=f14>........................................................................................................................................................................................</span><br>
+  							<span class=f14>........................................................................................................................................................................................</span><br>
+  							<span class=f14>........................................................................................................................................................................................</span><br>
+  							<span class=f14>........................................................................................................................................................................................</span><br>
+  						</td>
+  					</tr>
+  					<tr>
+  						<td>
+  							<span class=f14>
+  								<u>หมายเหตุ</u>
+  							</span><br><br>
+  							<span class=f14>1. กรณีเดินทางเป็นหมู่คณะและจัดทำใบเบิกค่าใช้จ่ายรวมฉบับเดียวกัน หากระยะเวลาในการเริ่มต้นและสิ้นสุดการเดินทางของแต่ละบุคคลแตกต่างกัน ให้แสดงรายละเอียดของวันเวลาที่แตกต่างกันของบุคคลนั้นในช่องหมายเหตุ</span><br>
+  							<span class=f14>2. กรณียื่นขอเบิกค่าใช้จ่ายรายบุคคล ให้ผู้รับเงินเป็นผู้ลงลายมือชื่อผู้รับเงิน และวันเดือนปีที่รับเงิน กรณีที่มีการยืมเงินให้ระบุวันที่ที่ได้รับเงินยืม เลขที่สัญญายืมเงิน และวันที่อนุมัติเงินยืมด้วย</span><br>
+  							<span class=f14>3. กรณีที่ยื่นขอเบิกค่าใช้จ่ายรวมเป็นหมู่คณะ ผู้ขอรับเงินมิต้องลงลายมือชื่อในช่องผู้รับเงิน ทั้งนี้ให้ผุ้มีสิทธิแต่ละคนลงลายมือชื่อผู้รับเงินในหลักฐานการจ่ายเงิน(ส่วนที่ 2)</span><br>
+  						</td>
+  					</tr>
+  				</table>
+  			</div>
+  		</div>
+    </div>
+  </span>
+    <br clear=all style='mso-special-character:line-break; page-break-before:always'>        
+</div>    
+
+<br clear=all style='page-break-before:always; mso-break-type:section-break'>
+
+<div class=portrait_A4_page>
+  <span class=normal>
+  	<div id="doc1"> 
+    	<div class=areaset>
+  			<div class=setdisplaypage>
+  				<div class=text_c>
+  					<span class=f14>- 3 -</span><br><br>
+  				</div>
+  				<table  style="width:100%">
+  					<tr>
+  						<td>
+  							<div class=text_r>
+  								<span class=f14>แบบ บก.111</span><br>
+  							</div>
+  							<div class=text_c>
+  								<span class=f14>ใบรับรองแทนใบเสร็จรับเงิน</span><br><br>
+  								<span class=f14>ส่วนราชการ โรงพยาบาลสวนสราญรมย์</span><br><br>
+  							</div>
+  							<table style="width:100%" class=f14 >
+  								<thead>
+  								<tr>
+								    <th class=text_c style="width:15%">วัน เดือน ปี</th>
+								    <th class=text_c style="width:55%">รายการ</th>
+								    <th class=text_c style="width:15%">จำนวนเงิน</th>
+								    <th class=text_c style="width:15%">หมายเหตุ</th>
+								</tr>
+								</thead>
+								<tbody id="tablebudgetList">
+							    			<tr>
+												    <td class=text_c style="width:15%">.......................</td>
+												    <td style="width:55%">
+								                    <u>เดินทางจากที่พักเลขที่</u> <span id="txtAddrFrom"></span><br>
+								                    <u>ถึงที่พักเลขที่</u> <span id="txtAddrBack"></span>
+												    </td>
+												    <td class=text_c style="width:15%">.......................</td>
+												    <td class=text_c style="width:15%">พร้อมสัมภาระ</td>
+												</tr>
+
+
+							</tbody>
+  							</table><br><br>
+  							<span class=f14>รวมทั้งสิ้น (ตัวอักษร) <u><span id="summoneytext"></span></u></span><br>
+  							<span class=f14>ข้าพเจ้า <span id="fullname4"></span> ตำแหน่ง <span id="position4"></span><span id="positionclass4"></span> สังกัดโรงพยาบาลสวนสราญรมย์ ขอรับรองว่า</span><br>
+  							<span class=f14>รายจ่ายข้างต้นนี้ ไม่อาจเรียกใบเสร็จรับเงินจากผู้รับได้ แลข้าพเจ้าได้จ่ายไปในงานของราชการโดยแท้</span><br><br><br>
+  							<div class=text_c>
+								<span class=f14>ลงชื่อ..................................................................ผู้รับเงิน</span><br>
+								<span class=f14>(<span id="fullname5"></span>)</span><br>
+								<span class=f14>ตำแหน่ง ....<span id="position5"></span><span id="positionclass5"></span>....</span><br>
+								<span class=f14>วันที่............./....................................../........................</span>
+							</div><br>
+  						</td>
+  					</tr>
+  				</table>
+  			</div>
+  		</div>
+    </div>
+  </span>
+    <br clear=all style='mso-special-character:line-break; page-break-before:always'>        
+</div>    
+
+<br clear=all style='page-break-before:always; mso-break-type:section-break'>
+
+<div class=landscape_A4_page>
+    <span class=normal>
+    	<div id="doc2"> 
+    		<div class=areaset2>
+  				<div class=setdisplaypage>
+		        	<div class=text_c>
+		  				<span class=f14>- 4 -</span><br>
+		  			</div>
+		  			<div class=text_r>
+		  				<span class=f14>ส่วนที่ 2<br>แบบ 8708</span><br>
+		  			</div>
+		  			<div class=text_c>
+		  				<span class=f14>หลักฐานการจ่ายเงินค่าใช้จ่ายในการเดินทางไปราชการ<br>ชื่อส่วนราชการ โรงพยาบาลสานสราญรมย์ จังหวัด สุราษฎร์ธานี<br>ประกอบใบเบิกค่าใช้จ่ายในการเดินทางของ <span id="fullname6"></span> ลง<span id="dateNow2"></span></span><br>
+		  			</div>
+		  			<table style="width:100%"  class=f14>
+		  				<thead>
+			  				<tr>
+								<th class=text_c style="width:2%" rowspan="2">ลำดับที่</th>
+								<th class=text_c style="width:20%" rowspan="2">ชื่อ</th>
+								<th class=text_c style="width:15%" rowspan="2">ตำแหน่ง</th>
+								<th class=text_c style="width:25%" colspan="4">ค่าใช้จ่าย</th>
+								<th class=text_c style="width:5%" rowspan="2">รวม</th>
+								<th class=text_c style="width:5%" rowspan="2">ลายมือชื่อผุ้รับเงิน</th>
+								<th class=text_c style="width:5%" rowspan="2">วันเดือนปีที่รับเงิน</th>
+								<th class=text_c style="width:5%" rowspan="2">หมายเหตุ</th>
+							</tr>
+							<tr>
+							    <th>ค่าเบี้ยเลี้ยง</th>
+							    <th>ค่าเช่าที่พัก</th>
+							    <th>ค่าพาหนะ</th>
+							    <th>ค่าใช้จ่ายอื่น</th>
+							</tr>
+						</thead>
+						<tbody id="tablebudgetList2"></tbody>
+		  			</table>
+		  			<span class=f14>จำนวนเงินรวมทั้งสิ้น (ตัวอักษร) (<span id="summoneytext2"></span>)</span><br><br>
+		  			<table  style="width:100%; border: 1px solid white;">
+	  					<td  style="width:60%; border: 1px solid white;">
+	  						<div>
+								<span class=f14><u>คำชี้แจง</u></span><br>
+								<span class=f14>1. ค่าเบี้ยเลี้ยงและค่าที่พักให้ระบุอัตราวันละและจำนวนวันที่ขอเบิกของแต่ละบุคคลในช่องหมายเหตุ</span><br>
+								<span class=f14>2. ให้ผู้มีสิทธิแต่ละคนเป้นผู้ลงลายมือชื่อผู้รับเงินและวันเดือนปีที่รับเงิน กรณีเป็นการรับจากเงินยืมให้ระบุวันที่ที่ได้รับจากการยืม</span><br>
+								<span class=f14>3. ผู้จ่ายเงินหมายถึงผู้ที่ขอยืมเงินจากทางราชการ และจ่ายเงินยืมนั้นให้แก่ผู้เดินทางแต่ละคนเป็นผู้ลงลายมือชื่อผู้รับเงิน</span>
+							</div>
+	  					</td>
+	  					<td style="width:5%; border: 1px solid white;"></td>
+	  					<td style="width:35%; border: 1px solid white;">
+	  						 <div>
+								<span class=f14>ลงชื่อ..................................................................ผู้จ่ายเงิน</span><br>
+								<span class=f14>&emsp;&emsp;&emsp;(...........................................................)</span><br>
+								<span class=f14>ตำแหน่ง ...........................................................................</span><br>
+								<span class=f14>วันที่............./....................................../........................</span>
+							</div>
+	  					</td>
+	  				</table><br>
+  				</div>
+  			</div>
+        </div>
+    </span>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+var closeBtn = () => document.getElementById("modala").classList.remove("show");
+
+	
+function Export2Word( filename = ''){
+    var preHtml = ("<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>")+
+    				("<head>")+
+    					("<meta http-equiv=Content-Type content='text/html; charset=utf-8'>")+
+    						("<title>Export HTML To Doc</title>")+
+    							
+    				("</head>")+
+    				("<body>");
+    var postHtml = "</body></html>";
+    var html = preHtml+document.getElementById('doc').innerHTML+postHtml;
+	// var html = document.getElementById('doc').innerHTML;
+
+    var blob = new Blob(['\ufeff', html], {
+        type: 'application/msword'
+    });
+    
+    // Specify link url
+
+    // var output = meta.replace("_html_", head.replace("_styles_", css)+html)
+    var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
+    
+    // Specify file name
+    filename = filename?filename+'.doc':'document.doc';
+    
+    // Create download link element
+    var downloadLink = document.createElement("a");
+
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob ){
+        navigator.msSaveOrOpenBlob(blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = url;
+        
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+    
+    document.body.removeChild(downloadLink);
+}
+
+function StrThaiDate4 (date){
+        var returnV='';
+        if(date){
+            var thaiCalendarArray = {
+                months: ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"]
+            };
+            var day = date.getDate(),
+            month = thaiCalendarArray.months[date.getMonth()],
+            year = date.getFullYear() + 543;  
+            returnV = 'วันที่ '+day+' เดือน '+month+' พ.ศ. '+ year;
+        }
+        return returnV;
+    };
+function replaceThaiMonth(Date){
+    var str = this.StrThaiDate4(Date);
+    var nstr = (str.indexOf("เดือน")>=0)?str.replace("เดือน",""):str;
+    return nstr;
+}
+
+// showdata_table();
+
+// var narat = location.href.split("datadoc=")[1];
+// document.getElementById("dateNow1").innerText += narat;
+        // function chklenStr(str,wMax){//wMax หน่วยเป็นนิ้ว
+        //     var newStr =str,wStr;
+        //     wStr = textWidth(newStr);//ความกว้าง str
+        //     var wiMax = parseFloat(wMax*96);//1 inch = 96px
+        //     while (wStr < wiMax) {
+        //         newStr += ' ';
+        //         wStr = wStr+4.5;//เพิ่มทีละ 4.5px
+        //     }
+        //     return newStr;
+        // };
+
+var thaidate = (date) =>{
+	 let numMonth = (date.substring(5, 7));
+   var ThaiMonth = {"01":"มกราคม", "02":"กุมภาพันธ์", "03":"มีนาคม", "04" : "เมษายน", "05" : "พฤษภาคม", "06" : "มิถุนายน", "07" : "กรกฎาคม", "08" : "สิงหาคม", "09" : "กันยายน", "10" : "ตุลาคม", "11" : "พฤศจิกายน", "12" : "ธันวาคม"};
+	return (date.substring(8, 10))+" "+(ThaiMonth[numMonth])+" "+((date.substring(0, 4)*1)+543);
+}
+
+ function doc2Agreement(agreementData){
+     var ret=[],arrSp=[],reg='',date='',bath=0;
+     if(agreementData){
+         if(agreementData.indexOf("_")>=0){
+             arrSp = this.splitStrToArr(data.agreement,"_");
+             reg = arrSp[0];
+             date = arrSp[1].toString();//.substring(1,10);
+             bath = (arrSp[2])?arrSp[2]:0;
+             ret = [reg,date,bath];
+         }
+     }
+     return ret;
+ }
+var formatDate4 = function(strDateTime){//แปลงจาก 04/02/2020 13:10 หรือ 04/02/2563 13:10 เป็น วันที่ 5 เดือน กุมภาพันธ์ พ.ศ. 2563
+        var Ynow1 = (new Date()).getFullYear(),//ปี คศ ปัจจุบัน
+                Ynow2 = Ynow1+543,//ปี พศ ปัจจุบัน
+                thaiCalendarArray = {months: ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"]},
+                arr,d,dd,m,mm,y,yk,yb,a,
+                obj={
+                    'strThaiDate1':'',//เช่น วันที่ 1 เดือน กุมภาพันธ์ พ.ศ.2563
+                    'strThaiDate2':'',//เช่น 1 กุมภาพันธ์ 2563
+                    'formatDate1':'',//เช่น 2020-02-01
+                    'formatDate2':'',//
+                    'formatTime':''
+                };
+            if(strDateTime){
+                if(strDateTime.indexOf(" ")>=0){
+                    a = strDateTime.split(" ");//แยกวันกับเวลาออกจากกัน
+                    if(a[0].indexOf("/")>=0){//วันที่มีรูปแบบเป็น dd/mm/yyy หรือไม่
+                        arr = a[0].split("/");
+                        d = parseInt(arr[0]);
+                        dd = ( arr[0].length < 2 ) ? '0'+arr[0] : arr[0];
+                        m = thaiCalendarArray.months[parseInt(arr[1])-1]; 
+                        mm = ( arr[1].length < 2 ) ? '0'+arr[1] : arr[1];
+                        y = parseInt(arr[2]);//ปี่ที่กรอกเข้ามา
+                        if( (y>=1857) && (y<=Ynow1) ){//อยู่ในช่วงปี คศ 
+                            yk = y;
+                            yb = y+543;
+                        }else if( (y>=2400) && (y<=Ynow2) ){//อยู่ในช่วงปี พศ
+                            yk =y-543;
+                            yb = y;
+                        }else{//นอกนั้น ให้เป็นปี คศ หรือ พศ ปัจจุบันไปเลย
+                            yk = Ynow1;
+                            yb = Ynow2;
+                        }
+                        obj.strThaiDate1 = 'วันที่ '+d+' เดือน '+m+' พ.ศ. '+ yb.toString();
+                        obj.strThaiDate2 = d+' '+m+' '+ yb.toString();
+                        obj.formatDate1 = yk+'-'+mm+'-'+dd;
+                        obj.formatTime = a[1];
+                    }
+                }
+            }
+            return obj;
+    }//แปลงจาก 04/02/2020 13:10 หรือ 04/02/2563 13:10 เป็น object ได้หลายรูปแบบวันที่
+
+    var chackgofrom_back = (data) => {
+    	 if(data === "บ้านพัก"){
+    	 		return `[/]บ้านพัก [ ]สำนักงาน [ ]ประเทศไทย`;
+    	 }else if(data === "สำนักงาน"){
+    	 	 	return `[ ]บ้านพัก [/]สำนักงาน [ ]ประเทศไทย`;
+    	 }else if(data === "ประเทศไทย"){
+    	 	 	return `[ ]บ้านพัก [ ]สำนักงาน [/]ประเทศไทย`;
+    	 }else{
+    	 		return `[ ]บ้านพัก [ ]สำนักงาน [ ]ประเทศไทย`;
+    	 }
+    }
+   var DateDiff2 = function(a,b){//a = 2019-08-27 3:29
+        var aa = new Date(new Date(a).toLocaleString("en-US", {timeZone: "Asia/Bangkok"}));
+        var bb = new Date(new Date(b).toLocaleString("en-US", {timeZone: "Asia/Bangkok"}));
+        var diffSeconds = (bb - aa)/1000;
+        
+        //calculate
+        var days = Math.floor(diffSeconds / (3600*24));
+        var hrs_d = Math.floor((diffSeconds - (days * (3600*24))) / 3600);
+        var hrs  = Math.floor(diffSeconds / 3600);
+        var mnts = Math.floor((diffSeconds - (hrs * 3600)) / 60);
+        var secs = diffSeconds - (hrs * 3600) - (mnts * 60);
+        
+         //Add 0 if one digit
+        if(hrs_d<10) hrs_d = "0" + hrs_d;
+        if(mnts<10) mnts = "0" + mnts;
+        if(secs<10) secs = "0" + secs;
+        return [days,hrs_d,mnts,secs];
+    }
+    var splitStrToArr = function(str,sep){
+        var arr = [];
+        if(str){
+            if(str.indexOf(sep)>=0){
+                arr = str.split(sep);
+            }
+        }
+        return arr;
+    }
+    var DateDiff4 = (d1,d2) => {
+        var newD1,newD2,Ttime1,Ttime2,ret=[];
+        if(d1 && d2){
+          if(d1.indexOf(" ")>=0 && d2.indexOf(" ")>=0){
+              Ttime1 = this.splitStrToArr(d1," ")[1];//time1
+              Ttime2 = this.splitStrToArr(d2," ")[1];//time2
+              //split date
+              if(this.splitStrToArr(d1," ")[0].indexOf("/")>=0 && this.splitStrToArr(d2," ")[0].indexOf("/")>=0){
+                 newD1 = this.formatDate4(d1).formatDate1;
+                 newD2 = this.formatDate4(d2).formatDate1;
+                 ret = this.DateDiff2(newD1+' '+Ttime1,newD2+' '+Ttime2);
+              }
+          }  
+        }
+        return ret;
+    }
+    var getBathText = function(inputNumber){
+        var getText = function (input) {
+          var toNumber = input.toString();
+          var numbers = toNumber.split('').reverse();
+
+          var numberText = "/หนึ่ง/สอง/สาม/สี่/ห้า/หก/เจ็ด/แปด/เก้า/สิบ".split('/');
+          var unitText = "/สิบ/ร้อย/พัน/หมื่น/แสน/ล้าน".split('/');
+
+          var output = "";
+          for (var i = 0; i < numbers.length; i++) {
+              var number = parseInt(numbers[i]);
+              var text = numberText[number];
+              var unit = unitText[i];
+
+              if (number === 0)
+                  continue;
+
+              if (i === 1 && number === 2) {
+                  output = "ยี่สิบ" + output;
+                  continue;
+              }
+
+              if (i === 1 && number === 1) {
+                  output = "สิบ" + output;
+                  continue;
+              }
+
+
+              output = text + unit + output;
+          }
+
+          return output;
+      }
+      var fullNumber = Math.floor(inputNumber);
+        var decimal = inputNumber - fullNumber;
+        if(decimal === 0){
+          return getText(fullNumber) + "บาทถ้วน";
+        }else{
+          // convert decimal into full number, need only 2 digits
+          decimal = decimal * 100;
+          decimal = Math.round(decimal);
+          return getText(fullNumber) + "บาท" + getText(decimal) + "สตางค์";
+        }
+    }
+    var numberWithCommas = function(number) {
+        var parts = number.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return parts.join(".");  
+    }
+    function doc2SumBudget(b1,b2,b3,b4,b5){
+            var bd1=0,bd2=0,bd3=0,bd4=0,bd5=0,sum=0,ret=[];
+            bd1 = isNaN(parseInt(b1.toString().replace(/,/g, ''), 10)) ? 0 : parseInt(b1.toString().replace(/,/g, ''), 10); 
+            bd2 = isNaN(parseInt(b2.toString().replace(/,/g, ''), 10)) ? 0 : parseInt(b2.toString().replace(/,/g, ''), 10); 
+            bd3 = isNaN(parseInt(b3.toString().replace(/,/g, ''), 10)) ? 0 : parseInt(b3.toString().replace(/,/g, ''), 10); 
+            bd4 = isNaN(parseInt(b4.toString().replace(/,/g, ''), 10)) ? 0 : parseInt(b4.toString().replace(/,/g, ''), 10); 
+            bd5 = isNaN(parseInt(b5.toString().replace(/,/g, ''), 10)) ? 0 : parseInt(b5.toString().replace(/,/g, ''), 10); 
+            sum = bd1+bd2+bd3+bd4+bd5;
+            ret = [this.numberWithCommas(sum),this.getBathText(sum)];
+            return ret;
+    }
+
+    // let tablebudgetList = () => {
+    // 	return (
+    // 	  // if(data.budget3_list1){
+    //     //  if( (data.budget3_list1).indexOf('_')>=0 && (data.budget3_list1)!=='___' ){
+    //      					`
+    //               <tr>
+		// 								    <td class=text_c style="width:15%">วัน เดือน ปี</td>
+		// 								    <td style="width:55%">รายการ</td>
+		// 								    <td class=text_c style="width:15%">00000</td>
+		// 								    <td class=text_c style="width:15%"></td>
+		// 								</tr>
+		// 								<tr>
+		// 							    <th style="width:15%"></th>
+		// 							    <th class=text_c style="width:55%">รวมเป็นเงิน</th>
+		// 							    <th class=text_c style="width:15%">00000</th>
+		// 							    <th class=text_c style="width:15%"></th>
+		// 							</tr>
+    //                 	`;
+
+    //    //   }	
+    //    // }
+		// 				);
+    // }
+  var StrToNumInt = function(strNum){
+        var numInt = 0;
+        if(strNum){ 
+            numInt = isNaN(parseInt(strNum.toString().replace(/,/g, ''), 10)) ? 0 : parseInt(strNum.toString().replace(/,/g, ''), 10); 
+        }
+        return numInt;
+   }
+ function bd3Cal(bd3list){
+    var strBath = this.splitStrToArr(bd3list,'_')[2];
+    var n = 0;
+    if(strBath){
+        //n = $.fn.numberWithCommas($.fn.StrToNumInt(strBath));
+        n = this.StrToNumInt(strBath);
+        //console.log(n);
+    }
+    return n;
+   }
+
+    var tablebudgetList_func = (...data_s) => {
+			let tr='';
+			var sum = 0;
+				for (let data of data_s){
+					if(data){
+						 if( (data).indexOf('_')>=0  && (data)!=='___'){
+						 			show1 =	this.splitStrToArr(data,'_')[0].substring(0,10);
+						 			show2 =	this.splitStrToArr(data,'_')[1];
+						 			show3 =	this.bd3Cal(data);
+						 			show4 =	this.splitStrToArr(data,'_')[3];
+						 			sum += show3;
+									tr += (`<tr>
+								    <td class=text_c style="width:15%">${show1}</td>
+								    <td style="width:55%">${show2}</td>
+								    <td class=text_c style="width:15%">${show3}</td>
+								    <td class=text_c style="width:15%">${show4}</td>
+									</tr>`);
+							}
+					}
+				}
+				
+				tr += (`
+					<tr>
+				    <th style="width:15%"></th>
+				    <th class=text_c style="width:55%">รวมเป็นเงิน</th>
+				    <th class=text_c style="width:15%">${sum}</th>
+				    <th class=text_c style="width:15%"></th>
+				</tr>
+    		`);
+    	return [tr, sum];
+    }
+
+  var tablebudgetList2_func = (...data) => {
+			let tr='';
+			var sum = 0;
+	
+					tr += (`<tr style="height: 95pt; vertical-align: top;">
+								<td class=text_c >1</td>
+								<td >${data[5]}</td>
+								<td >${data[6]}</td>
+								<td class=text_c >${data[0]}</td>
+								<td class=text_c >${data[1]}</td>
+								<td class=text_c >${data[2]}</td>
+								<td class=text_c >${(data[3]*1)+(data[4]*1)}</td>
+								<td class=text_c >${(data[0]*1)+(data[1]*1)+(data[3]*1)+(data[4]*1)}</td>
+								<td></td>
+							    <td></td>
+							    <td></td>
+							</tr>`);
+
+				
+				tr += (`
+						<tr style="font-weight: bold;">
+								<td class=text_c colspan="3">รวม</td>
+								<td class=text_c ></td>
+								<td class=text_c ></td>
+								<td class=text_c ></td>
+								<td class=text_c ></td>
+								<td class=text_c >${(data[0]*1)+(data[1]*1)+(data[3]*1)+(data[4]*1)}</td>
+								<td class=text_c ></td>
+								<td class=text_c ></td>
+							</tr>
+    		`);
+    	return [tr, (data[0]*1)+(data[1]*1)+(data[3]*1)+(data[4]*1)];
+    }
+
+
+// var changeToNumber = (num) => {
+//     var arr_change_number = {"๑":"1", "๒":"2", "๓":"3", "๔" : "4", "๕" : "5", "๖" : "6", "๗" : "7", "๘" : "8", "๙" : "9", "๐" : "0"};
+//     var str = num.toString();
+//     for (var val in arr_change_number){
+//         str = str.split(val).join(arr_change_number[val]);
+//     } 
+//     return str
+// }
+
+
+
+    var searchdata = () => {
+    	var datad = location.href.split("datadoc=")[1];
+    
+        if(datad === ' '){
+            return false;
+        }else{
+          
+            fetch('getdata.php?datadoc='+datad)
+            .then((response) => response.json())
+            .then((data) => {
+                // var show = document.getElementById('show'); 
+                if (data['empty']) {
+                   
+                }else{
+                	// console.log(data);
+                    for (var i in data){
+						console.log(data[i].pname+" "+data[i].fname+" "+data[i].lname);
+                    	document.getElementById("dateNow1").innerText += replaceThaiMonth(new Date());
+                    	document.getElementById("dateNow2").innerText += replaceThaiMonth(new Date());
+
+                    	document.getElementById("agreement").innerHTML += this.doc2Agreement(data.agreement)[2]? this.doc2Agreement(data.agreement)[0]  :".........................";
+                    	document.getElementById("agreementdate").innerHTML += this.doc2Agreement(data.agreement)[2]? this.formatDate4(this.doc2Agreement(data.agreement)[1]).strThaiDate2  : "................................................................";
+                    	document.getElementById("agreementname").innerHTML += this.doc2Agreement(data.agreement)[2]? data[i].pname+" "+data[i].fname+" "+data[i].lname  : "..............................................................";
+                    	document.getElementById("agreementmoney").innerHTML += "...........................";
+                    	document.getElementById("officialdoc_num").innerHTML += data[i].officialdoc_num;
+                    	document.getElementById("date_stamptext").innerText += ((data[i].date_stamp) === null)?" ":this.thaidate(data[i].date_stamp);
+                    	document.getElementById("fullname").innerHTML += data[i].pname+" "+data[i].fname+" "+data[i].lname ;
+                    	document.getElementById("position").innerHTML += (data[i].position_name)+" ";
+                    	document.getElementById("positionclass").innerHTML += (data[i].class_position_shortname === null)?  " ": data[i].class_position_type_name2;
+                    	document.getElementById("positionclass2").innerHTML += (data[i].class_position_shortname === null)?  " ": data[i].class_position_type_name2;
+                    	document.getElementById("positionclass3").innerHTML += (data[i].class_position_shortname === null)?  " ": data[i].class_position_type_name2;
+                    	document.getElementById("positionclass4").innerHTML += (data[i].class_position_shortname === null)?  " ": data[i].class_position_type_name2;
+                    	document.getElementById("positionclass5").innerHTML += (data[i].class_position_shortname === null)?  " ": data[i].class_position_type_name2;
+                    	document.getElementById("dep").innerHTML += (data[i].dep_code === null)?  "...............................................................": data[i].dep_name+" ";
+                    	document.getElementById("gogov_for").innerHTML += data[i].gogov_for;
+                    	document.getElementById("chackfrom").innerHTML += this.chackgofrom_back(data[i].go_from);
+                    	document.getElementById("chackback").innerHTML += this.chackgofrom_back(data[i].go_back);
+                    	document.getElementById("chackfromdate").innerHTML += this.formatDate4(data[i].go_from_date).strThaiDate2;
+                    	document.getElementById("chackbackdate").innerHTML += this.formatDate4(data[i].go_back_date).strThaiDate2;
+                    	document.getElementById("chackfromtime").innerHTML += this.formatDate4(data[i].go_from_date).formatTime;
+                    	document.getElementById("chackbacktime").innerHTML += this.formatDate4(data[i].go_back_date).formatTime;
+                    	document.getElementById("sumdate").innerHTML += " "+this.DateDiff4(data[i].go_from_date,data[i].go_back_date)[0]+" ";
+                    	document.getElementById("sumtime").innerHTML += " "+this.DateDiff4(data[i].go_from_date,data[i].go_back_date)[1]+" ";
+                    	document.getElementById("sumdate2").innerHTML += data[i].datediff[0];
+                    	document.getElementById("sumdate2money").innerHTML += data[i].budget1;
+                    	document.getElementById("sumdate3").innerHTML +=  (data[i].budget2_list1 ==='__')? "....":this.splitStrToArr(data[i].budget2_list1,'_')[2];
+                    	document.getElementById("sumdate3money").innerHTML += data[i].budget2;
+                    	document.getElementById("budget3").innerHTML += data[i].budget3;
+                    	document.getElementById("budget4").innerHTML += (data[i].budget4*1)+(data[i].budget5*1);
+                    	document.getElementById("budgetsum").innerHTML += this.doc2SumBudget(data[i].budget1,data[i].budget2,data[i].budget3,data[i].budget4,data[i].budget5)[0];
+                    	document.getElementById("budgetsumtext").innerHTML += this.doc2SumBudget(data[i].budget1,data[i].budget2,data[i].budget3,data[i].budget4,data[i].budget5)[1];
+                    	document.getElementById("fullname2").innerHTML += data[i].pname+" "+data[i].fname+" "+data[i].lname ;
+                    	document.getElementById("position2").innerHTML += (data[i].position_name)+" ";
+                    	document.getElementById("budgetsum2").innerHTML += this.doc2SumBudget(data[i].budget1,data[i].budget2,data[i].budget3,data[i].budget4,data[i].budget5)[0];
+                    	document.getElementById("budgetsumtext2").innerHTML += this.doc2SumBudget(data[i].budget1,data[i].budget2,data[i].budget3,data[i].budget4,data[i].budget5)[1];
+                    	document.getElementById("fullname3").innerHTML += data[i].pname+" "+data[i].fname+" "+data[i].lname ;
+                    	document.getElementById("position3").innerHTML += (data[i].position_name)+" ";
+                    	 	document.getElementById("agreement2").innerHTML += this.doc2Agreement(data.agreement)[2]? this.doc2Agreement(data.agreement)[0]  :"";
+                    	 document.getElementById("fullname4").innerHTML += data[i].pname+" "+data[i].fname+" "+data[i].lname ;
+                    	document.getElementById("position4").innerHTML += (data[i].position_name)+" ";
+                    	 document.getElementById("fullname5").innerHTML += data[i].pname+" "+data[i].fname+" "+data[i].lname ;
+                    	document.getElementById("position5").innerHTML += (data[i].position_name)+" ";
+
+
+
+                    	document.getElementById("txtAddrFrom").innerHTML += (data[i].addr_from)?' '+data[i].addr_from+' ':"";
+                    	document.getElementById("txtAddrBack").innerHTML += (data[i].addr_back)?' '+data[i].addr_back+' ':"";
+
+
+                    	let tablebudgetList_data = this.tablebudgetList_func(data[i].budget3_list1,data[i].budget3_list2,data[i].budget3_list3,data[i].budget3_list4,data[i].budget3_list5,data[i].budget3_list6,data[i].budget3_list7,data[i].budget3_list8);
+
+                    	 document.getElementById("tablebudgetList").innerHTML += tablebudgetList_data[0];
+
+                    	document.getElementById("summoneytext").innerHTML += this.getBathText(this.StrToNumInt(this.numberWithCommas(tablebudgetList_data[1])));
+
+
+                    	 document.getElementById("fullname6").innerHTML += data[i].pname+" "+data[i].fname+" "+data[i].lname ;
+
+
+
+
+
+                    	 	let tablebudgetList2_data = this.tablebudgetList2_func(data[i].budget1,data[i].budget2,data[i].budget3,data[i].budget4,data[i].budget5,(data[i].pname+" "+data[i].fname+" "+data[i].lname),(data[i].position_name));
+                    	 	document.getElementById("tablebudgetList2").innerHTML += tablebudgetList2_data[0];
+                    	 	document.getElementById("summoneytext2").innerHTML += this.getBathText(this.StrToNumInt(this.numberWithCommas(tablebudgetList2_data[1])));
+                    	
+                    }
+                }
+            })
+            .catch((error) =>{
+                // message("error");
+            });
+        }
+    }
+
+
+
+     // var data = location.href.split("datadoc=")[1];
+     // document.getElementById("dateNow1").innerText += data;
+    searchdata();
+</script>
+
+
+
+   <script type="text/javascript" src="./../css/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+.f16{
+	font-size: 16pt;
+}
+
+.f18{
+	font-size: 18pt;
+}
+
+@media print {
+  @page {
+    margin: 2.5cm;
+    size: A4 Portrait; // หรือเช่น 21cm 29.7cm landscape
+  }
+
+}

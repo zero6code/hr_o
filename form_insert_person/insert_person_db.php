@@ -3,33 +3,31 @@
 
     $conn = new mysqli(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
 
+    // $bday = ($_POST['b_date'] != "")? $_POST['b_date']:"-";
+    $input = file_get_contents("php://input");
+    $decode = json_decode($input, true);
 
-    $value = array(
-                    "0"=>$_POST['c_id'],
-                    "1"=>$_POST['p_name'],
-                    "2"=>$_POST['f_name'],
-                    "3"=>$_POST['l_name'],
-                    "4"=>$_POST['position'],
-                    "5"=>$_POST['classPosition'],
-                    "6"=>$_POST['department'],
-                    "7"=>$_POST['groupwork'],
-                    "8"=>$_POST['governmentEmpType'],
-                    "9"=>$_POST['b_date']
-                );
+        $cid = !empty($decode['cid'])? $decode['cid'] : "";
+        $pname = !empty($decode['pname'])? $decode['pname'] : "";
+        $fname = !empty($decode['fname'])? $decode['fname'] : "";
+        $lname = !empty($decode['lname'])? $decode['lname'] : "";
+        $posi = !empty($decode['position'])? $decode['position'] : "";
+        $classposi = !empty($decode['classPosition']) ? $decode['classPosition'] : "";
+        $dep = !empty($decode['department']) ? $decode['department'] : "";
+        $group = !empty($decode['groupwork']) ? $decode['groupwork'] : "";
+        $getype = !empty($decode['getype']) ? $decode['getype'] : "";
+        $bd = !empty($decode['b_date']) ? $decode['b_date'] : "0000-00-00";
+        // $pid = !empty($decode['pid'])? $decode['pid'] : "";
 
     $insert_db = $conn->query(sprintf("INSERT INTO person(cid, pass, login_type, pname, fname, lname, 
                                                             position_code, class_position_shortname, dep_code, groupwork, 
                                                             status_use, government_emp_type, birth_date, record_use)
                                         values('%s', '%s', 'typeuser', '%s', '%s', '%s', '%s', '%s', '%s', '%s', 'Y', '%s', '%s', 'Y')  
-                                    ", $value["0"], $value["0"],$value["1"], $value["2"], $value["3"],
-                                    $value["4"], $value["5"], $value["6"], $value["7"], 
-                                    $value["8"], $value["9"]));
+                                    ", $cid, $cid,  $pname, $fname, $lname, $posi, $classposi, $dep, $group, $getype, $bd));
 
-    if($insert_db === true){
-        echo "<div class='alert alert-success' role='alert'>บันทึกสำเร็จสำเร็จ</div>";
-        header("refresh: 3; url=form_insert.php");
+    if($update_db === TRUE){
+        echo json_encode(array('insert'=> "success"));
     }else{
-        echo "<div class='alert alert-danger' role='alert'>บันทึกไม่สำเร็จสำเร็จ</div>";
-        header("refresh: 3; url=form_insert.php");
+        echo json_encode(array('insert'=>"error"));
     }
 ?>

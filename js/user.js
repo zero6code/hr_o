@@ -6,6 +6,29 @@ var changeToThaiNumber = (num) => {
     } 
     return str
 }
+var changeToNumber = (num) => {
+    var arr_change_number = {"๑":"1", "๒":"2", "๓":"3", "๔" : "4", "๕" : "5", "๖" : "6", "๗" : "7", "๘" : "8", "๙" : "9", "๐" : "0"};
+    var str = num.toString();
+    for (var val in arr_change_number){
+        str = str.split(val).join(arr_change_number[val]);
+    } 
+    return str
+}
+ var datatodoc = (data) => {
+
+    window.location.href="./../makedoc/makedoc.html?datadoc="+data;// some processing here, or whatever you want to do with the response
+
+ }
+ var datatodoc2 = (data) => {
+
+    window.location.href="./../makedoc/makedoc2.html?datadocq="+data;// some processing here, or whatever you want to do with the response
+
+ }
+// var datatodoc3 = (data) => {
+
+//     window.location.href="./../makedoc/makedoc2.html?userid="+data;// some processing here, or whatever you want to do with the response
+
+//  }
 (function($){  
     var chayanon_on_time = new Date().getTime();//เวลาที่อยู่ในระบบ
     var timeout_login = function(){//ไม่ขยับเมาส์ใน 20 นาทีให้ logout
@@ -826,7 +849,7 @@ var changeToThaiNumber = (num) => {
         function chkDepHospital(){
             var txtRet = '';
             if(OnlineUser.id13_online===OnlineUser.skph_Boss_cid){//ผู้ที่ online เป็น ผอ เอง
-                txtRet = ' โรงพยาบาลจิตเวชสงขลาราชนครินทร์';
+                txtRet = 'โรงพยาบาลสวนสราญรมย์';
             }else if(OnlineUser.id13_online===OnlineUser.groupwork_Boss_id13){//ผู้ที่ online เป็น หน.กลุ่มภารกิจ
                 txtRet = ' '+data.groupwork_name;
             }else{//บุคลากรทั่วไป
@@ -885,7 +908,7 @@ var changeToThaiNumber = (num) => {
                     '<p>&nbsp;</p>'+  
                     '<p>&nbsp;</p>'+ 
                     '<p>&nbsp;</p>'+ 
-                    '<p>เรียนผู้อำนวยการ</p>'+    
+                    '<p>เรียนผู้อำนวยการโรงพยาบาลสวนสราญรมย์</p>'+    
                     '<p>.&nbsp;&nbsp;เพื่อโปรดพิจารณา</p>'+ 
                     '<p>&nbsp;</p>'+  
                     '<p>(ลงชื่อ)................................................................</p>'+
@@ -1070,14 +1093,14 @@ var changeToThaiNumber = (num) => {
         };
         //console.log(OnlineUser);
         if(OnlineUser.id13_online===OnlineUser.groupwork_Boss_id13){//หัวหน้ากลุ่มภารกิจไปราชการเอง
-            doc1.content[1].text[11].text=chklenStr('เรียน ผู้อำนวยการ',1.8);
+            doc1.content[1].text[11].text=chklenStr('เรียน ผู้อำนวยการโรงพยาบาลสวนสราญรมย์',1.8);
         }else if(OnlineUser.id13_online===OnlineUser.skph_Boss_cid){//ผอ ไปราชการเอง
             doc1.content[1].text[11].text=chklenStr('เรียน อธิบดีกรมสุขภาพจิต',1.8);
         }else{//เรียน ผู้อำนวยการ
             if(OnlineUser.groupwork_code==='gwG'){//มีกลุ่มภารกิจนั้นขึ้นตรง ผอ groupwork=ค่าว่าง
-                doc1.content[1].text[11].text=chklenStr('เรียน ผู้อำนวยการ',1.8);
+                doc1.content[1].text[11].text=chklenStr('เรียน ผู้อำนวยการโรงพยาบาลสวนสราญรมย์',1.8);
             }else{//กลุ่มภารกิจทั่วไป
-                doc1.content[1].text[11].text=chklenStr('เรียน ผู้อำนวยการ(ผ่านหัวหน้า'+OnlineUser.groupwork_name+')',1.8);
+                doc1.content[1].text[11].text=chklenStr('เรียน ผู้อำนวยการโรงพยาบาลสวนสราญรมย์(ผ่านหัวหน้า'+OnlineUser.groupwork_name+')',1.8);
             }
         } 
         //page1
@@ -1298,6 +1321,7 @@ var changeToThaiNumber = (num) => {
            doc2ObjGogov = $.parseJSON(data.json_gogov);//ข้อมูลขาไปราชการ 
            if(doc2ObjGogov.json_print){
                doc2ObjGogovPrint = $.parseJSON(doc2ObjGogov.json_print);//ข้อมูลขาไปราชการ (json_print)
+               console.log(doc2ObjGogovPrint);
            }
         } 
         
@@ -1347,25 +1371,25 @@ var changeToThaiNumber = (num) => {
                     text:[
                         {text: 'สัญญายืมเงินเลขที่ ',fontSize:16},
                         {text:chklenStr( 
-                                    (doc2Agreement(data.agreement)[2])  ? changeToThaiNumber(doc2Agreement(data.agreement)[0])  :""
+                                    (doc2Agreement(data.agreement)[2])  ? doc2Agreement(data.agreement)[0]  :""
                             ,0.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: 'วันที่ ',fontSize:16},
                         {text:chklenStr( 
-                                    (doc2Agreement(data.agreement)[2])  ?    changeToThaiNumber($.fn.formatDate4(doc2Agreement(data.agreement)[1]).strThaiDate2)  :  ""
+                                    (doc2Agreement(data.agreement)[2])  ?    $.fn.formatDate4(doc2Agreement(data.agreement)[1]).strThaiDate2  :  ""
                             ,3.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
-                        {text: 'ส่วนที่ ๑',fontSize:16},
+                        {text: 'ส่วนที่ 1',fontSize:16},
                         '\n',
                         {text: 'ชื่อผู้ยืม ',fontSize:16},
                         {text: chklenStr(  (doc2Agreement(data.agreement)[2])  ?    ((doc2ObjGogovPrint.pname)?doc2ObjGogovPrint.pname:"") :  ""  ,1),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' จำนวนเงิน ',fontSize:16},
-                        {text:chklenStr( (doc2Agreement(data.agreement)[2]) ? changeToThaiNumber(doc2Agreement(data.agreement)[2])  :""   ,2.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
-                        {text: ' บาท แบบ ๘๗๐๘',fontSize:16},
+                        {text:chklenStr( (doc2Agreement(data.agreement)[2]) ? doc2Agreement(data.agreement)[2]  :""   ,2.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: ' บาท แบบ 8708',fontSize:16},
                         '\n\n',
                         {text: 'ใบเบิกค่าใช้จ่ายในการเดินทางไปราชการ',fontSize:20,bold:true,alignment:'center'},
                         '\n\n',
                         {text: 'ที่ทำการ โรงพยาบาลสวนสราญรมย์',fontSize:16,alignment:'right'},
                         '\n\n',
-                        {text:changeToThaiNumber(replaceThaiMonth(new Date())),fontSize:16,alignment:'right',decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:replaceThaiMonth(new Date()),fontSize:16,alignment:'right',decoration: 'underline',decorationStyle: 'dotted'},
                         '\n\n',
                         {text: 'เรื่อง ขออนุมัติเบิกค่าใช้จ่ายในการเดินทางไปราชการ',fontSize:16},
                         '\n\n',
@@ -1373,9 +1397,9 @@ var changeToThaiNumber = (num) => {
                         '\n\n',
                         {text:'............................',fontSize:16,color:'white'},
                         {text: 'ตามคำสั่ง/บันทึก ที่ ',fontSize:16},
-                        {text:chklenStr((doc2ObjGogovPrint)?changeToThaiNumber(doc2ObjGogovPrint.officialdoc_num):'',1.2),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:chklenStr((doc2ObjGogovPrint)?doc2ObjGogovPrint.officialdoc_num:'',1.2),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' ลงวันที่ ',fontSize:16},
-                        {text:chklenStr((doc2ObjGogovPrint.date_stamp)?changeToThaiNumber(doc2ObjGogovPrint.date_stamp):'',1.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:chklenStr((doc2ObjGogovPrint.date_stamp)?doc2ObjGogovPrint.date_stamp:'',1.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' ได้อนุมัติให้ ',fontSize:16},
                         '\n',
                         {text: 'ข้าพเจ้า ',fontSize:16},
@@ -1396,22 +1420,22 @@ var changeToThaiNumber = (num) => {
                         {text: ' โดยออกเดินทางจาก ',fontSize:16},
                         {text: chklenStr((data.go_from)?chkGofromGoback(data.go_from):"",2),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' ตั้งแต่วันที่ ',fontSize:16},
-                        {text: chklenStr((data.go_from_date)?changeToThaiNumber($.fn.formatDate4(data.go_from_date).strThaiDate2):"",1),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr((data.go_from_date)? $.fn.formatDate4(data.go_from_date).strThaiDate2:"",1),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' เวลา ',fontSize:16},
-                        {text: chklenStr((data.go_from_date)?changeToThaiNumber($.fn.formatDate4(data.go_from_date).formatTime):"",0.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr((data.go_from_date)? $.fn.formatDate4(data.go_from_date).formatTime:"",0.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' น.',fontSize:16},
                         '\n',
                         {text: 'และกลับถึง ',fontSize:16},
                         {text: chklenStr((data.go_back)?chkGofromGoback(data.go_back):"",2.2),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' วันที่ ',fontSize:16},
-                        {text: chklenStr((data.go_back_date)?changeToThaiNumber($.fn.formatDate4(data.go_back_date).strThaiDate2):"",1.7),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr((data.go_back_date)?$.fn.formatDate4(data.go_back_date).strThaiDate2:"",1.7),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' เวลา ',fontSize:16},
-                        {text: chklenStr((data.go_back_date)?changeToThaiNumber($.fn.formatDate4(data.go_back_date).formatTime):"",0.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr((data.go_back_date)?$.fn.formatDate4(data.go_back_date).formatTime:"",0.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' น.',fontSize:16},
                         {text: ' รวมเวลาไปราชการครั้งนี้ ',fontSize:16},
-                        {text: chklenStr((data.go_from_date&&data.go_back_date)?changeToThaiNumber($.fn.DateDiff4(data.go_from_date,data.go_back_date)[0]):"",0.15),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr((data.go_from_date&&data.go_back_date)?$.fn.DateDiff4(data.go_from_date,data.go_back_date)[0]:"",0.15),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: 'วัน ',fontSize:16},
-                        {text: chklenStr((data.go_from_date&&data.go_back_date)?changeToThaiNumber($.fn.DateDiff4(data.go_from_date,data.go_back_date)[1]):"",0.15),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr((data.go_from_date&&data.go_back_date)?$.fn.DateDiff4(data.go_from_date,data.go_back_date)[1]:"",0.15),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' ชั่วโมง',fontSize:16},
                         '\n\n',
                         {text:'............................',fontSize:16,color:'white'},
@@ -1420,29 +1444,29 @@ var changeToThaiNumber = (num) => {
                         {text: 'ค่าเบี้ยเลี้ยงเดินทาง ประเภท',fontSize:16},
                         {text: chklenStr(' ',2),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: 'จำนวน ',fontSize:16},
-                        {text: chklenStr( ((data.datediff)[0]  )?changeToThaiNumber(parseInt( (data.datediff)[0] )):'',0.14),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr( ((data.datediff)[0]  )?parseInt( (data.datediff)[0] ):'',0.14),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' วัน รวม ',fontSize:16},
-                        {text: chklenStr( (data.budget1)?changeToThaiNumber($.fn.numberWithCommas(parseInt(data.budget1))):'',0.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr( (data.budget1)?$.fn.numberWithCommas(parseInt(data.budget1)):'',0.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' บาท',fontSize:16},
                         '\n',
                         {text: 'ค่าเช่าที่พักประเภท',fontSize:16},
                         {text: chklenStr(' ',2.5),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: 'จำนวน ',fontSize:16},
-                        {text: chklenStr( (data.budget2_list1 !=='__')?changeToThaiNumber($.fn.splitStrToArr(data.budget2_list1,'_')[2]):'',0.12),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr( (data.budget2_list1 !=='__')?$.fn.splitStrToArr(data.budget2_list1,'_')[2]:'',0.12),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' วัน รวม ',fontSize:16},
-                        {text: chklenStr( (data.budget2)?changeToThaiNumber($.fn.numberWithCommas(parseInt(data.budget2))):'',0.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr( (data.budget2)?$.fn.numberWithCommas(parseInt(data.budget2)):'',0.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' บาท',fontSize:16},
                         '\n',
                         {text: 'ค่าพาหนะ',fontSize:16},
                         {text: chklenStr(' ',3.85),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' รวม ',fontSize:16},
-                        {text: chklenStr( (data.budget3)?changeToThaiNumber($.fn.numberWithCommas(parseInt(data.budget3))):'',0.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr( (data.budget3)?$.fn.numberWithCommas(parseInt(data.budget3)):'',0.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' บาท',fontSize:16},
                         '\n',
                         {text: 'ค่าใช้จ่ายอื่น',fontSize:16},
                         {text: chklenStr(' ',3.78),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' รวม ',fontSize:16},
-                        {text: chklenStr(  $.fn.numberWithCommas(   ((data.budget4)? changeToThaiNumber($.fn.StrToNumInt(data.budget4)):0) + ((data.budget5)?$.fn.StrToNumInt(data.budget5):0)   )    ,0.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr(  $.fn.numberWithCommas(   ((data.budget4)? $.fn.StrToNumInt(data.budget4):0) + ((data.budget5)?$.fn.StrToNumInt(data.budget5):0)   )    ,0.3),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' บาท',fontSize:16},
                         '\n',
                         {text:'............................',fontSize:16,color:'white'},
@@ -1450,7 +1474,7 @@ var changeToThaiNumber = (num) => {
                         {text:'............................',fontSize:16,color:'white'},
                         {text:'.................',fontSize:16,color:'white'},
                         {text: 'รวมทั้งสิ้น ',fontSize:16},
-                        {text: changeToThaiNumber(chklenStr(doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[0],1)),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text: chklenStr(doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[0],1),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         {text: ' บาท',fontSize:16},
                         '\n',
                         {text: 'จำนวนเงิน (ตัวอักษร) ',fontSize:16},
@@ -1464,7 +1488,7 @@ var changeToThaiNumber = (num) => {
             {text: ' ', fontSize:16,pageBreak: 'after'},//สิ้นสุดหน้า                             
             {
                 text:[
-                    {text:'-๒-',fontSize:16,alignment:'center'},
+                    {text:'-2-',fontSize:16,alignment:'center'},
                     '\n',
                     {text:' ',fontSize:16,alignment:'center'}
                 ]
@@ -1474,7 +1498,7 @@ var changeToThaiNumber = (num) => {
             {text: ' ', fontSize:16,pageBreak: 'after'},//สิ้นสุดหน้า                             
             {
                 text:[
-                    {text:'-๓-',fontSize:16,alignment:'center'},
+                    {text:'-3-',fontSize:16,alignment:'center'},
                     '\n',
                     {text:' ',fontSize:16,alignment:'center'}
                 ]
@@ -1483,18 +1507,18 @@ var changeToThaiNumber = (num) => {
         var doc4 = [  
             {
                 text:[
-                    {text:'-๔-',fontSize:16,alignment:'center'},
+                    {text:'-4-',fontSize:16,alignment:'center'},
                     '\n',
-                    {text:'ส่วนที่ ๒',fontSize:16,alignment:'right'},
+                    {text:'ส่วนที่ 2',fontSize:16,alignment:'right'},
                     '\n',
-                    {text:'แบบ ๘๗๐๘',fontSize:16,alignment:'right'},
+                    {text:'แบบ 8708',fontSize:16,alignment:'right'},
                     '\n',
                     {text:'หลักฐานการจ่ายเงินค่าใช้จ่ายในการเดินทางไปราชการ',styles: [ 'header'],fontSize:16,alignment:'center'},
                     '\n',
                     {text:'ชื่อส่วนราชการ โรงพยาบาลสวนสราญรมย์ จังหวัด สุราษฎร์ธานี',fontSize:16,alignment:'center'},
                     '\n',
                     {text:'ประกอบใบเบิกค่าใช้จ่ายในการเดินทางของ ',fontSize:16,alignment:'center'},
-                    {text:doc2ObjGogovPrint.pname+' ลง'+changeToThaiNumber($.fn.StrThaiDate4(new Date())),fontSize:16,alignment:'center',decoration: 'underline',decorationStyle: 'dotted'}
+                    {text:doc2ObjGogovPrint.pname+' ลง'+$.fn.StrThaiDate4(new Date()),fontSize:16,alignment:'center',decoration: 'underline',decorationStyle: 'dotted'}
            
                 ],pageOrientation: 'landscape', pageBreak: 'before' ,margin: 0//margin: [ 5, 5, 5, 5 ]
             }
@@ -1556,7 +1580,6 @@ var changeToThaiNumber = (num) => {
                         '<p>(ลงชื่อ)............................................................</p>'+
                         '<p>.     (..............................................................) </p>'+
                         '<p>(ตำแหน่ง).............................................................</p>'+
-                        ( (doc2ObjGogovPrint.class_position)?doc2ObjGogovPrint.class_position:"" ) +
                         '</p>'+
                         '<p>&nbsp;&nbsp;วันที่..................../..................../.....................</p>'+
                     '</td>'+
@@ -1567,7 +1590,7 @@ var changeToThaiNumber = (num) => {
                     '<td>'+
                         '<p>&nbsp;</p>'+ 
                         '<p>ได้รับเงินค่าใช้จ่ายในการเดินทางไปราชการ      จำนวน</p>'+ 
-                        '<p>('+changeToThaiNumber(doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[1])+')</p>'+ 
+                        '<p>('+ doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[1]+') ไว้เป็นการถูกต้องแล้ว</p>'+ 
                         '<p>&nbsp;</p>'+ 
                         '<p>(ลงชื่อ)............................................................ผู้รับเงิน</p>'+
                         '<p>.       ('+( (doc2ObjGogovPrint.pname)?doc2ObjGogovPrint.pname:"" )+') </p>'+
@@ -1576,21 +1599,20 @@ var changeToThaiNumber = (num) => {
                         '</p>'+
                         '<p>&nbsp;&nbsp;วันที่..................../..................../.....................</p>'+
                         '<p>&nbsp;</p>'+ 
-                        '<p>จากเงินยืมตามสัญญาเลขที่ <u>'+ ( (doc2Agreement(data.agreement)[2])  ? changeToThaiNumber(doc2Agreement(data.agreement)[0])  :"") +'</u></p>'+
+                        '<p>จากเงินยืมตามสัญญาเลขที่ <u>'+ ( (doc2Agreement(data.agreement)[2])  ? doc2Agreement(data.agreement)[0]  : "" )+'</u></p>'+
                            
                     '</td>'+
                     '<td>'+
                         '<p>&nbsp;</p>'+ 
-                        '<p>'+changeToThaiNumber(doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[0])+' บาท</p>'+ 
-                        '<p>&nbsp;ไว้เป็นการถูกต้องแล้ว</p>'+ 
+                        '<p>'+doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[0]+' บาท </p>'+ 
                         '<p>&nbsp;</p>'+ 
                         '<p>(ลงชื่อ)............................................................ผู้จ่ายเงิน</p>'+
                         '<p>.     (..............................................................) </p>'+
-                        '<p>(ตำแหน่ง).............................................................</p>'+
+                        '<p>ตำแหน่ง.............................................................</p>'+
                         '<p>&nbsp;&nbsp;วันที่..................../..................../.....................</p>'+
                         '<p>&nbsp;</p>'+ 
                         '<p>&nbsp;</p>'+ 
-                         ' วันที่ '+  (   (doc2Agreement(data.agreement)[2])  ?    changeToThaiNumber($.fn.formatDate4(doc2Agreement(data.agreement)[1]).strThaiDate2)  :  ""      )  +'</p>'+ 
+                         ' วันที่ '+  (   (doc2Agreement(data.agreement)[2])  ?    $.fn.formatDate4(doc2Agreement(data.agreement)[1]).strThaiDate2  :  ""      )  +'</p>'+ 
                     '</td>'+
                 '</tr>'+
             '</table>'+
@@ -1615,12 +1637,12 @@ var changeToThaiNumber = (num) => {
                     '<td>'+
                         '<p>&nbsp;</p>'+ 
                         '<p><u><b>คำชี้แจง</b></u></p>'+ 
-                        '<p>๑.กรณีเดินทางเป็นหมู่คณะและจัดทำใบเบิกค่าใช้จ่ายรวมฉบับเดียวกัน หากระยะเวลาในการเริ่มต้น และสิ้นสุดการเดินทาง'+
+                        '<p>1.กรณีเดินทางเป็นหมู่คณะและจัดทำใบเบิกค่าใช้จ่ายรวมฉบับเดียวกัน หากระยะเวลาในการเริ่มต้น และสิ้นสุดการเดินทาง'+
                         'ของแต่ละบุคคลแตกต่างกัน ให้แสดงรายละเอียดของวันเวลาที่แตกต่างกันของบุคคลนั้นในช่องหมายเหตุ</p>'+
-                        '<p>๒.กรณียื่นขอเบิกค่าใช้จ่ายรายบุคคล ให้ผู้ขอรับเงินเป็นผู้ลงลายมือชื่อผู้รับเงินและวันเดือนปีที่รับเงิน กรณีที่มีการยืมเงิน'+
+                        '<p>2.กรณียื่นขอเบิกค่าใช้จ่ายรายบุคคล ให้ผู้ขอรับเงินเป็นผู้ลงลายมือชื่อผู้รับเงินและวันเดือนปีที่รับเงิน กรณีที่มีการยืมเงิน'+
                         'ให้ระบุวันที่ที่ได้รับเงินยืม เลขที่สัญญายืมเงิน และวันที่อนุมัติเงินยืมด้วย</p>'+
-                        '<p>๓.กรณีที่ยื่นขอเบิกค่าใช้จ่ายรวมเป็นหมู่คณะ ผู้ขอรับเงินมิต้องลงลายมือชื่อในช่องผู้รับเงิน ทั้งนี้ให้ผู้มีสิทธิแต่ละคนลง'+
-                        'ลายมือชื่อผู้รับเงินในหลักฐานการจ่ายเงิน(ส่วนที่ ๒)</p>'+
+                        '<p>3.กรณีที่ยื่นขอเบิกค่าใช้จ่ายรวมเป็นหมู่คณะ ผู้ขอรับเงินมิต้องลงลายมือชื่อในช่องผู้รับเงิน ทั้งนี้ให้ผู้มีสิทธิแต่ละคนลง'+
+                        'ลายมือชื่อผู้รับเงินในหลักฐานการจ่ายเงิน(ส่วนที่ 2)</p>'+
                     '</td>'+
                 '</tr>'+
             '</table>';
@@ -1661,7 +1683,7 @@ var changeToThaiNumber = (num) => {
                     '<table border="1" style="font-size:14px;">'+
                         '<tr>'+
                             '<td>'+//เริ่มเนื้อหาทั้งหมดในนี้
-                                '<p style="text-align:right;">แบบ บก.๑๑๑</p>'+
+                                '<p style="text-align:right;">แบบ บก.111</p>'+
                                 '<p style="font-weight:bold;text-align:center;">ใบรับรองแทนใบเสร็จรับเงิน</p>'+
                                 '<p> </p>'+
                                 '<p style="text-align:center;">ส่วนราชการ โรงพยาบาลสวนสราญรมย์</p>'+
@@ -1678,10 +1700,10 @@ var changeToThaiNumber = (num) => {
                                         '<td>.............</td>'+
                                         '<td>'+//เส้นทางเดินทาง
                                             '<p style="text-align:left;">'+
-                                                '<u>เดินทางจากที่พักเลขที่</u> '+changeToThaiNumber(txtAddrFrom)+
+                                                '<u>เดินทางจากที่พักเลขที่</u> '+txtAddrFrom+
                                             '</p>'+ 
                                             '<p style="text-align:left;">'+
-                                                '<u>ถึงที่พักเลขที่</u> '+changeToThaiNumber(txtAddrBack)+
+                                                '<u>ถึงที่พักเลขที่</u> '+txtAddrBack+
                                             '</p>'+
                                         '</td>'+
                                         '<td>.............</td>'+
@@ -1805,7 +1827,7 @@ var changeToThaiNumber = (num) => {
                                         '<td></td>'+
                                         '<td><p style="text-align:center;">รวมเป็นเงิน</p></td>'+
                                         '<td>'+
-                                              '<p style="text-align:right;">'+changeToThaiNumber($.fn.numberWithCommas(sumNoRecipt))+'</p>'+
+                                              '<p style="text-align:right;">'+$.fn.numberWithCommas(sumNoRecipt)+'</p>'+
                                         '</td>'+
                                         '<td></td>'+
                                     '</tr>'+
@@ -1818,7 +1840,7 @@ var changeToThaiNumber = (num) => {
                                 '</p>'+
                                 '<p style="text-align:left;">ข้าพเจ้า '+( (doc2ObjGogovPrint.pname)?doc2ObjGogovPrint.pname:"" )+
                                     ' ตำแหน่ง '+( (doc2ObjGogovPrint.position_name)?doc2ObjGogovPrint.position_name:"" )+
-                                    ( (doc2ObjGogovPrint.class_position)?doc2ObjGogovPrint.class_position:"" )+' กองโรงพยาบาลสวนสราญรมย์ ขอรับรองว่า รายจ่ายข้างต้นนี้ ไม่อาจเรียกใบเสร็จ'+
+                                    ( (doc2ObjGogovPrint.class_position)?doc2ObjGogovPrint.class_position:"" )+' สังกัดโรงพยาบาลสวนสราญรมย์ ขอรับรองว่า รายจ่ายข้างต้นนี้ ไม่อาจเรียกใบเสร็จ'+
                                     'รับเงินจากผู้รับได้ และข้าพเจ้าได้จ่ายไปในงานของราชการโดยแท้'+
                                 '</p>'+
                                 '<p> </p>'+
@@ -1878,15 +1900,15 @@ var changeToThaiNumber = (num) => {
                         (doc2ObjGogovPrint.position_name) +
                         ((doc2ObjGogovPrint.class_position)?doc2ObjGogovPrint.class_position:'')
                         )+'</td>'+
-                    '<td rowspan="35">'+(  (data.budget1)? changeToThaiNumber($.fn.numberWithCommas(parseInt(data.budget1))):''  )+'</td>'+
-                    '<td rowspan="35">'+(  (data.budget2)? changeToThaiNumber($.fn.numberWithCommas(parseInt(data.budget2))):''  )+'</td>'+
-                    '<td rowspan="35">'+( (data.budget3)? changeToThaiNumber($.fn.numberWithCommas(parseInt(data.budget3))):'' )+'</td>'+
+                    '<td rowspan="35">'+(  (data.budget1)? $.fn.numberWithCommas(parseInt(data.budget1)):''  )+'</td>'+
+                    '<td rowspan="35">'+(  (data.budget2)? $.fn.numberWithCommas(parseInt(data.budget2)):''  )+'</td>'+
+                    '<td rowspan="35">'+( (data.budget3)? $.fn.numberWithCommas(parseInt(data.budget3)):'' )+'</td>'+
                     '<td rowspan="35">'+
-                    changeToThaiNumber($.fn.numberWithCommas(  
+                    $.fn.numberWithCommas(  
                             (  (data.budget4) ? parseInt(data.budget4):0  ) + ( (data.budget5)?parseInt(data.budget5):0 )   
-                        ))+
+                        )+
                     '</td>'+
-                    '<td rowspan="35">'+( changeToThaiNumber(doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[0]))+'</td>'+
+                    '<td rowspan="35">'+( doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[0])+'</td>'+
                     '<td rowspan="35">&nbsp;</td>'+
                     '<td rowspan="35">&nbsp;</td>'+
                     '<td rowspan="35">&nbsp;</td>'+
@@ -1901,7 +1923,7 @@ var changeToThaiNumber = (num) => {
                         '<td>&nbsp;</td>'+
                         '<td>&nbsp;</td>'+
                         '<td>&nbsp;</td>'+
-                        '<td>'+( changeToThaiNumber(doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[0]))+'</td>'+
+                        '<td>'+( doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[0])+'</td>'+
                         '<td colspan="3">ตามสัญญายืมเงินเลขที่</td>'+
                         '<td>&nbsp;.</td>'+
                         '<td>&nbsp;.</td>'+     
@@ -1909,13 +1931,20 @@ var changeToThaiNumber = (num) => {
                 }
             x+=    
             '</table>'+
-            '<table  style="font-size:16px;">'+
+            '<table  style="font-size:16px;" >'+
                 '<tr>'+
-                    '<td><p>จำนวนเงินรวมทั้งสิ้น (ตัวอักษร) ('+(doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[1])+')</p></td>'+
+                    '<td>'+
+                    '<p>จำนวนเงินรวมทั้งสิ้น (ตัวอักษร) ('+(doc2SumBudget(data.budget1,data.budget2,data.budget3,data.budget4,data.budget5)[1])+')</p>'+
+                      '<p>&nbsp</p><br>'+ 
+                        '<p><u><b>คำชี้แจง</b></u></p>'+ 
+                        '<p>1.ค่าเบี้ยเลี้ยงและค่าที่พักให้ระบุอัตราวันละและจำนวนวันที่ขอเบิกของแต่ละบุคคลในช่องหมายเหตุ</p>'+
+                        '<p>2.ให้ผู้มีสิทธิแต่ละคนเป็นผู้ลงลายมือชื่อผู้รับเงินและวันเดือนปีที่รับเงิน กรณีเป็นการรับจากเงินยืมให้ระบุวันที่ที่ได้รับจากเงินยืม</p>'+
+                        '<p>3.ผู้จ่ายเงินหมายถึงผู้ที่ขอยืมเงินจากทางราชการ และจ่ายเงินยืมนั้นให้แก่ผู้เดินทางแต่ละคนเป็นผู้ลงลายมือชื่อผู้รับเงิน</p>'+
+                    '</td>'+
                     '<td>'+
                         '<p>&nbsp;</p>'+  
                         '<p>(ลงชื่อ).....................................................ผู้จ่ายเงิน</p>'+
-                        '<p>.     (.....................................................) </p>'+
+                        '<p>      (.....................................................) </p>'+
                         '<p>ตำแหน่ง .....................................................</p>'+
                         '<p>วันที่ .....................................................</p>'+
                     '</td>'+
@@ -2432,6 +2461,7 @@ var changeToThaiNumber = (num) => {
                 }
                 return ret;
             };
+
             //pupup บอกสถานะบันทึกสำเร็จหรือไม่
             var txtmodal = function(){
                 var x = 
@@ -2745,7 +2775,7 @@ var changeToThaiNumber = (num) => {
                 
                 //ajax บันทึกลงฐาน
                 if(chk){
-                    console.log(objdata);
+                    // console.log(objdata);
                     $.ajax({
                         url:"GoGovSaveData2.php", 
                         type:"post",
@@ -2754,6 +2784,7 @@ var changeToThaiNumber = (num) => {
                         data:{'objdata':JSON.stringify(objdata)}
                     }).done(function(resp){
                         alert(resp);
+                         console.log(objdata);
                         if(resp==='ok'){
                             //alert(objdata);
                             
@@ -2762,6 +2793,9 @@ var changeToThaiNumber = (num) => {
                                 '<a href="#print"  type="button" class="btn chayanon-btn3d-blue" style="display:inline-block">'+
                                     'Print&Close'+
                                 '</a>'
+                                // '<a href="#printdoc"  type="button" class="btn chayanon-btn3d-blue" style="display:inline-block">'+
+                                //     'DOC&Close'+
+                                // '</a>'
                             );
                             modal.removeClass('hidden').show().modal('show');
                             modal.find("a[href='#print']").click(function(e){
@@ -2769,9 +2803,17 @@ var changeToThaiNumber = (num) => {
                                 gogov_print_moldule1(objprint,onlineUser);
                                 modal.toggleClass('hidden').hide().modal('hide'); 
                                 gogov2_moldule();
+                                // datatodoc('wqrtch');
                                 //window.location.hash === '#gogov2';
-                                //window.location.reload(true);
+                                // window.location.reload(true);
                             });
+                          // modal.find("a[href='#printdoc']").click(function(e){
+                          //       e.preventDefault();
+                          //         gogov_print_moldule1(objprint,onlineUser);
+                          //       datatodoc3(onlineUser.person_id);
+                          //       modal.toggleClass('hidden').hide().modal('hide'); 
+                          //        gogov2_moldule();
+                          //   });
                             modal.find('button').click(function(e){
                                e.preventDefault();
                                modal.toggleClass('hidden').hide().modal('hide'); 
@@ -3125,12 +3167,12 @@ var changeToThaiNumber = (num) => {
                                         '<label  class="cols-sm-2 control-label">สรุปค่าใช้จ่าย</label>'+
                                         '<div class="input-group btn-group" data-toggle="buttons">'+   
                                             '<div class="row">'+
-                                                '<div class="col-md-3 ">'+
+                                                '<div class="col-md-4">'+
                                                     '<label class="btn">'+
                                                         '<input type="checkbox" name="ch4chkbox" value="1" style="display:none;"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>&nbsp;<span>ค่าเบี้ยเลี้ยง</span>'+
                                                     '</label>'+
                                                 '</div>'+  
-                                                '<div class="col-md-9 ">'+   
+                                                '<div class="col-md-8">'+   
                                                     '<div class="row">'+
                                                         '<div class="col-md-5 form-group">'+
                                                             '<input type="text" style="padding-right:1px;padding-left:1px;" name="ch4txt1" class="form-control" placeholder="ค่าเบี้ยเลี้ยง(บาท)">'+   
@@ -3147,12 +3189,12 @@ var changeToThaiNumber = (num) => {
                                                 '</div>'+
                                             '</div>'+ 
                                             '<div class="row">'+
-                                                '<div class="col-md-3 ">'+
+                                                '<div class="col-md-4">'+
                                                     '<label class="btn">'+
                                                         '<input type="checkbox" name="ch4chkbox" value="2" style="display:none;"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>&nbsp;<span>ค่าที่พัก</span>'+
                                                     '</label>'+
                                                 '</div>'+  
-                                                '<div class="col-md-9 ">'+  
+                                                '<div class="col-md-8">'+  
                                                     '<div class="row">'+
                                                         '<div class="col-md-5 form-group">'+
                                                             '<input type="text" style="padding-right:1px;padding-left:1px;" name="ch4txt2" class="form-control" placeholder="ค่าที่พัก(บาท)">'+   
@@ -3169,12 +3211,12 @@ var changeToThaiNumber = (num) => {
                                                 '</div>'+
                                             '</div>'+ 
                                             '<div class="row">'+
-                                                '<div class="col-md-3 ">'+
+                                                '<div class="col-md-4">'+
                                                     '<label class="btn">'+
                                                         '<input type="checkbox" name="ch4chkbox" value="3" style="display:none;"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>&nbsp;<span>ค่าพาหนะ</span>'+
                                                     '</label>'+
                                                 '</div>'+  
-                                                '<div class="col-md-9 ">'+   
+                                                '<div class="col-md-8">'+   
                                                     '<div class="row">'+
                                                         '<div class="col-md-5 form-group">'+
                                                             '<input type="text" style="padding-right:1px;padding-left:1px;" name="ch4txt3" class="form-control" placeholder="ค่าพาหนะ(บาท)">'+   
@@ -3196,15 +3238,15 @@ var changeToThaiNumber = (num) => {
                                         '<label for="name" class="cols-sm-2 control-label"></label>'+
                                         '<div class="input-group btn-group" data-toggle="buttons">'+ 
                                             '<div class="row">'+
-                                                '<div class="col-md-3">'+
+                                                '<div class="col-md-4">'+
                                                     '<label class="btn">'+
-                                                        '<input type="checkbox" name="ch4chkbox" value="4" style="display:none;"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>&nbsp;<span>ค่าลงทะเบียน</span>'+
+                                                        '<input type="checkbox" name="ch4chkbox" value="4" style="display:none;"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>&nbsp;<span>ค่าใช้จ่ายอื่นๆ</span>'+
                                                     '</label>'+
                                                 '</div>'+  
-                                                '<div class="col-md-9">'+ 
+                                                '<div class="col-md-8">'+ 
                                                     '<div class="row">'+
                                                         '<div class="col-md-5 form-group">'+
-                                                            '<input type="text" style="padding-right:1px;padding-left:1px;" name="ch4txt4" class="form-control" placeholder="ค่าลงทะเบียน(บาท)">'+   
+                                                            '<input type="text" style="padding-right:1px;padding-left:1px;" name="ch4txt4" class="form-control" placeholder="ค่าใช้จ่ายอื่นๆ(บาท)">'+   
                                                         '</div>'+
                                                         '<div class="col-md-7 form-group">'+        
                                                             '<select name="ch4select4" class="form-control" style="padding-right:1px;padding-left:1px;">'+
@@ -3218,15 +3260,15 @@ var changeToThaiNumber = (num) => {
                                                 '</div>'+
                                             '</div>'+ 
                                             '<div class="row">'+
-                                                '<div class="col-md-3 ">'+
+                                                '<div class="col-md-4">'+
                                                     '<label class="btn">'+
-                                                        '<input type="checkbox" name="ch4chkbox" value="5" style="display:none;"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>&nbsp;<span>ค่าใช้จ่ายอื่นๆ</span>'+
+                                                        '<input type="checkbox" name="ch4chkbox" value="5" style="display:none;"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>&nbsp;<span>ค่าลงทะเบียน</span>'+
                                                     '</label>'+
                                                 '</div>'+  
-                                                '<div class="col-md-9">'+   
+                                                '<div class="col-md-8">'+   
                                                     '<div class="row">'+
                                                         '<div class="col-md-5 form-group">'+
-                                                             '<input type="text" style="padding-right:1px;padding-left:1px;" name="ch4txt5" class="form-control" placeholder="ค่าใช้จ่ายอื่นๆ(บาท)">'+  
+                                                             '<input type="text" style="padding-right:1px;padding-left:1px;" name="ch4txt5" class="form-control" placeholder="ค่าลงทะเบียน(บาท)">'+  
                                                         '</div>'+
                                                         '<div class="col-md-7 form-group">'+        
                                                             '<select name="ch4select5" class="form-control" style="padding-right:1px;padding-left:1px;">'+
@@ -3333,6 +3375,7 @@ var changeToThaiNumber = (num) => {
                     '</form>';
                     return x;
                 };
+
                 panelBody.empty().append(htmlback);     
                 /* ---------------start module---------------------- */
                 var frm = panelBody.find('form'),
@@ -3821,24 +3864,28 @@ var changeToThaiNumber = (num) => {
                             });
                             sql+=' WHERE gogov_new_id="'+dtgogovBack[0].gogov_new_id+'" ;';
                             //console.log(dtgogovBack);
-                            
                             //update ตาราง gogov_back
-                            $.ajax({
+                             $.ajax({
                                 url:"GoGovBackSaveData.php", 
                                 type:"post",
                                 cache:false,
                                 dataType:'json',
                                 data:{'sqls':JSON.stringify(sql)}
                             }).done(function(resp){
-                                if(resp==='ok'){//modal print 
+                                if(resp === "ok"){//modal print 
                                     obj.json_gogov = JSON.stringify(dtgogov);//ใส่ค่า object ขาไปราชการไป print ด้วย
                                     var btnClose=modal.find('.modal-footer > button').last().html('close');
                                     modal.find('.modal-body >h3').empty().append(
-                                        'Success!! &#10132;<a class="btn chayanon-btn3d-blue" href="#Pprint">Print</a>'
+                                        'Success!! &#10132;<a class="btn chayanon-btn3d-blue" href="#Pprint">PDF</a><br> Success!! &#10132; <a href="#todoc" id="todoc"type="button" class="btn  chayanon-btn3d-blue" style="display:inline-block; margin-top: 2rem;">Doc</a>'
                                     );
                                     modal.find('.modal-footer > button').first().toggleClass('hidden').hide();
                                     modal.modal('show');
                                     //print
+                                    modal.find("a[href='#todoc']").click(function(e){
+                                       e.preventDefault();
+                                       datatodoc(dtgogovBack[0].gogov_new_id);
+                                    }); 
+
                                     modal.find("a[href='#Pprint']").click(function(e){
                                        e.preventDefault();
                                        gogov_print_moldule2(obj);
@@ -3853,6 +3900,8 @@ var changeToThaiNumber = (num) => {
                                     alert(resp);
                                 }
                             });
+
+                                      // *****************************************
                         }
                         else
                         {
@@ -3867,6 +3916,7 @@ var changeToThaiNumber = (num) => {
                 
             });//when
         };
+      
         //ได้ข้อมูล data (ยังไม่ได้เลือก id ในตาราง gogov_new) จากนั้นเลือก print ,delete หรือ เขียนรายงานการเดินทางไปราชการ
         function gogovBackData(data){//console.log(data);
             function tbl(d){
@@ -3907,7 +3957,7 @@ var changeToThaiNumber = (num) => {
                                     '<td class="text-left">'+v.gogov_topic+'</td>'+
                                     '<td class="text-left">'+( (IS_JSON)?obj.pname:""    )+'</td>'+
                                     '<td class="text-left">'+v.gogov_for+'</td>'+
-                                    '<td class="text-center"><a href="#print" data-idprint="'+v.id+'"><i class="fa fa-print fa-2x" aria-hidden="true"></i></a></td>'+
+                                    '<td class="text-center"><br>&emsp;&emsp;<a href="#print" data-idprint="'+v.id+'"><i class="fa fa-print fa-2x" aria-hidden="true"></i></a>&emsp;&emsp;<a id="printdoc"  href="#printdoc" data-idprint="'+v.id+'">DOC</i></a>&emsp;&emsp;</td>'+
                                     '<td class="text-center"><a href="#gogovData" data-idgogovdata="'+v.id+'"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></td>'+
                                     '<td class="text-center"><a href="#delete" data-iddelete="'+v.id+'"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a></td>'+
                             '</tr>';
@@ -3961,6 +4011,11 @@ var changeToThaiNumber = (num) => {
                         } 
                     }
                 });
+            });
+            tbl.find("a[href='#printdoc']").click(function(e){
+                e.preventDefault();
+                var idprint = parseInt($(this).data("idprint"));
+               datatodoc2(idprint);
             });
             //คลิกเขียนรายงานการเดินทาง
             tbl.find("a[href='#gogovData']").click(function(e){
@@ -4426,7 +4481,7 @@ var changeToThaiNumber = (num) => {
             };
             function tbl1(d1,d2){
                 var x = '<div class="table-responsive">'+        
-                '<table class="table"  style="width:auto;text-align:center;" border="1">'+ //class='cell-border display'
+                '<table class="table"  style="width:500px;text-align:center;" border="1">'+ //class='cell-border display'
                     '<thead>'+ 
                         '<tr>'+ 
                             '<th class="text-center">ชื่อเรื่อง</th>'+  
@@ -4523,133 +4578,106 @@ var changeToThaiNumber = (num) => {
                                 }
                             }
                         }
-                        x+='<tr>'+
-                                '<td class="text-left">'+
-                                    '<a href="#" data-toggle="popover"  title="<legend>ข้อมูลฝึกอบรม/พัฒนา(จากการเดินทางไปราชการ)</legend>" '+
-                                        'data-content="'+
-                                        //'<legend>ข้อมูลฝึกอบรม/พัฒนา(จากการเดินทางไปราชการ)</legend>'+
-                                        '<table border=1>'+
-                                           '<tr>'+
-                                            '<td bgcolor=orange>ID ตอนขออนุมัติเดินทางไปราชการ</td>'+
-                                            '<td>'+v.id+'</td>'+
-                                          '</tr>'+
-                                          '<tr>'+
-                                            '<td bgcolor=orange>เลขหนังสือ</td>'+
-                                            '<td>'+v.officialdoc_num+'</td>'+
-                                          '</tr>'+
-                                          '<tr>'+
-                                            '<td bgcolor=orange>เรื่อง</td>'+
-                                            '<td>'+v.gogov_topic+'</td>'+
-                                          '</tr>'+
-                                          '<tr>'+
-                                            '<td bgcolor=orange>ประเภท</td>'+
-                                            '<td>'+v.gogov_for+'</td>'+
-                                          '</tr>'+
-                                          '<tr>'+
-                                            '<td bgcolor=orange>ระหว่างวันที่</td>'+
-                                            '<td>'+thaiDate(v.gogov_real_date1,v.gogov_real_date2)+'</td>'+
-                                          '</tr>'+
-                                          '<tr>'+
-                                            '<td bgcolor=orange>ผู้จัด</td>'+
-                                            '<td>'+ ( (objPrint.dep_project_owner)?objPrint.dep_project_owner:'' ) +'</td>'+
-                                          '</tr>'+
-                                          '<tr>'+
-                                            '<td bgcolor=orange>สถานที่'+v.gogov_for+'</td>'+
-                                            '<td>'+ ( (objPrint.gogov_place)?objPrint.gogov_place:'' ) +'</td>'+
-                                          '</tr>'+
-                                          '<tr>'+
-                                            '<td bgcolor=orange>ค่าลงทะเบียน (ตอนขออนุมัติไป)</td>'+
-                                            '<td>'+ ( (objPrint.cost_registration)?transCostReg(objPrint.cost_registration):'ไม่มี' ) +'</td>'+
-                                          '</tr>'+
-                                          '<tr>'+
-                                            '<td bgcolor=orange>ค่าเบี้ยเลี้ยง</td>'+
-                                            '<td>'+
-                                                ( 
-                                                    $.fn.numberWithCommas(  
-                                                        isNaN(parseInt(getGogovBack(getGogovBackID(v.id),"budget1"))) ? 0 : parseInt(getGogovBack(getGogovBackID(v.id),"budget1"))    
-                                                    ) 
-                                                ) +
-                                            '</td>'+
-                                          '</tr>'+
-                                          '<tr>'+
-                                            '<td bgcolor=orange>ค่าที่พัก</td>'+
-                                            '<td>'+
-                                                ( 
-                                                    $.fn.numberWithCommas(  
-                                                        isNaN(parseInt(getGogovBack(getGogovBackID(v.id),"budget2"))) ? 0 : parseInt(getGogovBack(getGogovBackID(v.id),"budget2"))    
-                                                    ) 
-                                                ) +
-                                            '</td>'+
-                                          '</tr>'+
-                                          '<tr>'+
-                                            '<td bgcolor=orange>ค่าพาหนะ</td>'+
-                                            '<td>'+
-                                                ( 
-                                                    $.fn.numberWithCommas(  
-                                                        isNaN(parseInt(getGogovBack(getGogovBackID(v.id),"budget3"))) ? 0 : parseInt(getGogovBack(getGogovBackID(v.id),"budget3"))    
-                                                    ) 
-                                                ) +
-                                            '</td>'+
-                                          '</tr>'+
-                                          '<tr>'+
-                                            '<td bgcolor=orange>ค่าลงทะเบียน(ตอนเขียนรายงานเดินทาง)</td>'+
-                                            '<td>'+
-                                                ( 
-                                                    $.fn.numberWithCommas(  
-                                                        isNaN(parseInt(getGogovBack(getGogovBackID(v.id),"budget4"))) ? 0 : parseInt(getGogovBack(getGogovBackID(v.id),"budget4"))    
-                                                    ) 
-                                                ) +
-                                            '</td>'+
-                                          '</tr>'+
-                                          '<tr>'+
-                                            '<td bgcolor=orange>ค่าใช้จ่ายอื่น</td>'+
-                                            '<td>'+
-                                                ( 
-                                                    $.fn.numberWithCommas(  
-                                                        isNaN(parseInt(getGogovBack(getGogovBackID(v.id),"budget5"))) ? 0 : parseInt(getGogovBack(getGogovBackID(v.id),"budget5"))    
-                                                    ) 
-                                                ) +
-                                            '</td>'+
-                                          '</tr>'+
-                                          '<tr>'+
-                                            '<td bgcolor=orange>รวมเบิกค่าใช้จ่ายไปราชการครั้งนี้</td>'+
-                                            '<td>'+(
-                                                    isNaN(
-                                                        parseInt(getGogovBack(getGogovBackID(v.id),"budget1")) +
-                                                        parseInt(getGogovBack(getGogovBackID(v.id),"budget2")) +
-                                                        parseInt(getGogovBack(getGogovBackID(v.id),"budget3")) +
-                                                        parseInt(getGogovBack(getGogovBackID(v.id),"budget4")) +
-                                                        parseInt(getGogovBack(getGogovBackID(v.id),"budget5")) 
-                                                    )? 0 :$.fn.numberWithCommas(
-                                                        parseInt(getGogovBack(getGogovBackID(v.id),"budget1")) +
-                                                        parseInt(getGogovBack(getGogovBackID(v.id),"budget2")) +
-                                                        parseInt(getGogovBack(getGogovBackID(v.id),"budget3")) +
-                                                        parseInt(getGogovBack(getGogovBackID(v.id),"budget4")) +
-                                                        parseInt(getGogovBack(getGogovBackID(v.id),"budget5")) 
-                                                    )
-                                                ) +
-                                            '</td>'+
-                                          '</tr>'+
-                                        '</table>'+
-                                    '">'+  (  ((v.gogov_topic).length > 35 ) ? ((v.gogov_topic).substring(0,35))+'...(มีต่อ)' : v.gogov_topic  )  +'</a>'+
-                                '</td>'+
-                                '<td class="text-left">'+v.gogov_for+'</td>'+
-                                '<td class="text-left" >'+
-                                    getCompe( (getGogovBack(getGogovBackID(v.id),"competency"))  ) +
-                                    getCompe( (getGogovBack(getGogovBackID(v.id),"competency2")) ) +
-                                    getCompe( (getGogovBack(getGogovBackID(v.id),"competency3")) ) +
-                                '</td>'+
-                                '<td class="text-left" >'+
-                                    getSkill( (getGogovBack(getGogovBackID(v.id),"skill"))  ) +
-                                    getSkill( (getGogovBack(getGogovBackID(v.id),"skill2")) ) +
-                                    getSkill( (getGogovBack(getGogovBackID(v.id),"skill3")) ) +
-                                '</td>'+
-                                //'<td class="text-center"><a href="#print" data-idprint="'+v.id+'"><i class="fa fa-print fa-2x" aria-hidden="true"></i></a></td>'+
-                        '</tr>';
+                       budget1 = $.fn.numberWithCommas( isNaN(parseInt(getGogovBack(getGogovBackID(v.id),"budget1"))) ? 0 : parseInt(getGogovBack(getGogovBackID(v.id),"budget1")));
+                       budget2 = $.fn.numberWithCommas( isNaN(parseInt(getGogovBack(getGogovBackID(v.id),"budget2"))) ? 0 : parseInt(getGogovBack(getGogovBackID(v.id),"budget2")));
+                       budget3 = $.fn.numberWithCommas( isNaN(parseInt(getGogovBack(getGogovBackID(v.id),"budget3"))) ? 0 : parseInt(getGogovBack(getGogovBackID(v.id),"budget3")));
+                       budget4 = $.fn.numberWithCommas( isNaN(parseInt(getGogovBack(getGogovBackID(v.id),"budget4"))) ? 0 : parseInt(getGogovBack(getGogovBackID(v.id),"budget4")));
+                       budget5 = $.fn.numberWithCommas( isNaN(parseInt(getGogovBack(getGogovBackID(v.id),"budget5"))) ? 0 : parseInt(getGogovBack(getGogovBackID(v.id),"budget5")));
+                       sumbudget5 = isNaN( parseInt(getGogovBack(getGogovBackID(v.id),"budget2")) + parseInt(getGogovBack(getGogovBackID(v.id),"budget3")) + parseInt(getGogovBack(getGogovBackID(v.id),"budget1")) + parseInt(getGogovBack(getGogovBackID(v.id),"budget4")) +  parseInt(getGogovBack(getGogovBackID(v.id),"budget5")) )? 0 :$.fn.numberWithCommas(
+                                   parseInt(getGogovBack(getGogovBackID(v.id),"budget1")) +
+                                   parseInt(getGogovBack(getGogovBackID(v.id),"budget2")) +
+                                   parseInt(getGogovBack(getGogovBackID(v.id),"budget3")) +
+                                   parseInt(getGogovBack(getGogovBackID(v.id),"budget4")) +
+                                   parseInt(getGogovBack(getGogovBackID(v.id),"budget5")) 
+                               );
+                        x+= `<tr>
+                                <td class="text-left">
+                                  <a hraf="" data-toggle="popover"  title="ข้อมูลฝึกอบรม/พัฒนา(จากการเดินทางไปราชการ)" data-content="${test(v.id, v.officialdoc_num, v.gogov_topic, v.gogov_for, thaiDate(v.gogov_real_date1,v.gogov_real_date2), objPrint.dep_project_owner,objPrint.gogov_place, budget1, budget2, budget3, budget4, budget5, sumbudget5)}"> ${(  ((v.gogov_topic).length > 35 ) ? ((v.gogov_topic).substring(0,35))+'...(มีต่อ)' : v.gogov_topic  ) }</a>
+                                </td>
+
+                                    <td class="text-left">${v.gogov_for}</td>
+                                          <td class="text-left" >
+                                             ${ getCompe( (getGogovBack(getGogovBackID(v.id),"competency"))  )}
+                                             ${ getCompe( (getGogovBack(getGogovBackID(v.id),"competency2")) )}
+                                             ${ getCompe( (getGogovBack(getGogovBackID(v.id),"competency3")) )}
+                                          </td>
+                                          <td class="text-left" >
+                                             ${ getSkill( (getGogovBack(getGogovBackID(v.id),"skill"))  )} 
+                                             ${ getSkill( (getGogovBack(getGogovBackID(v.id),"skill2")) )} 
+                                             ${ getSkill( (getGogovBack(getGogovBackID(v.id),"skill3")) )}
+                                          </td>
+                              </tr>`;
                     });
                 x+='</tbody></table></div>';
-                return x;
+                return this.innerHTML=x;
             };
+
+     
+            function test(id, officialdoc_num, gogov_topic, gogov_for, thaiDate, dep_project_owner,gogov_place, cost_registration, budget1, budget2, budget3, budget4, budget5){
+                return  this.innerHTML = `
+                   <div  style='display: flex;'>
+                      <div  style='width: 250px;'>ID ตอนขออนุมัติเดินทางไปราชการ</div>
+                      <div style='width: 250px;'>${id}</div>
+                   </div>
+                   <div style='display: flex;'>
+                      <div  style='width: 250px;'>เลขหนังสือ</div>
+                      <div style='width: 250px;'>${officialdoc_num}</div>
+                   </div>
+                   <div style='display: flex;'>
+                      <div  style='width: 250px;'>เรื่อง</div>
+                      <div style='width: 250px;'>${gogov_topic}</div>
+                   </div>
+                   <div style='display: flex;'>
+                      <div  style='width: 250px;'>ประเภท</div>
+                      <div style='width: 250px;'>${gogov_for}</div>
+                   </div>
+
+                   <div style='display: flex;'>
+                      <div  style='width: 250px;'>ระหว่างวันที่</div>
+                      <div style='width: 250px;'>${thaiDate}</div>
+                   </div>
+                   <div style='display: flex;'>
+                      <div  style='width: 250px;'>ผู้จัด</div>
+                      <div style='width: 250px;'>${((dep_project_owner)?dep_project_owner:'' )}</div>
+                   </div>
+
+                   <div style='display: flex;'>
+                      <div  style='width: 250px;'>สถานที่ ${gogov_for}</div>
+                      <div style='width: 250px;'>${( (gogov_place)?gogov_place:'' )}</div>
+                   </div>
+                   <div style='display: flex;'>
+                      <div  style='width: 250px;'>ค่าลงทะเบียน (ตอนขออนุมัติไป)</div>
+                      <div style='width: 250px;'>${cost_registration}</div>
+                   </div>
+                   <div style='display: flex;'>
+                      <div  style='width: 250px;'>ค่าเบี้ยเลี้ยง</div>
+                      <div style='width: 250px;'>${budget1}</div>
+                   </div>
+                   <div style='display: flex;'>
+                      <div  style='width: 250px;'>ค่าที่พัก</div>
+                      <div style='width: 250px;'>${budget2}</div>
+                   </div>
+
+                   <div style='display: flex;'>
+                      <div  style='width: 250px;'>ค่าพาหนะ</div>
+                      <div style='width: 250px;'>${budget3}</div>
+                   </div>
+                   <div style='display: flex;'>
+                      <div  style='width: 250px;'>ค่าลงทะเบียน(ตอนเขียนรายงานเดินทาง)</div>
+                      <div style='width: 250px;'>${budget4}</div>
+                   </div>
+                   <div style='display: flex;'>
+                      <div  style='width: 250px;'>ค่าใช้จ่ายอื่น</div>
+                      <div style='width: 250px;'>${budget5}</div>
+                   </div>
+                   <div style='display: flex;'>
+                      <div  style='width: 250px;'>รวมเบิกค่าใช้จ่ายไปราชการครั้งนี้</div>
+                      <div style='width: 250px;'>${sumbudget5}</div>
+                   </div>
+
+
+                  `;
+            }
             function tbl2(developpm){
                 var x = '<div class="table-responsive">'+        
                 '<table class="table"  style="width:auto;text-align:center;" border="1">'+ //class='cell-border display'
@@ -4749,7 +4777,7 @@ var changeToThaiNumber = (num) => {
                 $('.panel-collapse').collapse('hide');
                 $(".toggle-accordion").on("click", function() {
                     var accordionId = $(this).attr("accordion-id"),
-                    numPanelOpen = $(accordionId + ' .collapse.in').length;
+                    numPanelOpen = $(accordionId+'.collapse.in').length;
                     $(this).toggleClass("active");
                     if (numPanelOpen === 0) {
                       openAllPanels(accordionId);

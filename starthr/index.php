@@ -40,13 +40,22 @@
             #people, 
             #Dashboard,
             #gogov_hide1,
-            #gogov_hide2{
+            #gogov_hide2
+            {
                 display: none;
             }
             <?php if(empty($_SESSION['CHACK_CID'])){ ?>
                 #insert_person{
                     display: none;
                 }
+
+            <?php } ?>
+
+            <?php if($_SESSION['person_id'] == '1472'){  ?>
+                #printdoc{
+                       display: block;
+                }
+
             <?php } ?>
         </style>
     </head>
@@ -95,6 +104,19 @@
         <!-- JS by chayanon -->
         <script type="text/javascript" src="../js/GlobalFunc.js"></script><!--Global function เขียนไว้ใช้สำหรับ project นี้ -->
         <script type="text/javascript" src="../js/user.js"></script>
+
+        <script type="text/javascript">
+            // function myFunction() {
+            //   document.getElementById("print1").addEventListener("click", function(){
+            //     alert("test");
+            //   });
+            // }
+            // myFunction();
+         
+        // document.getElementById("todoc").addEventListener("click", ()=>{
+        //     datatodoc("ata");
+        // });
+        </script>
     </body>
 </html>
 
