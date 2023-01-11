@@ -25,7 +25,7 @@
                                         values('%s', '%s', 'typeuser', '%s', '%s', '%s', '%s', '%s', '%s', '%s', 'Y', '%s', '%s', 'Y')  
                                     ", $cid, $cid,  $pname, $fname, $lname, $posi, $classposi, $dep, $group, $getype, $bd));
 
-    if($update_db === TRUE){
+    if($insert_db === TRUE){
         echo json_encode(array('insert'=> "success"));
     }else{
         echo json_encode(array('insert'=>"error"));

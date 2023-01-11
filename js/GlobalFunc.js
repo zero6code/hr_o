@@ -945,6 +945,7 @@
             dataType:'json'
         }).done(function(data){
             def.resolve(data);
+            // console.log(data);
         });
         return def.promise();
     };//บุคลากรที่กำลัง login

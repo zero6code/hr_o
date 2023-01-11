@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap/css/bootstrap.min.css">
-    <title>Document</title>
+    <title>DASHBOARD</title>
     <style>
         body{
    
@@ -17,23 +17,57 @@
         nav{
             background-color: #d63384;
         }
-        .card-header{
+        /* .card-header{
             background-color: #FF9DFE;
-        }
+        } */
        tbody tr:hover{
         background-color: rgba(255, 133, 245, 0.562);
        }
+       #calTxtWidth{
+        position: absolute;
+        visibility: hidden;
+        height: auto;
+        width: auto;
+        white-space: nowrap; /* Thanks to Herb Caudill comment */
+        }
     </style>
 </head>
+
 <body class="fs-4">
     <div id="showmessage"></div>
-    <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
-        <div class="offcanvas-header">
-          <h5 id="offcanvasTopLabel">Offcanvas top</h5>
+    <div id="messageupdate" style="display: block; position: absolute; z-index: 20000;"></div>
+    <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel" style="height: 50%;">
+        <div class="offcanvas-header  bg-primary bg-gradient ">
+          <h5 id="offcanvasTopLabel">Options</h5>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-          ...
+            <div class="container-fluid">
+                <div class="row">
+                  <div class="col-lg-4 col-xl-4 col-xxl-4 ">
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button type="button" class="btn  btn-outline-primary btn-lg" data-bs-toggle="modal" data-bs-target="#option_data" onclick="SHOW_Titlename('คำนำหน้าชื่อ');">คำนำหน้าชื่อ</button>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-xl-4 col-xxl-4 ">
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button type="button" class="btn  btn-outline-primary btn-lg" id="SHOW_NAME_Department"  data-bs-toggle="modal" data-bs-target="#option_data" onclick="SHOW_Department('หน่วยงาน')">หน่วยงาน</button>
+                        <button type="button" class="btn  btn-outline-primary btn-lg"  data-bs-toggle="modal" data-bs-target="#option_data" onclick="SHOW_Groupwork('กลุ่มภารกิจ');">กลุ่มภารกิจ</button>
+                
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-xl-4 col-xxl-4">
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                      
+                            <button type="button" class="btn  btn-outline-primary btn-lg"  data-bs-toggle="modal" data-bs-target="#option_data" onclick="SHOW_government_emp_type('ประเภทบุคลากร');">ประเภทบุคลากร</button>
+                            <button type="button" class="btn  btn-outline-primary btn-lg" data-bs-toggle="modal" data-bs-target="#option_data" onclick="SHOW_position('ตำแหน่ง');">ตำแหน่ง</button>
+                            <button type="button" class="btn  btn-outline-primary btn-lg"data-bs-toggle="modal" data-bs-target="#option_data" onclick="SHOW_classposition('ระดับตำแหน่ง');">ระดับตำแหน่ง</button>
+                   
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
         </div>
       </div>
     <nav class="navbar navbar-dark bg-gradient container-fluid">
@@ -46,7 +80,7 @@
             </div>
         </div>
     </nav>
-    <div class=".container-fluid  ">
+    <div class="container-fluid">
         <div class="row mt-3 mx-2">
             <div class="col-xxl-7 gap-3">
                 <div class="row">
@@ -58,7 +92,7 @@
                                     <h1 id="sumperson"></h1>
                                 </p>
                                 <span href="#" id="btncard">
-                                    <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" onclick="inputdata_person('เพิ่มบุคลากร')">เพิ่มบุคลากร</button>
+                                    <button  type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal" onclick="inputdata_person('เพิ่มบุคลากร')">เพิ่มบุคลากร</button>
                                 </span>
                             </div>
                         </div>
@@ -70,29 +104,31 @@
                                 <p class="card-text">
                                     <h1 id="sumadmin"></h1>
                                 </p>
-                                <a href="#" class="btn btn-primary">Go </a>
+                                <span href="#" id="btncard">
+                                    <button  type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal" onclick="inputdata_admin('เพิ่มแอดมิน')">เพิ่มแอดมิน</button>
+                                </span>
                             </div>
                         </div>
                     </div>
                     <div class="col-xxl-3 col-lg-3 col-6">
                         <div class="card shadow border-primary">
                             <div class="card-body">
-                                <h5 class="card-title">ขออนุมัติ(วันนี้)</h5>
-                                <p class="card-text">
-                                    <h1 id="gogov_new"></h1>
+                                <h5 class="card-title text-center">ขออนุมัติ(วันนี้)</h5>
+                                <p class="card-text text-center">
+                                    <h1 id="gogov_new" class="text-center" style="color:#198754 ;"></h1>
                                 </p>
-                                <a href="#" class="btn btn-primary">Go </a>
+                                <h3 href="#" class="text-center" >รายการ</h3>
                             </div>
                         </div>
                     </div>
                     <div class="col-xxl-3 col-lg-3 col-6">
                         <div class="card shadow border-primary">
                             <div class="card-body">
-                                <h5 class="card-title">รายงานเดินทาง(วันนี้)</h5>
+                                <h5 class="card-title text-center" style="font-size: 0.8em;">รายงานเดินทาง(วันนี้)</h5>
                                 <p class="card-text">
-                                    <h1 id="gogov_back"></h1>
+                                    <h1 id="gogov_back" class="text-center" style="color:#198754 ;"></h1>
                                 </p>
-                                <a href="#" class="btn btn-primary">Go</a>
+                                <h3 href="#" class="text-center">รายการ</h3>
                             </div>
                         </div>
                     </div>
@@ -107,7 +143,7 @@
                                 </span>
                             </div>
                             <div class="card-body">
-                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <ul class="nav nav-pills mb-3 " id="pills-tab" role="tablist">
                                     <li class="nav-item" role="presentation">
                                       <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">บุคลากร</button>
                                     </li>
@@ -125,7 +161,7 @@
                                                     <th scope="col">ชื่อ</th>
                                                     <th scope="col">นามสกุล</th>
                                                     <th scope="col">สังกัด</th>
-                                                    <th scope="col" class="th-lg"></th>
+                                                    <th scope="col" class="th-lg col-3"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="persons" class=""></tbody>
@@ -157,72 +193,23 @@
                 <div class="card shadow border-primary" style="height:100% ;">
                     <div class="card-header card-header bg-primary bg-gradient clearfix">
                         <h5 class="float-start  text-white">บันทึกข้อความล่าสุด</h5>
-                        <form class="d-flex float-end  col-xxl-6 col-12">
-                            <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search">
-                        </form>
+                        <span class="d-flex float-end  col-xxl-6 col-12">
+                            <input id="datasearch_gogov" class="form-control form-control-lg" type="text" placeholder="Search" aria-label=".form-control-lg" value=""  onkeyup="searchdata_gogov()">
+                        </span>
                     </div>
                     <div class="card-body overflow-auto">
                         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                             <li class="nav-item" role="presentation">
-                              <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#showgogov_new" type="button" role="tab" aria-controls="pills-home" aria-selected="true">บันทึกขอความ</button>
+                              <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#showgogov_new" type="button" role="tab" aria-controls="pills-home" aria-selected="true">บันทึกข้อความ</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                              <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#showgogov_back" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">แอดมิน</button>
+                              <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#showgogov_back" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" disabled>รออัพเดท</button>
                             </li>
                           </ul>
                           <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade show active overflow-auto" id="showgogov_new" role="tabpanel" aria-labelledby="pills-home-tab">
+                            <div class="tab-pane fade show active overflow-auto" id="showgogov_new" role="tabpanel" aria-labelledby="pills-home-tab" style="height: 75vh;  overflow-x: auto;   overflow-y: scroll;">
                                <!-- card start -->
-                                <div class="card mt-2">
-                                    <div class="card-header">
-                                    Quote
-                                    </div>
-                                    <div class="card-body">
-                                    <blockquote class="blockquote mb-0">
-                                        <p>A well-known quote, contained in a blockquote element.</p>
-                                        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                                    </blockquote>
-                                    </div>
-                                </div>
-                                <!-- card end -->
-                                <!-- card start -->
-                                <div class="card mt-2">
-                                    <div class="card-header">
-                                    Quote
-                                    </div>
-                                    <div class="card-body">
-                                    <blockquote class="blockquote mb-0">
-                                        <p>A well-known quote, contained in a blockquote element.</p>
-                                        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                                    </blockquote>
-                                    </div>
-                                </div>
-                                <!-- card end -->
-                                <!-- card start -->
-                                <div class="card mt-2">
-                                    <div class="card-header">
-                                    Quote
-                                    </div>
-                                    <div class="card-body">
-                                    <blockquote class="blockquote mb-0">
-                                        <p>A well-known quote, contained in a blockquote element.</p>
-                                        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                                    </blockquote>
-                                    </div>
-                                </div>
-                                <!-- card end -->
-                                <!-- card start -->
-                                <div class="card mt-2">
-                                    <div class="card-header">
-                                    Quote
-                                    </div>
-                                    <div class="card-body">
-                                    <blockquote class="blockquote mb-0">
-                                        <p>A well-known quote, contained in a blockquote element.</p>
-                                        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                                    </blockquote>
-                                    </div>
-                                </div>
+                                    <!-- show data gogov_new -->
                                 <!-- card end -->
                             </div>
                             <div class="tab-pane fade overflow-auto" id="showgogov_back" role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -261,14 +248,13 @@
         </div>
     </div>
 
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
           <div class="modal-content" >
               <div class="modal-header bg-primary bg-gradient">
                   <h5 class="modal-title" id="exampleModalLabel"></h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div id="messageupdate"></div>
               <div class="modal-body">
                 <form action="">
                  <div id="formEdit">
@@ -289,6 +275,7 @@
                         <input type="text" class="form-control" id="l_name" name="l_name" value="">
                     </div>
                     <div class="mb-3">
+                        <!-- <span class="fs-6">--Please choose an option--</span> -->
                         <select class="form-select" aria-label="Default select example" name="governmentEmpType" id="governmentEmpType" ></select>
                     </div>
                     <div class="mb-3">
@@ -306,8 +293,8 @@
                     <div class="mb-3">
                         <select class="form-select" aria-label="Default select example" name="groupwork" id="groupwork"></select>
                     </div>
-                    <div class="mb-3">
-                        <label for="b_date" class="form-label">วัน/เดือน/ปีเกิด</label>
+                    <div class="mb-3" >
+                        <label for="b_date" class="form-label" id="title_b_date">วัน/เดือน/ปีเกิด</label>
                         <input type="date" class="form-control" id="b_date" name="b_date" value="">
                     </div>
                  </div>
@@ -318,13 +305,338 @@
           </div>
         </div>
       </div>
+<!-- ***************************************************************************************************************************************************************************** -->
+    <div class="modal fade" id="gogov_data" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog  modal-xl">
+            <div class="modal-content" >
+                <div class="modal-header bg-primary bg-gradient">
+                    <h5 class="modal-title" id="officialdoc_num"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="gogov_data_show" class="width: 100%;"></div>
+            </div>
+        </div>
+    </div>
 
+    <span id="calTxtWidth"></span>
+<!-- ***************************************************************************************************************************************************************************** -->
+<!-- ***************************************************************************option_data************************************************************************************************** -->
+<div class="modal fade  bg-primary bg-gradient" id="option_edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="option_edit_head"></h5>
+          <button type="button" id="option_edit_close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  data-bs-toggle="modal" data-bs-target="#option_data" ></button>
+        </div>
+        <div id="option_edit_body" class="modal-body"></div>
+        <div class="modal-footer" id="btn_option_edit"></div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade" id="option_data" tabindex="-1" aria-labelledby="option_data" aria-hidden="false" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog  modal-fullscreen" >
+        <div class="modal-content" >
+            <div class="modal-header bg-primary bg-gradient">
+                <h5 class="modal-title" id="text-head"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body fs-6">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                  <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#option-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
+                                </li>
+                                <li class="nav-item" role="presentation" id="tabAddbtn"></li>
+                              </ul>
+                              <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="option-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                    <table class="table table-striped">
+                                        <thead id="head-option-home"></thead>
+                                        <tbody id="data-option-home"></tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="option-edit" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
+                                <div class="tab-pane fade" id="option-add" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ***************************************************************************************************************************************************************************** -->
       <script type="text/javascript" src="../css/bootstrap/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="../js/pdfmake/pdfmake.min.js"></script>
+      <script type="text/javascript" src="../js/pdfmake/vfs_fonts.js"></script>
 <script>
+
+
+let show_gogov_new = async() => {
+    await fetch('show_gogov_new.php')
+    .then((response)=>response.json())
+    .then((data)=>{
+        var showdata = document.getElementById("showgogov_new");
+        let div = "";
+       data.forEach((data2) => {
+            let i = 0;
+            let l = i++;
+            var show = JSON.parse(data2.json_print);
+            div += (`
+                <div class="card mt-2 shadow border border-secondary">
+                    <div class="card-header  bg-gradient" style="background-color: #d63384;">
+                        ${show.pname}<span style="font-size: 0.6em"> (${show.dep_name} ${show.groupwork_name})</span>
+                        
+                        <button type="button " style="float: right;" id="gogov_databtn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#gogov_data" onclick="showDataGogovAll(${data2.id})" >
+                            เพิ่มเติม
+                        </button>
+                    </div>
+                    
+                    <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>(${show.officialdoc_num})\n${show.gogov_topic}</p>
+                        <footer class="blockquote-footer">บันทึกเมื่อ <cite title="Source Title">${data2.datecreate}</cite></footer>
+                    </blockquote>
+                    </div>
+                </div>
+            `);
+            showdata.innerHTML = div;
+
+        });
+
+    }).catch((error)=>{
+        console.log(error);
+    });
+}
+
+
+
+var splitStrToArr = function(str,sep){
+        var arr = [];
+        if(str){
+            if(str.indexOf(sep)>=0){
+                arr = str.split(sep);
+            }
+        }
+        return arr;
+    }
+
+// let Onlineuser = async() =>{
+//     await fetch('../starthr/OnlineUserData.php')
+//     .then((response)=>response.json())
+//     .then((data)=>{
+//          return Promise.resolved(data);
+//     }).catch((err)=>{
+//         console.log(err);
+//     });
+// }
+// Onlineuser().then(alert);
+
+let showDataGogovAll = async(id) =>{
+     await fetch('show_gogov_new.php')
+     .then((response)=>response.json())
+     .then((data)=>{
+        let div = '';
+        let show = document.getElementById('gogov_data_show');
+            data.forEach((data2)=>{
+                if(data2.id == id){
+                    let getdata = JSON.parse(data2.json_print);
+                    // console.log(JSON.parse(data2.json_print));
+                    document.getElementById('officialdoc_num').innerHTML = `เลขหนังสือ : ${getdata.officialdoc_num} วันที่ ${(getdata.date_stamp === "")? "-":getdata.date_stamp}`;
+
+                    div = (`
+                                <div class="modal-body fw-normal" style="width: 100%; font-size: 0.8em; display: inline-grid; height: 70vh; overflow-x: auto;   overflow-y: scroll;">
+                                    <table class="table table-striped table-hove" >
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" class="col-4">ชื่อ - นามสกุล</th>
+                                                <td> <span>${getdata.pname}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">กลุ่มงาน</th>
+                                                <td> <span>${getdata.dep_name}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">กลุ่มภารกิจ</th>
+                                                <td> <span>${getdata.groupwork_name}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">เดินทางไปราชการเพื่อ</th>
+                                                <td> <span>${getdata.gogov_for}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">เรื่อง</th>
+                                                <td> <span class="text-break">${getdata.gogov_topic}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">ระหว่างวันที่</th>
+                                                <td> <span>${getdata.gogov_real_date1} ถึง ${getdata.gogov_real_date2} </span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">วันเดินทาง ไป - กลับ </th>
+                                                <td> <span>${getdata.gogov_date1} ถึง ${getdata.gogov_date2} </span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="text-break">ผู้จัด</th>
+                                                <td> <span>${getdata.dep_project_owner} ${getdata.gogov_place}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">เบิกค่าใช้จ่ายจาก</th>
+                                                <td> <span>${getdata.money_type}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">เดินทางไปโดย</th>
+                                                <td> <span>${getdata.car_type}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">เดินทางกลับโดย</th>
+                                                <td> <span>${getdata.car_type2}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">เบิกค่าลงทะเบียน</th>
+                                                <td> <span>${(getdata.cost_registration[0].bath === "")? "ไม่มี": getdata.cost_registration[0].bath+" บาท"}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">ผู้ปฏิบัติหน้าที่แทน</th>
+                                                <td> <span>${(getdata.person_instead === "")? "ไม่มี":this.splitStrToArr(getdata.person_instead,"_")[0]}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">รายชื่อผู้ร่วมเดินทางไปราชการ</th>
+                                                <td> <span class="text-break">${(getdata.group_gogov[0] === null)? "ไม่มี": getdata.group_gogov}</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onclick="genpdf(${JSON.stringify(data2.json_print).split('"').join("&quot;")})">โหลด PDF</button>
+                                </div>
+                    `);
+
+                    
+                }
+            });
+            show.innerHTML = div;
+
+     }).catch((error)=>{
+        console.log(error);
+     });
+
+}
+
+let searchdata_gogov = async() => {
+
+var datasearch = document.getElementById("datasearch_gogov").value;
+let show = document.getElementById('showgogov_new');
+let data = "";
+let div = "";
+if(datasearch == ""){
+    show_gogov_new();
+}else{
+
+    await fetch('data_search_gogov.php?search=' + datasearch)
+    .then((response) => response.json())
+    .then((data) => {
+        if (data['empty']) {
+               show.innerHTML = `<td>no data</td>`;
+        }else{
+            data.forEach((data2)=>{
+                let getdata = JSON.parse(data2.json_print);
+                div += (`
+                    <div class="card mt-2">
+                        <div class="card-header  bg-gradient" style="background-color: #d63384;">
+                            ${getdata.pname}<span style="font-size: 0.6em; background-color: coral;">(${getdata.dep_name} ${getdata.groupwork_name})</span>
+                            
+                            <button type="button " style="float: right;" id="gogov_databtn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#gogov_data" onclick="showDataGogovAll(${data2.gogov_new_id})" >
+                                เพิ่มเติม
+                            </button>
+                        </div>
+                        
+                        <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>(${getdata.officialdoc_num})${getdata.gogov_topic}</p>
+                            <footer class="blockquote-footer">บันทึกเมื่อ <cite title="Source Title">${getdata.datecreate}</cite></footer>
+                        </blockquote>
+                        </div>
+                    </div>
+                    `);
+            });
+            show.innerHTML = div;
+        }
+})
+.catch((error) =>{
+    console.log(error);
+});
+}
+}
 
   // Clear input for modal insert person.(เพิ่มบุคลากร) 
 let clearThis = () => ['c_id', 'f_name', 'l_name', 'b_date'].forEach(id => document.getElementById(id).value = "");
-       
+
+let inputdata_admin = async(text) => {
+    document.getElementById("exampleModalLabel").innerText = text;
+    document.getElementById("btnform").innerHTML = (`
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearThis()">Close</button>
+        <button type="submit" class="btn btn-primary" form="formEdit" onclick="insert_admin()">Save</button>
+    `);
+
+    await fetch('showAnoterdata.php')
+        .then((response)=> response.json())
+        .then((data)=>{
+            if(data['empty']){
+            }else{
+                let pname ='';
+                for(let i in data){
+                    var p_name = JSON.parse(data[i].pname);
+                    for(let l in p_name){
+                       pname += `<option value="${p_name[l].pname_th}">${p_name[l].pname_th}</option>`;
+                    }         
+                }
+                clearThis();
+                document.getElementById("p_name").innerHTML = `<option selected value="">select</option>`+pname;
+
+                //hiden html element
+                ['governmentEmpType', 'position', 'classPosition', 'department', "groupwork", "b_date", "title_b_date"].forEach(id => document.getElementById(id).style.display="none");
+            }
+        }).catch((err)=>{
+            console.log(err);
+    });
+
+}
+
+let insert_admin = async() =>{
+    let payload = {
+        'cid'   : (document.getElementById("c_id").value !==  "null")? document.getElementById('c_id').value : null,
+        'pname' :(document.getElementById("p_name").value !==  "null")? document.getElementById('p_name').value : null,
+        'fname' :(document.getElementById("f_name").value !==  "null")? document.getElementById('f_name').value : null,
+        'lname' :(document.getElementById("l_name").value !==  "null")? document.getElementById('l_name').value : null,
+    };
+    // console.log(payload);
+    await fetch('insert_admin_db.php', {
+        method: 'POST',
+        headers: { Accept: 'application.json','Content-Type':  'application/json' },
+        body: JSON.stringify(payload)
+    })
+    .then((response)=>response.json())
+    .then((result)=>{
+        if (result.insert == 'success'){
+            showdata();
+            listperson();
+            alert("เพิ่มข้อมูลสำเร็จ");
+            clearThis();
+        }else{
+            listperson();
+            alert("error");
+        }
+    }).catch((err)=>{
+        console.log(err);
+    });
+}
+
+
 let inputdata_person = async(text) => {
     document.getElementById("exampleModalLabel").innerText = text;
     document.getElementById("btnform").innerHTML = (`
@@ -369,17 +681,19 @@ let inputdata_person = async(text) => {
                     }
                 
                 }
+                clearThis();
+                ['governmentEmpType', 'position', 'classPosition', 'department', "groupwork", "b_date", "title_b_date"].forEach(id => document.getElementById(id).style.display="block");
                 // console.log(cid);
                 // document.getElementById("pid").value;
                 // document.getElementById("c_id").value;
-                document.getElementById("p_name").innerHTML = `<option selected value="">select</option>`+pname;
+                document.getElementById("p_name").innerHTML = `<option selected value="">เลือกคำนำหน้า</option>`+pname;
                 // document.getElementById("f_name").value;
                 // document.getElementById("l_name").value;
-                document.getElementById("governmentEmpType").innerHTML = `<option selected value="">select</option>`+govtype;
-                document.getElementById("position").innerHTML = `<option selected value="">select</option><option value="">null</option>`+position_name;
-                document.getElementById("classPosition").innerHTML = `<option selected value="">select</option><option value="">null</option>`+classposition;
-                document.getElementById("department").innerHTML = `<option selected value="">select</option><option value="">null</option>`+dep;
-                document.getElementById("groupwork").innerHTML = `<<option selected value="">select</option><option value="">null</option>`+group;
+                document.getElementById("governmentEmpType").innerHTML = `<option selected value="">เลือกประเภทบุคลากร</option>`+govtype;
+                document.getElementById("position").innerHTML = `<option selected value="">เลือกตำแหน่งสายงาน</option><option value="">null</option>`+position_name;
+                document.getElementById("classPosition").innerHTML = `<option selected value="">เลือกระดับตำแหน่ง</option><option value="">null</option>`+classposition;
+                document.getElementById("department").innerHTML = `<option selected value="">เลือกหน่วยงาน</option><option value="">null</option>`+dep;
+                document.getElementById("groupwork").innerHTML = `<<option selected value="">เลือกกลุ่มภารกิจ</option><option value="">null</option>`+group;
                 document.getElementById("b_date").value = bday;
                 // document.getElementById("exampleModalLabel").innerText = text;
     
@@ -411,23 +725,24 @@ let insert_person = async() =>{
     })
     .then((response)=>response.json())
     .then((result)=>{
-        if (result.update == 'success'){
+        if (result.insert == 'success'){
+            showdata();
             listperson();
-            messageupdate("เพิ่มข้อมูลสำเร็จ");
+            alert("เพิ่มข้อมูลสำเร็จ");
+            clearThis();
         }else{
             listperson();
-            messageupdate("error");
+            alert("error");
         }
     }).catch((err)=>{
-
+        console.log(err);
     });
 }
 
 
 
-var showeditData = async function(cid, pn, fname, lname, posi, posi_code, g_emp_type_code, g_emp_type, class_posi_code, class_posi, depcode, depname, groupcode, groupname, bday, pid, text) {
+var showeditData = async function(cid, pn, fname, lname, posi, posi_code, g_emp_type_code, g_emp_type, class_posi_code, class_posi, depcode, depname, groupcode, groupname, bday, pid, text ) {
 
-    // let pn = "นาย";
 
     await fetch('showAnoterdata.php')
         .then((response)=> response.json())
@@ -467,28 +782,65 @@ var showeditData = async function(cid, pn, fname, lname, posi, posi_code, g_emp_
                     }
                 
                 }
-                // console.log(cid);
-                document.getElementById("pid").value = pid;
-                document.getElementById("c_id").value = cid;
-                document.getElementById("p_name").innerHTML = `<option selected value="${pn}">${pn}</option>`+pname;
-                document.getElementById("f_name").value = fname;
-                document.getElementById("l_name").value = lname;
-                document.getElementById("governmentEmpType").innerHTML = `<option selected value="${g_emp_type_code}">${g_emp_type}</option>`+govtype;
-                document.getElementById("position").innerHTML = `<option selected value="${posi_code}">${posi}</option><option value="">null</option>`+position_name;
-                document.getElementById("classPosition").innerHTML = `<option selected value="${class_posi_code}">${class_posi}</option><option value="">null</option>`+classposition;
-                document.getElementById("department").innerHTML = `<option selected value="${depcode}">${depname}</option><option value="">null</option>`+dep;
-                document.getElementById("groupwork").innerHTML = `<option selected value="${groupcode}">${groupname}</option><option value="">null</option>`+group;
-                document.getElementById("b_date").value = bday;
-                document.getElementById("exampleModalLabel").innerText = text;
-                document.getElementById("btnform").innerHTML = (`
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" form="formEdit" onclick="edit_person()">Save changes</button>
-                `);
+                ['governmentEmpType', 'position', 'classPosition', 'department', "groupwork", "b_date", "title_b_date"].forEach(id => document.getElementById(id).style.display="block");
+                    document.getElementById("pid").value = pid;
+                    document.getElementById("c_id").value = cid;
+                    document.getElementById("p_name").innerHTML = `<option selected value="${pn}">${pn}</option>`+pname;
+                    document.getElementById("f_name").value = fname;
+                    document.getElementById("l_name").value = lname;
+                    document.getElementById("governmentEmpType").innerHTML = `<option selected value="${g_emp_type_code}">${g_emp_type}</option>`+govtype;
+                    document.getElementById("position").innerHTML = `<option selected value="${posi_code}">${posi}</option><option value="">null</option>`+position_name;
+                    document.getElementById("classPosition").innerHTML = `<option selected value="${class_posi_code}">${class_posi}</option><option value="">null</option>`+classposition;
+                    document.getElementById("department").innerHTML = `<option selected value="${depcode}">${depname}</option><option value="">null</option>`+dep;
+                    document.getElementById("groupwork").innerHTML = `<option selected value="${groupcode}">${groupname}</option><option value="">null</option>`+group;
+                    document.getElementById("b_date").value = bday;
+                    document.getElementById("exampleModalLabel").innerText = text;
+                    document.getElementById("btnform").innerHTML = (`
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" form="formEdit" onclick="edit_person()">Save changes</button>
+                    `);
             }
         }).catch((err)=>{
-
+            console.log(err);
     });
 }
+
+var showeditDataadmin = async function(cid, pn, fname, lname,  pid, text ) {
+                
+ 
+        await fetch('showAnoterdata.php')
+            .then((response)=> response.json())
+            .then((data)=>{
+                if(data['empty']){
+                }else{
+                    let pname ='';
+        
+                    for(let i in data){
+                        var p_name = JSON.parse(data[i].pname);
+                        for(let l in p_name){
+                        pname += `<option value="${p_name[l].pname_th}">${p_name[l].pname_th}</option>`;
+                        }
+                    
+                    }
+                        ['governmentEmpType', 'position', 'classPosition', 'department', "groupwork", "b_date", "title_b_date"].forEach(id => document.getElementById(id).style.display="none");
+                        document.getElementById("pid").value = pid;
+                        document.getElementById("c_id").value = cid;
+                        document.getElementById("p_name").innerHTML = `<option selected value="${pn}">${pn}</option>`+pname;
+                        document.getElementById("f_name").value = fname;
+                        document.getElementById("l_name").value = lname;
+
+                        document.getElementById("btnform").innerHTML = (`
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" form="formEdit" onclick="edit_person()">Save changes</button>
+                        `);
+
+                }
+    }).catch((err)=>{
+        console.log(err);
+});
+}
+
+
 var edit_person = async() => {
     let payload = {
         'cid'   : (document.getElementById("c_id").value !==  "null")? document.getElementById('c_id').value : null,
@@ -513,141 +865,168 @@ var edit_person = async() => {
         if (result.update == 'success'){
             listperson();
             searchdata();
-            messageupdate("แก้ไขสำเร็จ");
+            // messageupdate("แก้ไขสำเร็จ");
+            alert("แก้ไขสำเร็จ");
         }else{
             listperson();
-            messageupdate("error");
+            alert("error");
         }
     }).catch((err)=>{
-
+        console.log(err);
     });
 
 }
 
-    let message = (msg) => {
-        document.getElementById('showmessage').innerHTML = (`
-               <div class="modal fade" id="myModalmessage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-                  <div class="modal-dialog">
-                    <div class="modal-content"> 
-                      <div class="modal-header">
-                        <h5 class="modal-title"></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body" style="color: #198754; font-size: 18px;">
-                        <p>${msg}</p>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
-            `);
-        var myModal = new bootstrap.Modal(document.getElementById('myModalmessage'), {
-        keyboard: false
-            });
-        myModal.show()
-    }
 
 
 let messageupdate = (msg) => {
     document.getElementById('messageupdate').innerHTML = (`
-    <div class="alert alert-success" role="alert" style="height: 3.5rem;">
-       <p class="fs-6">${msg}</p>
-    </div>
+    <div class="modal" tabindex="10000" id="myModalmessage" style="background-color: rgba(0, 0, 0, 0.5);">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>${msg}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+        </div>
     `);
+    var myModal = new bootstrap.Modal(document.getElementById('myModalmessage'), {
+        keyboard: false
+            });
+        myModal.show()
+
 }
 
-
-let deleteInSearch = (id) => {
+let deleteInadmin = async(id) => {
   
   if ( confirm("Are you sure want to Delete this record ?")) {
-      fetch("delete_person.php?id="+id, {
+     await fetch("delete_admin.php?id="+id, {
           method : 'delete'
       })
       .then((response) => response.json())
       .then((result) => {
               if (result.delete == 'success'){
+                showdata();
                 listperson();
                 searchdata();
-                message("ทำการลบสำเร็จ");
+                // alert("ทำการลบสำเร็จ");
               }else{
                 listperson();
                 searchdata();
-                message("error");
+                alert("error");
               }
         })
       .catch((error) => {
-           message("error");
+        console.log(error);
       });
   }
 }
 
-    let searchdata = async() => {
-
-        var datasearch = document.getElementById("datasearch").value;
-        var show = document.getElementById('persons'); 
-        let data = "";
-        if(datasearch == ""){
-            listperson();
-        }else{
-    
-            await fetch('data_search_person2.php?search=' + datasearch)
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-            // var show = document.getElementById('persons'); 
-                if (data['empty']) {
-                   show.innerHTML = `<td>no data</td>`;
-                }else{
-                    let tr = '';
-                    let n = 1;
-                    for (var i in data){
-                        tr += (`<tr>
-                            <th scope="row">${n++}</th>
-                            <td>${data[i].pname} ${data[i].fname}</td>
-                            <td>${data[i].lname}</td>
-                            <td>${data[i].dep_name}</td>
-                            <td style="display: flex" >
-                                <button id="editbtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" onclick="showeditData(${data[i].cid},'${data[i].pname}', '${data[i].fname}', '${data[i].lname}','${data[i].position_name}'
-                                            ,'${data[i].position_code}', '${data[i].government_emp_type_code}','${data[i].government_emp_type_name}','${data[i].class_position_shortname}','${data[i].class_position_type_name2}'
-                                            ,'${data[i].dep_code}','${data[i].dep_name}','${data[i].groupwork_code}','${data[i].groupwork_name}','${data[i].birth_date}',${data[i].id}, 'แก้ไขข้อมูลบุคลากร')">แก้ไข</button>
-                                <button id="deletebtns" type="button" class="btn btn-danger" style="margin-left: 2px" onclick="deleteInSearch(${data[i].id})">ลบ</button>
-                            </td>
-                        </tr>`);
-                    }
-                    show.innerHTML = tr;
-                }
+let deleteInSearch = async(id) => {
+  
+  if ( confirm("Are you sure want to Delete this record ?")) {
+    await fetch("delete_person.php?id="+id, {
+          method : 'delete'
+      })
+      .then((response) => response.json())
+      .then((result) => {
+              if (result.delete == 'success'){
+                showdata();
+                listperson();
+                searchdata();
+                // alert("ทำการลบสำเร็จ");
+              }else{
+                listperson();
+                searchdata();
+                alert("error");
+              }
         })
-        .catch((error) =>{
-            // message("error");
-        });
-        }
-    }
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+}
 
+let searchdata = async() => {
 
+    var datasearch = document.getElementById("datasearch").value;
+    var show = document.getElementById('persons'); 
+    let data = "";
+    if(datasearch == ""){
+         listperson();
+    }else{
 
-
-
-        let showdata = () => {
-            fetch('selectdataadmin.php')
-            .then((response)=> response.json())
-            .then((data)=>{
-                if(data['empty']){
-
-                }else{
-                    for(let i in data){
-                        document.getElementById("sumperson").innerHTML += `${data[i].sumperson} คน`;
-                        document.getElementById("sumadmin").innerHTML += `${data[i].sumadmin} คน`;
-                        document.getElementById("gogov_new").innerHTML += `${data[i].sumgogov_new} รายการ`;
-                        document.getElementById("gogov_back").innerHTML += `${data[i].sumgogov_back} รายการ`;
-                    }
+        await fetch('data_search_person2.php?search=' + datasearch)
+        .then((response) => response.json())
+        .then((data) => {
+            // console.log(data);
+        // var show = document.getElementById('persons'); 
+            if (data['empty']) {
+               show.innerHTML = `<td>no data</td>`;
+            }else{
+                let tr = '';
+                let n = 1;
+                for (var i in data){
+                    tr += (`<tr>
+                        <th scope="row">${n++}</th>
+                        <td>${data[i].pname} ${data[i].fname}</td>
+                        <td>${data[i].lname}</td>
+                        <td>${data[i].dep_name}</td>
+                        <td style="display: flex" >
+                            <button id="editbtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" onclick="showeditData(${data[i].cid},'${data[i].pname}', '${data[i].fname}', '${data[i].lname}','${data[i].position_name}'
+                                        ,'${data[i].position_code}', '${data[i].government_emp_type_code}','${data[i].government_emp_type_name}','${data[i].class_position_shortname}','${data[i].class_position_type_name2}'
+                                        ,'${data[i].dep_code}','${data[i].dep_name}','${data[i].groupwork_code}','${data[i].groupwork_name}','${data[i].birth_date}',${data[i].id}, 'แก้ไขข้อมูลบุคลากร')">แก้ไข</button>
+                            <button id="deletebtns" type="button" class="btn btn-danger" style="margin-left: 2px" onclick="deleteInSearch(${data[i].id})">ลบ</button>
+                        </td>
+                    </tr>`);
                 }
-            }).catch((err)=>{
+                show.innerHTML = tr;
+            }
+    })
+    .catch((error) =>{
+        console.log(error);
+    });
+    }
+}
 
-            });
-        }
+
+
+
+
+let showdata = async() => {
+
+    await setInterval(()=>{
+         fetch('selectdataadmin2.php')
+        .then((response)=> response.json())
+        .then((data)=>{
+            if(data['empty']){
+            }else{
+                for(let i in data){
+                    document.getElementById("sumperson").innerHTML = `${data[i].sumperson} คน`;
+                    document.getElementById("sumadmin").innerHTML = `${data[i].sumadmin} คน`;
+                    document.getElementById("gogov_new").innerHTML = `${data[i].sumgogov_new}`;
+                    // document.getElementById("gogov_back").innerHTML = `${data[i].sumgogov_back}`;
+                    document.getElementById("gogov_back").innerHTML = `รออัพเดท`;
+                }
+            }
+        }).catch((err)=>{
+        });
+    },5000);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+    showdata();
+});
+
+
 
         let listperson = async() => {
             await fetch('selectdataadmin.php')
@@ -670,10 +1049,10 @@ let deleteInSearch = (id) => {
                                     <td>${myarr[i].lname}</td>
                                     <td>${myarr[i].depname}</td>
                                     <td style="display: flex" >
-                                        <button id="editbtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" 
+                                        <button id="editbtn" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal" 
                                             onclick="showeditData(${myarr[i].cid},'${myarr[i].pname}', '${myarr[i].fname}', '${myarr[i].lname}','${myarr[i].position}'
                                                             ,'${myarr[i].position_code}', '${myarr[i].g_emp_type_code}','${myarr[i].g_emp_type}','${myarr[i].positionclass_code}','${myarr[i].positionclass}'
-                                                            ,'${myarr[i].depcode}','${myarr[i].depname}','${myarr[i].groupwork_code}','${myarr[i].groupwork}','${myarr[i].bday}',${myarr[i].id}, 'แก้ไขข้อมูลบุคลากร');">แก้ไข</button>
+                                                            ,'${myarr[i].depcode}','${myarr[i].depname}','${myarr[i].groupwork_code}','${myarr[i].groupwork}','${myarr[i].bday}',${myarr[i].id}, 'ข้อมูลบุคลากร');">เพิ่มเติม</button>
                                         <button id="deletebtns" type="button" class="btn btn-danger" style="margin-left: 2px" onclick="deleteInSearch(${myarr[i].id})">ลบ</button>
                                     </td>
                             </tr>`);
@@ -686,13 +1065,11 @@ let deleteInSearch = (id) => {
                                     <th scope="row">${n2++}</th>
                                     <td>${myarr2[i].pname} ${myarr2[i].fname}</td>
                                     <td>${myarr2[i].lname}</td>
-                                    <td>${myarr2[i].depname}</td>
+                                    <td></td>
                                     <td style="display: flex" >
                                         <button id="editbtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" 
-                                            onclick="showeditData(${myarr2[i].cid},'${myarr2[i].pname}', '${myarr2[i].fname}', '${myarr2[i].lname}','${myarr2[i].position}'
-                                                            ,'${myarr2[i].position_code}', '${myarr2[i].g_emp_type_code}','${myarr2[i].g_emp_type}','${myarr2[i].positionclass_code}','${myarr2[i].positionclass}'
-                                                            ,'${myarr2[i].depcode}','${myarr2[i].depname}','${myarr2[i].groupwork_code}','${myarr2[i].groupwork}','${myarr2[i].bday}',${myarr2[i].id}, 'แก้ไขข้อมูลบุคลากร');">แก้ไข</button>
-                                        <button id="deletebtns" type="button" class="btn btn-danger" style="margin-left: 2px" onclick="deleteInSearch(${myarr2[i].id})">ลบ</button>
+                                            onclick="showeditDataadmin(${myarr2[i].cid},'${myarr2[i].pname}', '${myarr2[i].fname}', '${myarr2[i].lname}',${myarr2[i].id}, 'แก้ไขข้อมูลแอดมิน');">เพิ่มเติม</button>
+                                        <button id="deletebtns" type="button" class="btn btn-danger" style="margin-left: 2px" onclick="deleteInadmin(${myarr2[i].id})">ลบ</button>
                                     </td>
                             </tr>`);
                         }
@@ -704,9 +1081,16 @@ let deleteInSearch = (id) => {
             });
         }
 
-        listperson();
-        showdata();
-     
-      </script>
+       
+</script>
+
+<script src="./loadpdf.js"></script>
+<script src="./options.js"></script>
+
+<script>
+    show_gogov_new();
+    listperson();
+    showdata();
+</script>
 </body>
 </html>

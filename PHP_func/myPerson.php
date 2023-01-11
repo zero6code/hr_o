@@ -159,9 +159,15 @@ class myPersonData
         $this->groupwork = new stdClass();
         $cnn = $this->objCnn;
         $groupwork_code = "";
-        $objDep = $this->dep;
+        // $objDep = $this->dep;
+        $objDep = $this->personData;
+        // foreach ($objDep as  $key => $value) {
+        //     if($key=="groupwork_code"){
+        //         $groupwork_code = $value;
+        //     }
+        // }
         foreach ($objDep as  $key => $value) {
-            if($key=="groupwork_code"){
+            if($key=="groupwork"){
                 $groupwork_code = $value;
             }
         }

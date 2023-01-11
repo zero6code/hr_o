@@ -603,10 +603,14 @@ var changeToNumber = (num) => {
         a();
         workforce2_module();
     };//กราฟ สถิติ ด้านบุคลากร
+
+    
     var gogov_print_moldule1 = function(data,OnlineUser){
         function textWidth(str){
             var span = $('<span id="calTxtWidth">'+str+'</span>');
+        
             $(document.body).append(span);
+            console.log(typeof span);
             var txtWidth = 0;
             span.each(function(index,value){
                txtWidth = $(value).width();
@@ -616,7 +620,7 @@ var changeToNumber = (num) => {
         };
         function chklenStr(str,wMax){//wMax หน่วยเป็นนิ้ว
             var newStr =str,wStr;
-            wStr = textWidth(newStr);//ความกว้าง str
+             wStr = textWidth(newStr);//ความกว้าง str
             var wiMax = parseFloat(wMax*96);//1 inch = 96px
             while (wStr < wiMax) {
                 newStr += ' ';
@@ -838,9 +842,15 @@ var changeToNumber = (num) => {
                 return p;
             };
         function ParseHtml(cnt, htmlText) {
+            console.log(htmlText);
                 var html = $(htmlText.replace(/\t/g, "").replace(/\n/g, ""));
+                console.log(html);
+                // console.log(htmlText);
                 var p = CreateParagraph();
-                for (var i = 0; i < html.length; i++) ParseElement(cnt, html.get(i), p);
+                for (var i = 0; i < html.length; i++){
+                    console.log(html.get(i));
+                 ParseElement(cnt, html.get(i), p);
+                }
             }//content = [];ParseHtml(content, simpleHtm);pdfMake.createPdf({content: content}).download();
         function CreateParagraph() {
                 var p = {text:[]};
@@ -973,9 +983,11 @@ var changeToNumber = (num) => {
                         {text:' ตำแหน่ง ',fontSize:16},
                         {text: chklenStr(changeToThaiNumber(chkPositionName()),2.7),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         '\n',
-                        {text:'พร้อมด้วย (ดังรายชื่อแนบท้าย) ',fontSize:16},
+                        {text:'พร้อมด้วยคณะจำนวน ',fontSize:16},
+                        {text:chklenStr(changeToThaiNumber(data.group_gogov2.length),0.1),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:' คน (ดังรายชื่อแนบท้าย) ',fontSize:16},
                         {text:'ขออนุมัติเดินทางไปราชการเพื่อ ',fontSize:16},
-                        {text:chklenStr(data.gogov_for,2.6),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
+                        {text:chklenStr(data.gogov_for,1.4),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
                         '\n',
                         {text:'เรื่อง ',fontSize:16},
                         {text:chklenStr(changeToThaiNumber(data.gogov_topic),6),fontSize:16,decoration: 'underline',decorationStyle: 'dotted'},
@@ -3866,7 +3878,7 @@ var changeToNumber = (num) => {
                             //console.log(dtgogovBack);
                             //update ตาราง gogov_back
                              $.ajax({
-                                url:"GoGovBackSaveData.php", 
+                                url:"./GoGovBackSaveData.php", 
                                 type:"post",
                                 cache:false,
                                 dataType:'json',
@@ -4007,6 +4019,7 @@ var changeToNumber = (num) => {
                         if($.inArray('json_print',key)!==-1){//ถ้ามี key ชื่อนี้อยู่จริง
                             $.when($.fn.def_OnlineUser()).done(function(OnlineUser){
                                 gogov_print_moldule1($.parseJSON(v['json_print']),OnlineUser);
+                                // console.log(OnlineUser);
                             });
                         } 
                     }

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #calTxtWidth
+{
+    position: absolute;
+    visibility: hidden;
+    height: auto;
+    width: auto;
+    white-space: nowrap; /* Thanks to Herb Caudill comment */
+}
+</style>
+<body>
+    <span id="calTxtWidth">กลุ่มงานทรัพยากรบุคคล กลุ่มภารกิจอำนวยการ</span>
+
+<script>
+   
+//    const span = this.innerHTML = (`<span id="calTxtWidth">zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz/span>`);
+//   document.querySelector('body').append(span);
+  var test = document.getElementById("calTxtWidth");
+  test.style.fontSize = 16;
+   let txtWidth = 0;
+//   txtWidth = span.clientWidth;
+//    console.log("object : "+txtWidth);
+var width = (test.clientWidth + 1)
+//   document.querySelector("body");
+                // span.style.visibility = "hidden"; // ซ่อน text ที่ body โดยไม่ส่งผลต่อ การสร้าง PDF
+   alert(width);
+
+</script>
+</body>
+</html>

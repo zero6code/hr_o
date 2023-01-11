@@ -14,7 +14,7 @@
         select (select count(*) from person where record_use = 'Y')as sumperson,
         (select count(*) from admin) as sumadmin, 
         (select count(*) from gogov_new where  DATE(datecreate) = CURDATE()) as sumgogov_new, 
-        (select count(*) from gogov_back where  DATE(datecreate) = CURDATE()) as sumgogov_back,
+        (select count(*) from gogov_back where  DATE(datecreate) = CURDATE() AND gogov_type IS NOT NULL) as sumgogov_back,
         (select JSON_ARRAYAGG(json_object('depname', department.dep_name, 'depcode', department.dep_code,'pname',pname, 'fname',fname, 'lname',lname, 'id', person.id, 'cid', cid,'bday', birth_date,
             'position', position.position_name,'position_code', position.position_code,
             'positionclass', class_position.class_position_type_name2, 'positionclass_code', class_position.class_position_shortname, 
@@ -26,9 +26,9 @@
             LEFT JOIN class_position ON class_position.class_position_shortname = person.class_position_shortname
             LEFT JOIN groupwork ON groupwork.groupwork_code = person.groupwork  
             LEFT JOIN government_emp_type ON government_emp_type.government_emp_type_code = person.government_emp_type where person.record_use = 'Y') as jsondata,
-        (select JSON_ARRAYAGG(json_object('pname',admin.pname, 'fname',admin.fname, 'lname',admin.lname, 'id', admin.id)) 
+        (select JSON_ARRAYAGG(json_object('pname',admin.pname, 'fname',admin.fname, 'lname',admin.lname, 'id', admin.id, 'cid', admin.cid)) 
         from admin 
-        left join person on admin.cid = person.cid where admin.status_use = 'Y') as jsondata2 order by person.id DESC;
+        left join person on admin.cid = person.cid where admin.status_use = 'Y') as jsondata2;
     "));
     $output = [];
     if (mysqli_num_rows($query_data) > 0){
@@ -42,4 +42,6 @@
       mysqli_close($conn);
   
     echo json_encode($output);
+
+    // select count(*) from gogov_back where  DATE(datecreate) = CURDATE()
 ?>
